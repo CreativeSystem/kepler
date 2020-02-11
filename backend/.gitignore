@@ -1,0 +1,4 @@
+cfood/
+.vscode/
+__pycache__/
+.env
