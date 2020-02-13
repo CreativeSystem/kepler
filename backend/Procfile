@@ -1,2 +1,2 @@
-release: python cfoodapi/manage.py migrate --noinput
-web: gunicorn cfoodapi.wsgi --pythonpath=cfoodapi --log-file -
+release: python keplerapi/manage.py migrate --noinput
+web: gunicorn keplerapi.wsgi --pythonpath=keplerapi --log-file -

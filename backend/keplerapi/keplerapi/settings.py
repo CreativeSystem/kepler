@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'cfoodapi.urls'
+ROOT_URLCONF = 'keplerapi.urls'
 
 TEMPLATES = [
     {
@@ -63,7 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cfoodapi.wsgi.application'
+WSGI_APPLICATION = 'keplerapi.wsgi.application'
 
 
 # Database
@@ -117,7 +117,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'cfoodapi.pagination.Pagination',
+    'DEFAULT_PAGINATION_CLASS': 'keplerapi.pagination.Pagination',
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
 }
 CORS_ORIGIN_WHITELIST = (

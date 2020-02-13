@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from cfoodapi.settings import DEBUG
+from keplerapi.settings import DEBUG
 
 urlpatterns = [
     path('auth/', include('authapi.urls')),
