@@ -1,13 +1,15 @@
-import styled from "styled-components";
 import Background from "@assets/img/background.svg";
 import { ITheme } from "~/styles/theme";
+
+import styled from "styled-components";
+
 
 interface Props {
   theme: ITheme;
 }
 
 export const Container = styled.nav.attrs({
-  className: "nav flex-column collapse show flex-nowrap"
+  className: "nav flex-column collapse show flex-nowrap",
 })`
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -33,8 +35,7 @@ export const Container = styled.nav.attrs({
     position: fixed;
     width: 100%;
     max-width: 350px;
-    background-color: ${({ theme: { default: Default } }: Props) =>
-      Default.bg + "88"};
+    background-color: ${({ theme: { default: Default } }: Props) => `${Default.bg}88`};
     z-index: 1000;
     margin-right: 0px;
   }
@@ -65,7 +66,7 @@ export const Body = styled.div`
 `;
 
 export const Logo = styled.img.attrs({
-  className: "rounded mx-auto d-block logo"
+  className: "rounded mx-auto d-block logo",
 })`
   max-width: 90%;
   max-height: 98%;

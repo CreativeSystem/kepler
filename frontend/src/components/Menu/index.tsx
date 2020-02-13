@@ -1,10 +1,13 @@
 import React from "react";
-
-import { Container, Logo, Header, Body } from "./styles";
 import { useLocation } from "react-router";
-import { IRoute } from "~/routes";
-import MenuItem from "./MenuItem";
+
 import LogoSrc from "@assets/img/logo.png";
+import { IRoute } from "~/routes";
+
+import MenuItem from "./MenuItem";
+import {
+  Container, Logo, Header, Body,
+} from "./styles";
 
 interface OwnProps {
   routes: Array<IRoute>;

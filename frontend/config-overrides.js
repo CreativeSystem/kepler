@@ -7,33 +7,33 @@ module.exports = override(
       paths: [
         {
           rootPathSuffix: "src",
-          rootPathPrefix: "~"
+          rootPathPrefix: "~",
         },
         {
           rootPathSuffix: "src/store/ducks",
-          rootPathPrefix: "@ducks"
+          rootPathPrefix: "@ducks",
         },
         {
           rootPathSuffix: "src/services",
-          rootPathPrefix: "@services"
+          rootPathPrefix: "@services",
         },
         {
           rootPathSuffix: "src/assets",
-          rootPathPrefix: "@assets"
+          rootPathPrefix: "@assets",
         },
         {
           rootPathSuffix: "src/pages",
-          rootPathPrefix: "@pages"
+          rootPathPrefix: "@pages",
         },
         {
           rootPathSuffix: "src/store",
-          rootPathPrefix: "@store"
+          rootPathPrefix: "@store",
         },
         {
           rootPathSuffix: "src/components",
-          rootPathPrefix: "@components"
-        }
-      ]
-    }
-  ])
+          rootPathPrefix: "@components",
+        },
+      ],
+    },
+  ]),
 );
