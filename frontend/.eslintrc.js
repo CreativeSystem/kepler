@@ -21,14 +21,24 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module"
   },
-  plugins: [
-    "react",
-    "import",
-    "jsx-a11y",
-    "eslint-plugin-import-helpers",
-    "eslint-import-resolver-babel-plugin-root-import"
-  ],
+  plugins: ["react","import", "jsx-a11y", "eslint-plugin-import-helpers"],
   rules: {
+    "import/export": "off",
+    "import/prefer-default-export": "off",
+    "import/named": "off",
+    "react/prop-types": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies":"off",
+    "import/no-duplicates":"off",
+    "import/order":"off",
+    "import/no-self-import": "off",
+    "import/no-cycle":"off",
+    "import/no-named-as-default":"off",
+    "import/no-named-as-default-member":"off",
+    "import/no-useless-path-segments":"off",
+    "@typescript-eslint/interface-name-prefix":"off",
+    "import/no-cycle":"off",
     "react/jsx-filename-extension": [
       "error",
       {
@@ -50,18 +60,23 @@ module.exports = {
           "/^pages/",
           "/^components/",
           "/^assets/",
+          "/^styled/",
           ["parent", "sibling", "index"]
         ],
         alphabetize: { order: "asc", ignoreCase: true }
       }
-    ]
+    ],
+    quotes: ["error", "double"],
+    "@typescript-eslint/no-var-requires": "off"
   },
   settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
-      typescript: {},
+      typescript: {
+        "alwaysTryTypes": true
+      },
       "babel-plugin-root-import": {
         paths: [
           {
