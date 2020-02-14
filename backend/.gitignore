@@ -1,5 +1,4 @@
-cfood/
 .vscode/
 __pycache__/
-.env
+/*/.env
 /env
