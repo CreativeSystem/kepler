@@ -2,6 +2,7 @@
 
 ## Como configurar o projeto
 
-- virtualenv --python=python3 cfood
+- python3 -m virtualenv --python=python3 env
 - source cfood/Scripts/activate ou source env/bin/activate para o linux
-- cd keplerapi && pip install -r requirements.txt
+- pip3 install -r requirements.txt
+
