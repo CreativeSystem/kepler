@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { IDataTableColumn } from "react-data-table-component";
 
+import Filter, { IFilter } from "@components/Filter";
 import api from "@services/api";
 
-import Filter, { IFilter } from "@components/Filter";
 
+import Search from "./Search";
 import {
   Loader,
   Container,
   DataTable,
   FilterContainer,
-  Filters
+  Filters,
 } from "./styles";
-import Search from "./Search";
 
 interface OwnProps {
   title?: string;
@@ -35,7 +35,7 @@ interface Response {
 
 const paginationOptions = {
   rowsPerPageText: "Items por página",
-  rangeSeparatorText: "de"
+  rangeSeparatorText: "de",
 };
 
 const Table: React.FC<Props> = ({
@@ -43,7 +43,7 @@ const Table: React.FC<Props> = ({
   columns,
   url,
   defaultSortField,
-  filters
+  filters,
 }) => {
   const [data, setData] = useState<Array<any>>([]);
   const [loading, setLoading] = useState(false);
@@ -54,14 +54,14 @@ const Table: React.FC<Props> = ({
   const [search, setSearch] = useState("");
 
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(
-    false
+    false,
   );
 
   useEffect(() => {
     setLoading(true);
     api
       .get(
-        `${url}?page=${page}&page_size=${perPage}&ordering=${order}&search=${search}`
+        `${url}?page=${page}&page_size=${perPage}&ordering=${order}&search=${search}`,
       )
       .then(({ data: { total, data } }: Response) => {
         setTotalRows(total);

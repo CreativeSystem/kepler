@@ -39,6 +39,7 @@ module.exports = {
     "import/no-useless-path-segments":"off",
     "@typescript-eslint/interface-name-prefix":"off",
     "import/no-cycle":"off",
+    "no-shadow": "off",
     "react/jsx-filename-extension": [
       "error",
       {

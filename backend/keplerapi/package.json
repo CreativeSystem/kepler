@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/react-infinite-scroller": "^1.2.1"
+  }
+}
