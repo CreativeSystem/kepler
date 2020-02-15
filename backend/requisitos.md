@@ -14,7 +14,7 @@
   ativo
 
 ## servicos
-  imagem(url)
+  imagem(url)[galeria se der tempo]
   pessoa
   titulo
   descricao
@@ -25,12 +25,15 @@
   instagram
   ativo
 
- [] O preço ou a combinar é obrigatório
+  [] O preço ou a combinar é obrigatório
+  [] Upload de imagens - S3
 
 ## servicos contratados
   servico
   pessoa
   avaliacao
   contato
+  comentarios[obs: se der tempo]
+  aceito
 
   [] uma avaliação por pessoa
