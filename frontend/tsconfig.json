@@ -22,8 +22,5 @@
   "include": [
     "src"
   ],
-  "exclude": [
-    "config-overrides.js"
-  ],
   "extends": "./tsconfig.paths.json"
 }
