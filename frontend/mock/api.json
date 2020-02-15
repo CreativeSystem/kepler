@@ -1,0 +1,64 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "title": "Festa",
+      "image_url":"http://localhost:8000/files/party.png",
+      "description": "Curabitur vehicula arcu lacus, eu pretium tellus fermentum ac. Nullam sit amet maximus neque, quis blandit nibh. Duis ac placerat nisi. Quisque tincidunt velit vitae nulla consequat cursus eget vel elit. Quisque aliquam bibendum leo, ut vehicula mi rutrum non. Aliquam pretium purus at nunc placerat finibus. Nam lacinia ex vitae aliquet dapibus. Etiam nec neque iaculis, lacinia augue non, gravida nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id erat ac nisl rhoncus pulvinar vel nec sapien. Phasellus rhoncus, nisl sed fermentum congue, odio lacus imperdiet sem, sit amet cursus nisi risus a sem. Integer iaculis mattis nunc eget tempor. Quisque nibh enim, pretium eu lacus vitae, venenatis ornare turpis. Nulla nisl quam, feugiat nec tortor ac, fringilla vulputate erat. Vestibulum volutpat tempor mauris, in maximus quam efficitur quis. Integer non pulvinar tortor.",
+      "value": 100,
+      "negotiable-price": false,
+      "category": "party"
+    },
+    {
+      "title": "Manutenção",
+      "image_url":"http://localhost:8000/files/party2.png",
+      "description": "Curabitur vehicula arcu lacus, eu pretium tellus fermentum ac. Nullam sit amet maximus neque, quis blandit nibh. Duis ac placerat nisi. Quisque tincidunt velit vitae nulla consequat cursus eget vel elit. Quisque aliquam bibendum leo, ut vehicula mi rutrum non. Aliquam pretium purus at nunc placerat finibus. Nam lacinia ex vitae aliquet dapibus. Etiam nec neque iaculis, lacinia augue non, gravida nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id erat ac nisl rhoncus pulvinar vel nec sapien. Phasellus rhoncus, nisl sed fermentum congue, odio lacus imperdiet sem, sit amet cursus nisi risus a sem. Integer iaculis mattis nunc eget tempor. Quisque nibh enim, pretium eu lacus vitae, venenatis ornare turpis. Nulla nisl quam, feugiat nec tortor ac, fringilla vulputate erat. Vestibulum volutpat tempor mauris, in maximus quam efficitur quis. Integer non pulvinar tortor.",
+      "value": null,
+      "negotiable-price": true,
+      "category": "maintenance",
+      "id": 2
+    }
+  ],
+  "services-detail": [
+    {
+      "id": 1,
+      "regions": [
+        "Indaiatuba",
+        "Campinas",
+        "Salto"
+      ],
+      "facebook_url": "https://www.facebook.com",
+      "instagram_url": "https://www.instagram.com/?hl=pt-br",
+      "provider": 1
+    }
+  ],
+  "providers": [
+    {
+      "id": 1,
+      "name": "Leonardo Ferreira Lima",
+      "email": "leoferreiralima@yahoo.com",
+      "phone": "11963862748",
+      "whatsapp": "11963862748",
+      "birthday": "2000-02-29",
+      "cpf": "48323619883",
+      "interests": [
+        "party"
+      ]
+    }
+  ],
+  "providers-interests": [
+    {
+      "provider": 1,
+      "interest": "party"
+    }
+  ],
+  "hired-services": [
+    {
+      "service": 1,
+      "provider": 1,
+      "avaliation": 4,
+      "best_contact": "Whatsapp",
+      "accepted": true
+    }
+  ]
+}
