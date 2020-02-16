@@ -1,10 +1,13 @@
 from rest_framework import serializers
-from api.models import ProductItem
 
 from api.base import AuditedEntitySerializer
+from api.models import File
 
+class FileSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length = 50,required=True)
+    originalName = serializers.CharField(max_length = 50,required=True)
+    url = serializers.CharField(max_length = 255,required=True)
+    
+    def create(self):
 
-class ProductItemSerializer(AuditedEntitySerializer):
-    class Meta:
-        model = ProductItem
-        fields = "__all__"
+        return File(**self.data).save()

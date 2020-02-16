@@ -1,5 +1,6 @@
-from dotenv import load_dotenv
 import os
+from api.uploader import S3Uploader,LocalUploader
+from dotenv import load_dotenv
 
 from django_heroku import dj_database_url
 
@@ -97,8 +98,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
 DEFAULT_RENDERER_CLASSES = (
     'rest_framework.renderers.JSONRenderer',
 )
@@ -136,3 +135,24 @@ JWT_AUTH = {
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
+
+
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_DEFAULT_REGION = os.getenv('AWS_DEFAULT_REGION')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+
+if os.getenv('STORAGE') == 'S3':
+    UPLOADER= S3Uploader
+    IMAGE_URL= "https://%s.s3.amazonaws.com/%s"
+else:
+    UPLOADER = LocalUploader
+    IMAGE_URL= "http://localhost:8000/static/%s"
+
+STATIC_URL = '/static/'
+
+TEMP_DIR = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'temp'))
+STATICFILES_DIRS = [
+  TEMP_DIR
+]

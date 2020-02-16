@@ -1,4 +1,9 @@
 {
   "git.ignoreLimitWarning": true,
-  "eslint.workingDirectories": ["./backend", "./frontend"]
+  "eslint.workingDirectories": [
+    "./backend",
+    "./frontend"
+  ],
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }
