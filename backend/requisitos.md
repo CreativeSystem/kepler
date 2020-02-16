@@ -49,14 +49,6 @@ ativo
 [] Upload de imagens - S3
 
 ## servicos contratados
-<<<<<<< HEAD
-  servico
-  pessoa
-  avaliacao
-  contato
-  comentarios[obs: se der tempo]
-  aceito
-=======
 
 servico
 pessoa
@@ -69,6 +61,5 @@ servico
 pessoa
 avaliacao
 contato
->>>>>>> ddfb4acaf2dcce556c1180e0307319d1da88a760
 
 [] uma avaliação por pessoa
