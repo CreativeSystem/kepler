@@ -4,3 +4,4 @@ __pycache__/
 /env
 /*/temp/*.jpeg
 /*/temp/*.png
+.vscode/settings.json

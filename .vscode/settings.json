@@ -5,5 +5,7 @@
     "./frontend"
   ],
   "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "python.pythonPath": "/env/bin/python3",
+  "python.linting.pylintPath": "pylint",
 }

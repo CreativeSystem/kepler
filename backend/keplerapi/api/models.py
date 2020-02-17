@@ -43,9 +43,10 @@ class Interests(models.Model):
 
 class Region(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    region = models.CharField(max_length=3, choices=RegionChoices.choices)
+    region = models.CharField(max_length=21, choices=RegionChoices.choices)
+
 
 class File(models.Model):
-    name = models.CharField(max_length=50,null=False)
-    originalName = models.CharField(max_length=50,null=False)
+    name = models.CharField(max_length=50, null=False)
+    originalName = models.CharField(max_length=50, null=False)
     url = models.CharField(max_length=255, null=False)
