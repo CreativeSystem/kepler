@@ -9,7 +9,7 @@ class InterestsChoices(models.TextChoices):
 
 
 class RegionChoices(models.TextChoices):
-    ANAPOLIS = "ANAPOLIS", ("Anápolis")
+    ANAPOLIS = "ANAPOLIS", _("Anápolis")
     ANGRA = "ANGRA", _("Angra dos Reis")
     APUCARANA = "APUCARANA", _("Apucarana")
     ARACAJU = "ARACAJU", _("Aracaju")
@@ -31,7 +31,7 @@ class RegionChoices(models.TextChoices):
     CAMPOGRANDE = "CAMPO GRANDE", _("Campo Grande")
     CAMPOS = "CAMPOS", _("Campos e Região")
     CARAGUATATUBA = "CARAGUATATUBA", _("Caraguatatuba")
-    CARATINGA = "CARATINGA" , _("Caratinga e Região")
+    CARATINGA = "CARATINGA", _("Caratinga e Região")
     CARUARU = "CARUARU", _("Caruaru")
     CASCAVEL = "CASCAVEL", _("Cascavel")
     CARAGUASES = "CARAGUASES", _("Caraguases")
@@ -43,7 +43,8 @@ class RegionChoices(models.TextChoices):
     CAXIASDOSUL = "CAXIAS DO SUL", _("Caxias do Sul e Serra Gaúcha")
     CHAPECO = "CHAPECO", _("Chapecó")
     CIANORTE = "CIANORTE", _("Cianorte")
-    CONSELHEIROLAFAIETE = "CONSELHEIRO LAFAIETE", _("Conselheiro Lafaiete e Região")
+    CONSELHEIROLAFAIETE = "CONSELHEIRO LAFAIETE", _(
+        "Conselheiro Lafaiete e Região")
     CORUMBA = "CORUMBA", _("Corumbá")
     CRICIUMA = "CRICIUMA", _("Criciúma")
     SULCATARINENSE = "SUL CATARINENSE", _("Sul Catarinense")
@@ -117,7 +118,8 @@ class RegionChoices(models.TextChoices):
     PORTOSEGURO = "PORTO SEGURO", _("Porto Seguro e Região")
     PORTOVELHO = "PORTO VELHO", _("Porto Velho")
     POUSOALEGRE = "POUSO ALEGRE", _("Pouso Alegre")
-    SANTARITADOSAPUCAI = "SANTA RITA DO SAPUCAI", _("Santa Rita do Sapucaí e Região")
+    SANTARITADOSAPUCAI = "SANTA RITA DO SAPUCAI", _(
+        "Santa Rita do Sapucaí e Região")
     PRAIAGRANDE = "PRAIA GRANDE", _("Praia Grande e Região")
     PRESIDENTEPRUDENTE = "PRESIDENTE PRUDENTE", _("Presidente Prudente")
     RECIFE = "RECIFE", _("Recife e Região")
@@ -138,7 +140,8 @@ class RegionChoices(models.TextChoices):
     SAOGABRIELDOOESTE = "SAO GABRIEL DO OESTE", _("São Gabriel do Oeste")
     SAOJOAODELREI = "SAO JOAO DEL REI", _("São João Del Rei")
     TIRADENTES = "TIRADENTES", _("Tiradentes e Região")
-    SAOJOSEDORIOPRETO = "SAO JOSE DO RIO PRETO", _("São José do Rio Preto e Região")
+    SAOJOSEDORIOPRETO = "SAO JOSE DO RIO PRETO", _(
+        "São José do Rio Preto e Região")
     SAOJOSEDOSCAMPOS = "SAO JOSE DOS CAMPOS", _("São José dos Campos")
     SAOLOURENCO = "SAO LOURENCO", _("São Lourenço")
     SAOLUIS = "SAO LUIS", _("São Luis")
