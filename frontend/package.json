@@ -32,7 +32,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "mock":"json-server mock/api.json --port 8000 --static mock/static"
+    "mock":"json-server mock/index.json --port 8000 --static mock/static --routes=mock/routes.json"
   },
   "eslintConfig": {
     "extends": "react-app"
