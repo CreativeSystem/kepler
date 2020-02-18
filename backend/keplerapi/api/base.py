@@ -105,9 +105,12 @@ class FilterType:
         {"lookup": "date", "name": "%s", "filter": field_filters.DateFilter},
         {"lookup": "date__gt", "name": "%s_gt",
             "filter": field_filters.DateFilter},
-        {"lookup": "date__gte", "name": "%s_gte", "filter": field_filters.DateFilter},
-        {"lookup": "date__lt", "name": "%s_lt", "filter": field_filters.DateFilter},
-        {"lookup": "date__lte", "name": "%s_lte", "filter": field_filters.DateFilter},
+        {"lookup": "date__gte", "name": "%s_gte",
+            "filter": field_filters.DateFilter},
+        {"lookup": "date__lt", "name": "%s_lt",
+            "filter": field_filters.DateFilter},
+        {"lookup": "date__lte", "name": "%s_lte",
+            "filter": field_filters.DateFilter},
         {"lookup": "date__range", "name": "%s_between", "filter": DateRangeFilter}
     )
 
