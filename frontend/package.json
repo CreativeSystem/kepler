@@ -13,10 +13,11 @@
     "react-data-table-component": "^6.1.2",
     "react-dom": "^16.12.0",
     "react-icons": "^3.8.0",
+    "react-infinite-scroll-component": "^5.0.4",
     "react-lottie": "^1.2.3",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
+    "react-scripts": "^3.4.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
@@ -32,7 +33,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "mock":"json-server mock/api.json --port 8000 --static mock/static"
+    "mock": "json-server mock/index.json --port 8000 --static mock/static --routes=mock/routes.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,6 +58,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-infinite-scroll-component": "^4.2.5",
     "@types/react-lottie": "^1.2.3",
     "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^5.1.3",

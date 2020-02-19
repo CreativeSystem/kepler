@@ -6,6 +6,14 @@
   ],
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
+<<<<<<< HEAD
   "python.pythonPath": "/bin/python3",
+=======
+  "python.pythonPath": "./backend/env/bin/python3",
+>>>>>>> fa0aebc05948831947316c5be4ac088a23b0c052
   "python.linting.pylintPath": "pylint",
+  "python.linting.pylintArgs": [
+    "--load-plugins=pylint_django",
+    "--errors-only"
+  ],
 }

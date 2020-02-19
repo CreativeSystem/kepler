@@ -34,7 +34,7 @@ class RegionSerializer(AuditedEntitySerializer):
         fields = "_all_"
 
 
-class FileSerializer(AuditedEntitySerializer):
+class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = "_all_"
+        fields = "__all__"
