@@ -1,0 +1,3 @@
+{
+  "/api/*\\?page=:page&page_size=:size": "/$1?_page=:page&_limit=:size"
+}

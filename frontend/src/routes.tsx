@@ -10,6 +10,7 @@ import PrivateRoute from "@components/PrivateRoute";
 import Template from "@components/Template";
 import * as SessionActions from "@ducks/session/actions";
 import Dashboard from "@pages/Dashboard";
+import FileList from "@pages/FileList";
 import Login from "@pages/Login";
 import ProductItem from "@pages/ProductItem";
 import { ApplicationState } from "@store/index";
@@ -48,7 +49,7 @@ const Routes: React.FC<Props> = ({ isAuthenticated }) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/login" component={Login} />
-
+        <Route exat path="/file" component={FileList} />
         {isAuthenticated && (
           <Template routes={privateRoutes}>
             {privateRoutes.map(({ path, container: component }) => (
