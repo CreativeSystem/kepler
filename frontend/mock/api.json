@@ -1008,11 +1008,7 @@
   "services-detail": [
     {
       "id": 1,
-      "regions": [
-        "Indaiatuba",
-        "Campinas",
-        "Salto"
-      ],
+      "regions": ["Indaiatuba", "Campinas", "Salto"],
       "facebook_url": "https://www.facebook.com",
       "instagram_url": "https://www.instagram.com/?hl=pt-br",
       "provider": 1
@@ -1027,9 +1023,7 @@
       "whatsapp": "11963862748",
       "birthday": "2000-02-29",
       "cpf": "48323619883",
-      "interests": [
-        "party"
-      ]
+      "interests": ["party"]
     }
   ],
   "providers-interests": [

@@ -16,7 +16,7 @@ class Person(AuditedEntity):
 
 
 class Service(AuditedEntity):
-    image = models.URLField()
+    image = models.ManyToManyField(File)
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.TextField()
