@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormGroup, Image, InputGroup } from "react-bootstrap";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
@@ -13,10 +13,12 @@ import { Form, Input } from "@rocketseat/unform";
 import { ApplicationState } from "@store/index";
 import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
+import STEPS from "../../enums/steps";
 
-import { Container, ContainerFluid, Box } from "./styles";
+import { Container, Box } from "./styles";
+import { render } from "@testing-library/react";
 
-type StateProps = SessionState
+type StateProps = SessionState;
 
 interface DispatchProps {
   loginRequest(data: ILogin): void;
@@ -30,89 +32,91 @@ const formValidation = Yup.object().shape({
     .required(),
   password: Yup.string()
     .min(8)
-    .required(),
+    .required()
 });
 
 const Login: React.FC<Props> = ({
   loading,
   error,
   isAuthenticated,
-  loginRequest,
+  loginRequest
 }) => {
   const handleSubmit = ({ username, password }: any) => {
     loginRequest({ username, password });
   };
+  const [step, setStep] = useState(STEPS.EMAIL);
 
   return (
     <Container>
-      <ContainerFluid>
-        <Box className="col-lg-4 col-md-6 col-sm-9">
-          <Form onSubmit={handleSubmit} schema={formValidation}>
-            <FormGroup className="col-md-12">
-              <Image
-                rounded
-                fluid
-                srcSet={Logo}
-                className="mx-auto d-block"
-              />
-            </FormGroup>
-            <FormGroup className="col-md-10">
-              <InputGroup className="mb-3 text-primary font-weight-bold">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>
-                    <FaUserAlt className="text-primary" />
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <Input
-                  name="username"
-                  className="form-control"
-                  placeholder="Digite seu usuario"
-                />
-              </InputGroup>
-            </FormGroup>
-            <FormGroup className="col-md-10">
-              <InputGroup className="mb-3 text-primary font-weight-bold">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>
-                    <FaLock className="text-primary" />
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <Input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Digite sua senha"
-                />
-              </InputGroup>
-            </FormGroup>
-            <div className="col-md-7">
-              <div className="col-md-12">
-                <Button type="submit" variant="primary" block loading={loading}>
-                  Login
-                </Button>
-              </div>
-              <div className="col-md-12 d-flex justify-content-center">
-                <Link to="/" className="text-primary font-weight-bold">
-                  Esqueci minha senha
-                </Link>
-              </div>
+      <Box>
+        {step === STEPS.EMAIL && (
+          <div>
+            <div className="title-container">
+              <h1>Faça Login</h1>
+
+              <h2>Encontre os serviços que procura</h2>
             </div>
-          </Form>
-        </Box>
-      </ContainerFluid>
+            <div className="input-container">
+              <input placeholder="Email" maxLength={90} autoFocus required />
+            </div>
+            <div className="btn-container">
+              <button onClick={() => setStep(STEPS.CPF)}>Continuar</button>
+            </div>
+          </div>
+        )}
+
+        {step === STEPS.CPF && (
+          <div>
+            <div className="arrow-left">
+              <FaArrowLeft />
+            </div>
+            <div className="title-container">
+              <h1>Faça Login</h1>
+
+              <h2>Diz ai! Qual o seu CPF?</h2>
+            </div>
+            <div className="input-container">
+              <input placeholder="Cpf" maxLength={90} autoFocus required />
+            </div>
+            <div className="btn-container">
+              <button onClick={() => setStep(STEPS.PASSWORD)}>Continuar</button>
+            </div>
+          </div>
+        )}
+
+        {step === STEPS.PASSWORD && (
+          <div>
+            <div className="arrow-left">
+              <FaArrowLeft />
+            </div>
+            <div className="title-container">
+              <h1>Faça Login</h1>
+
+              <h2>Escolha uma senha</h2>
+            </div>
+            <div className="input-container">
+              <input placeholder="Senha" maxLength={90} autoFocus required />
+            </div>
+            <div className="btn-container">
+              <button>Continuar</button>
+            </div>
+          </div>
+        )}
+      </Box>
       {isAuthenticated && <Redirect to="/dashboard" />}
     </Container>
   );
 };
 
 const mapStateToProps = ({
-  session: { loading, error, isAuthenticated },
+  session: { loading, error, isAuthenticated }
 }: ApplicationState) => ({
   loading,
   error,
-  isAuthenticated,
+  isAuthenticated
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(SessionActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
