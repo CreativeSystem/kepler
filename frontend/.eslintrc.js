@@ -38,8 +38,10 @@ module.exports = {
     "import/no-named-as-default-member":"off",
     "import/no-useless-path-segments":"off",
     "@typescript-eslint/interface-name-prefix":"off",
+    "@typescript-eslint/no-explicit-any":"off",
     "import/no-cycle":"off",
     "no-shadow": "off",
+    "max-len": "off",
     "react/jsx-filename-extension": [
       "error",
       {

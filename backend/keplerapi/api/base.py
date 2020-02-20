@@ -40,19 +40,6 @@ class RetrieveUpdateDestroyAPIView(mixins.RetrieveModelMixin,
                                    mixins.UpdateModelMixin,
                                    mixins.DestroyModelMixin,
                                    generics.GenericAPIView):
-    """
-    Concrete view for retrieving, updating or deleting a model instance.
-    """
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-
     def delete(self, request, *args, **kwargs):
         request.data["active"] = False
         return self.partial_update(request, *args, **kwargs)
@@ -105,9 +92,12 @@ class FilterType:
         {"lookup": "date", "name": "%s", "filter": field_filters.DateFilter},
         {"lookup": "date__gt", "name": "%s_gt",
             "filter": field_filters.DateFilter},
-        {"lookup": "date__gte", "name": "%s_gte", "filter": field_filters.DateFilter},
-        {"lookup": "date__lt", "name": "%s_lt", "filter": field_filters.DateFilter},
-        {"lookup": "date__lte", "name": "%s_lte", "filter": field_filters.DateFilter},
+        {"lookup": "date__gte", "name": "%s_gte",
+            "filter": field_filters.DateFilter},
+        {"lookup": "date__lt", "name": "%s_lt",
+            "filter": field_filters.DateFilter},
+        {"lookup": "date__lte", "name": "%s_lte",
+            "filter": field_filters.DateFilter},
         {"lookup": "date__range", "name": "%s_between", "filter": DateRangeFilter}
     )
 
