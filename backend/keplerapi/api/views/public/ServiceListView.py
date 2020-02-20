@@ -1,12 +1,10 @@
-from rest_framework import generics
+from rest_framework import generics,filters
 from rest_framework.permissions import IsAuthenticated
+from django_filters import rest_framework as field_filters
 
 from api.serializers import ServiceSerializer
 from api.models import Service
 from api.base import RetrieveUpdateDestroyAPIView, NumberInFilter, BaseFilter, FilterType
-
-from rest_framework import filters
-from django_filters import rest_framework as field_filters
 
 
 class BaseServiceListFilter:
@@ -21,12 +19,22 @@ class ServiceListFilter(field_filters.FilterSet):
         fields = ["id"]
 
 
-class ServiceListCreate(generics.ListAPIView, generics.RetrieveAPIView):
-    queryset = Service.objects.filter(active=true)
+class ServiceList(generics.ListAPIView):
+    queryset = Service.objects.filter(active=True)
     serializer_class = ServiceSerializer
     filter_backends = [filters.OrderingFilter,
                        filters.SearchFilter, field_filters.DjangoFilterBackend]
     ordering_fields = "_all_"
     ordering = ["id"]
     search_fields = ["id", "name"]
-    filterset_class = BaseFilter(BaseServiceFilter, ServiceFilter).to_class()
+    filterset_class = BaseFilter(BaseServiceListFilter, ServiceListFilter).to_class()
+
+class ServiceDetail(generics.RetrieveAPIView):
+    queryset = Service.objects.filter(active=True)
+    serializer_class = ServiceSerializer
+    filter_backends = [filters.OrderingFilter,
+                       filters.SearchFilter, field_filters.DjangoFilterBackend]
+    ordering_fields = "_all_"
+    ordering = ["id"]
+    search_fields = ["id", "name"]
+    filterset_class = BaseFilter(BaseServiceListFilter, ServiceListFilter).to_class()

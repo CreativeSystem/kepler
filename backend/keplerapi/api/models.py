@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 from api.choices import InterestsChoices, RegionChoices, RatingChoices
 
 
+class File(models.Model):
+    name = models.CharField(max_length=50, null=False)
+    originalName = models.CharField(max_length=50, null=False)
+    url = models.CharField(max_length=255, null=False)
+
 class Person(AuditedEntity):
     name = models.CharField(max_length=75)
     cpf = models.CharField(max_length=11, unique=True)
@@ -44,9 +49,3 @@ class Interests(models.Model):
 class Region(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     region = models.CharField(max_length=21, choices=RegionChoices.choices)
-
-
-class File(models.Model):
-    name = models.CharField(max_length=50, null=False)
-    originalName = models.CharField(max_length=50, null=False)
-    url = models.CharField(max_length=255, null=False)
