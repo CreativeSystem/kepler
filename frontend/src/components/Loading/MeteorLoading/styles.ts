@@ -12,7 +12,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 92vh;
+  max-height: 80vh;
 `;
 export const LoadingText = styled.p`
   font-weight: bold;

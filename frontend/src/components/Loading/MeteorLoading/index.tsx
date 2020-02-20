@@ -12,7 +12,7 @@ const MeteorLoading: React.FC = () => {
     autoplay: true,
     animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
+      preserveAspectRatio: "xMinYMin meet"
     }
   };
   return (
