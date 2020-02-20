@@ -7,34 +7,34 @@ from api.models import Person, Service, HiredService, Interests, Region, File
 class PersonSerializer(AuditedEntitySerializer):
     class Meta:
         model = Person
-        fields = "_all_"
+        fields = "__all__"
 
 
 class ServiceSerializer(AuditedEntitySerializer):
     class Meta:
         model = Service
-        fields = "_all_"
+        fields = "__all__"
 
 
 class HiredServiceSerializer(AuditedEntitySerializer):
     class Meta:
         model = HiredService
-        fields = "_all_"
+        fields = "__all__"
 
 
 class InterestsSerializer(AuditedEntitySerializer):
     class Meta:
         model = Interests
-        fields = "_all_"
+        fields = "__all__"
 
 
 class RegionSerializer(AuditedEntitySerializer):
     class Meta:
         model = Region
-        fields = "_all_"
+        fields = "__all__"
 
 
-class FileSerializer(AuditedEntitySerializer):
+class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = "_all_"
+        fields = "__all__"
