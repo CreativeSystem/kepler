@@ -2,7 +2,7 @@
 import React from "react";
 import Lottie, { Options } from "react-lottie";
 
-import animationData from "@assets/animation/keplerocket";
+import animationData from "@assets/animation/keplerocket.json";
 
 import { Container, LoadingText } from "./styles";
 
