@@ -16,7 +16,7 @@ interface Props {
 
 type InputProps = JSX.IntrinsicElements["input"] & Props;
 
-const ImageInput: React.FC<InputProps> = ({ name, ...rest }) => {
+const FileInput: React.FC<InputProps> = ({ name, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [preview, setPreview] = useState(defaultValue);
@@ -50,4 +50,4 @@ const ImageInput: React.FC<InputProps> = ({ name, ...rest }) => {
     </>
   );
 };
-export default ImageInput;
+export default FileInput;
