@@ -2,11 +2,11 @@
 import React from "react";
 import Lottie, { Options } from "react-lottie";
 
-import animationData from "@assets/animation/octopus.json";
+import animationData from "@assets/animation/keplermeteor";
 
 import { Container, LoadingText } from "./styles";
 
-const Loading: React.FC = () => {
+const MeteorLoading: React.FC = () => {
   const defaultOptions: Options = {
     loop: true,
     autoplay: true,
@@ -23,4 +23,4 @@ const Loading: React.FC = () => {
   );
 };
 
-export default Loading;
+export default MeteorLoading;
