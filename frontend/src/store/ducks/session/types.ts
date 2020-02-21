@@ -20,7 +20,6 @@ export interface IProfile {
   username: string;
   superUser: boolean;
   firstName: string;
-  lastName: string;
 }
 export interface SessionState {
   readonly token?: string;

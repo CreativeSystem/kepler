@@ -1,22 +1,21 @@
-import React from "react";
-import { FormGroup, Image, InputGroup } from "react-bootstrap";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import React, { useState, useRef } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
 
-import Logo from "@assets/img/logo.png";
-import Button from "@components/Button";
+import Input from "@components/Input";
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
-import { Form, Input } from "@rocketseat/unform";
 import { ApplicationState } from "@store/index";
+import { FormHandles } from "@unform/core";
+import { Form } from "@unform/web";
 import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
 
-import { Container, ContainerFluid, Box } from "./styles";
+import STEPS from "../../enums/steps";
+import { Container, Box } from "./styles";
 
-type StateProps = SessionState
+type StateProps = SessionState;
 
 interface DispatchProps {
   loginRequest(data: ILogin): void;
@@ -24,14 +23,19 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-const formValidation = Yup.object().shape({
-  username: Yup.string()
-    .min(5)
-    .required(),
-  password: Yup.string()
-    .min(8)
-    .required(),
-});
+const emailValidation = Yup.string()
+  .max(90)
+  .email("Email inválido")
+  .required("Informe o email");
+
+const cpfValidation = Yup.string()
+  .length(11)
+  .required("Informe o cpf");
+
+const passwordValidation = Yup.string()
+  .max(20)
+  .min(8)
+  .required("Informe uma senha");
 
 const Login: React.FC<Props> = ({
   loading,
@@ -43,63 +47,123 @@ const Login: React.FC<Props> = ({
     loginRequest({ username, password });
   };
 
+  const [step, setStep] = useState(STEPS.EMAIL);
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [password, setPassword] = useState("");
+
+  const formRef = useRef<FormHandles>(null);
+
+  const handleOnStep = async () => {
+    if (step === STEPS.EMAIL) {
+      const emailInput = formRef.current?.getFieldRef("email");
+      if (await emailValidation.isValid(emailInput.value)) setStep(STEPS.CPF);
+    } else if (step === STEPS.CPF) {
+      const cpfInput = formRef.current?.getFieldRef("cpf");
+      if (await cpfValidation.isValid(cpfInput.value)) setStep(STEPS.PASSWORD);
+    } else {
+      const passwordInput = formRef.current?.getFieldRef("password");
+      if (await passwordValidation.isValid(passwordInput.value)) setPassword(passwordInput.value);
+    }
+  };
+
   return (
     <Container>
-      <ContainerFluid>
-        <Box className="col-lg-4 col-md-6 col-sm-9">
-          <Form onSubmit={handleSubmit} schema={formValidation}>
-            <FormGroup className="col-md-12">
-              <Image
-                rounded
-                fluid
-                srcSet={Logo}
-                className="mx-auto d-block"
-              />
-            </FormGroup>
-            <FormGroup className="col-md-10">
-              <InputGroup className="mb-3 text-primary font-weight-bold">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>
-                    <FaUserAlt className="text-primary" />
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <Input
-                  name="username"
-                  className="form-control"
-                  placeholder="Digite seu usuario"
-                />
-              </InputGroup>
-            </FormGroup>
-            <FormGroup className="col-md-10">
-              <InputGroup className="mb-3 text-primary font-weight-bold">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>
-                    <FaLock className="text-primary" />
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <Input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Digite sua senha"
-                />
-              </InputGroup>
-            </FormGroup>
-            <div className="col-md-7">
-              <div className="col-md-12">
-                <Button type="submit" variant="primary" block loading={loading}>
-                  Login
-                </Button>
+      <Box>
+        <Form onSubmit={() => handleSubmit({ username: email, password })} ref={formRef}>
+          {step === STEPS.EMAIL && (
+            <div>
+              <div className="title-container">
+                <h1>Faça Login</h1>
+
+                <h2>Encontre os serviços que procura</h2>
               </div>
-              <div className="col-md-12 d-flex justify-content-center">
-                <Link to="/" className="text-primary font-weight-bold">
-                  Esqueci minha senha
-                </Link>
+              <div className="input-container">
+                <Input
+                  name="email"
+                  placeholder="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="btn-container">
+                <button type="button" onClick={() => handleOnStep()}>
+                  Continuar
+                </button>
               </div>
             </div>
-          </Form>
-        </Box>
-      </ContainerFluid>
+          )}
+
+          {step === STEPS.CPF && (
+            <>
+              <div className="arrow-container">
+                <button
+                  onClick={() => setStep(STEPS.EMAIL)}
+                  className="arrow-left"
+                  type="button"
+                >
+                  <FaArrowLeft />
+                </button>
+              </div>
+              <div>
+                <div className="title-container">
+                  <h1>Faça Login</h1>
+
+                  <h2>Diz ai! Qual o seu CPF?</h2>
+                </div>
+                <div className="input-container">
+                  <Input
+                    name="cpf"
+                    placeholder="000.000.000-00"
+                    maxLength={11}
+                    value={cpf}
+                    onChange={e => setCpf(e.target.value)}
+                  />
+                </div>
+                <div className="btn-container">
+                  <button type="button" onClick={() => handleOnStep()}>
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+
+          {step === STEPS.PASSWORD && (
+            <>
+              <div className="arrow-container">
+                <button
+                  type="button"
+                  onClick={() => setStep(STEPS.CPF)}
+                  className="arrow-left"
+                >
+                  <FaArrowLeft />
+                </button>
+              </div>
+              <div>
+                <div className="title-container">
+                  <h1>Faça Login</h1>
+
+                  <h2>Escolha uma senha</h2>
+                </div>
+                <div className="input-container">
+                  <Input
+                    name="password"
+                    placeholder="Senha"
+                    type="password"
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="btn-container">
+                  <button type="submit" onClick={() => handleOnStep()}>
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </Form>
+      </Box>
       {isAuthenticated && <Redirect to="/dashboard" />}
     </Container>
   );
