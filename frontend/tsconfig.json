@@ -22,5 +22,71 @@
   "include": [
     "src"
   ],
-  "extends": "./tsconfig.paths.json"
+  "extends": "./tsconfig.paths.json",
+  "editor.fontSize": 12,
+  "editor.lineHeight": 16,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.formatOnSave": false,
+  "eslint.packageManager": "yarn",
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.autoFixOnSave": true,
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "files.associations": {
+    ".sequelizerc": "javascript"
+  },
+  "editor.renderLineHighlight": "gutter",
+  "terminal.integrated.fontSize": 14,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.tabSize": 2,
+  "window.zoomLevel": 0,
+  "extensions.ignoreRecommendations": true,
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "breadcrumbs.enabled": true,
+  "git.enableSmartCommit": true,
+  "editor.parameterHints.enabled": false,
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "explorer.confirmDragAndDrop": false,
+  "liveshare.featureSet": "insiders",
+  "explorer.confirmDelete": false,
+  "typescript.tsserver.log": "verbose",
+  "javascript.suggest.autoImports": false,
+  "typescript.suggest.autoImports": false,
+  "workbench.activityBar.visible": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.watcherExclude": {
+    "*/.git/objects/*": true,
+    "*/.git/subtree-cache/*": true,
+    "*/node_modules//**": true
+  }
 }
