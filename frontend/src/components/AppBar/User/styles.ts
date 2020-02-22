@@ -9,17 +9,17 @@ interface Props {
 export const Container = styled.header``;
 
 export const Dropdown = styled.div.attrs({
-  className: "dropdown-menu"
+  className: "dropdown-menu",
 })`
   background-color: ${({
     theme: {
-      default: { bg }
-    }
+      default: { bg },
+    },
   }: Props) => bg};
   box-shadow: 0px 1px 10px #22222255;
 `;
 export const DropdownItem = styled.button.attrs({
-  className: "dropdown-item"
+  className: "dropdown-item",
 })`
   display: flex !important;
   align-content: center;
@@ -27,22 +27,22 @@ export const DropdownItem = styled.button.attrs({
 
   color: ${({
     theme: {
-      default: { fg }
-    }
+      default: { fg },
+    },
   }: Props) => fg} !important;
   font-weight: 500;
   font-size: 1em;
   :hover {
     color: ${({
-      theme: {
-        default: { bg }
-      }
-    }: Props) => bg} !important;
+    theme: {
+      default: { bg },
+    },
+  }: Props) => bg} !important;
     background-color: ${({
-      theme: {
-        default: { fg }
-      }
-    }: Props) => fg} !important;
+    theme: {
+      default: { fg },
+    },
+  }: Props) => fg} !important;
     box-shadow: 1px 1px 8px #22222277 !important;
   }
   svg {
@@ -54,15 +54,15 @@ export const DropdownItem = styled.button.attrs({
 export const IconContainer = styled.a`
   border: 3px solid
     ${({
-      theme: {
-        default: { fg }
-      }
-    }: Props) => fg};
+    theme: {
+      default: { bg },
+    },
+  }: Props) => bg};
   color: ${({
     theme: {
-      default: { fg }
-    }
-  }: Props) => fg};
+      default: { bg },
+    },
+  }: Props) => bg};
   display: flex;
   padding: 2px 2px 2px 5px;
   border-radius: 5px;
@@ -72,15 +72,15 @@ export const IconContainer = styled.a`
   }
   :hover {
     color: ${({
-      theme: {
-        default: { bg }
-      }
-    }: Props) => bg};
+    theme: {
+      default: { bg },
+    },
+  }: Props) => bg};
     background-color: ${({
-      theme: {
-        default: { fg }
-      }
-    }: Props) => fg};
+    theme: {
+      default: { fg },
+    },
+  }: Props) => fg};
     transition: all 0.2s ease-in-out;
     transform: scale(1.1);
   }

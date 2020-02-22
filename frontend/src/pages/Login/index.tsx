@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import { FormGroup, Image, InputGroup } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
 
-import Logo from "@assets/img/logo.png";
-import Button from "@components/Button";
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
-import { Form, Input } from "@rocketseat/unform";
 import { ApplicationState } from "@store/index";
 import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
-import STEPS from "../../enums/steps";
 
 import { Container, Box } from "./styles";
-import { render } from "@testing-library/react";
+
+enum STEPS {
+  EMAIL = "email",
+  CPF = "cpf",
+  PASSWORD = "password"
+}
 
 type StateProps = SessionState;
 
@@ -32,14 +31,14 @@ const formValidation = Yup.object().shape({
     .required(),
   password: Yup.string()
     .min(8)
-    .required()
+    .required(),
 });
 
 const Login: React.FC<Props> = ({
   loading,
   error,
   isAuthenticated,
-  loginRequest
+  loginRequest,
 }) => {
   const handleSubmit = ({ username, password }: any) => {
     loginRequest({ username, password });
@@ -109,14 +108,13 @@ const Login: React.FC<Props> = ({
 };
 
 const mapStateToProps = ({
-  session: { loading, error, isAuthenticated }
+  session: { loading, error, isAuthenticated },
 }: ApplicationState) => ({
   loading,
   error,
-  isAuthenticated
+  isAuthenticated,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(SessionActions, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

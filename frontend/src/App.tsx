@@ -4,12 +4,11 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { ThemeProvider } from "styled-components";
-import { store, persistor } from "./store";
 
 import Routes from "./routes";
-
-import { light } from "./styles/theme";
+import { store, persistor } from "./store";
 import GlobalStyle from "./styles";
+import { light } from "./styles/theme";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";

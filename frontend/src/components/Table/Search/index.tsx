@@ -1,9 +1,10 @@
 import React from "react";
-
-import { Form, Input } from "@rocketseat/unform";
 import { InputGroup } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
+
+import { Form, Input } from "@rocketseat/unform";
 import Button from "~/components/Button";
+
 interface OwnProps {
   onSearch(seach: string): void;
   search?: string;
@@ -12,7 +13,7 @@ type Props = OwnProps;
 
 const Search: React.FC<Props> = ({ onSearch, search }) => {
   const initialData = {
-    search
+    search,
   };
 
   const handleSubmit = ({ search }: any) => {
@@ -33,7 +34,7 @@ const Search: React.FC<Props> = ({ onSearch, search }) => {
           className="form-control"
           placeholder="pesquise aqui"
           onChange={handleSearchChange}
-        ></Input>
+        />
         <InputGroup.Append>
           <Button type="submit" variant="primary">
             <FaSearch />
