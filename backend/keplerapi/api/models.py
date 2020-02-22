@@ -9,7 +9,7 @@ from api.choices import InterestsChoices, RegionChoices, RatingChoices
 class File(models.Model):
     name = models.CharField(max_length=50, null=False)
     originalName = models.CharField(max_length=50, null=False)
-    url = models.CharField(max_length=255, null=False)
+    url = models.URLField(null=False)
 
 class Person(AuditedEntity):
     name = models.CharField(max_length=75)
@@ -21,7 +21,6 @@ class Person(AuditedEntity):
 
 
 class Service(AuditedEntity):
-    image = models.ManyToManyField(File)
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.TextField()
@@ -31,6 +30,9 @@ class Service(AuditedEntity):
     instagram = models.URLField()
     twitter = models.URLField()
 
+class ServiceImage(models.Model):
+    image = models.OneToOneField(File,on_delete=models.CASCADE,related_name="image_service")
+    service = models.ForeignKey(Service,on_delete=models.CASCADE,related_name="service_image")
 
 class HiredService(AuditedEntity):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)

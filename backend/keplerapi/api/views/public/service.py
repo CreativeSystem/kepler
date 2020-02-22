@@ -19,22 +19,22 @@ class ServiceListFilter(field_filters.FilterSet):
         fields = ["id"]
 
 
-class ServiceList(generics.ListAPIView):
+class ServiceListView(generics.ListAPIView):
     queryset = Service.objects.filter(active=True)
     serializer_class = ServiceSerializer
     filter_backends = [filters.OrderingFilter,
                        filters.SearchFilter, field_filters.DjangoFilterBackend]
-    ordering_fields = "_all_"
+    ordering_fields = "__all__"
     ordering = ["id"]
     search_fields = ["id", "name"]
     filterset_class = BaseFilter(BaseServiceListFilter, ServiceListFilter).to_class()
 
-class ServiceDetail(generics.RetrieveAPIView):
+class ServiceDetailView(generics.RetrieveAPIView):
     queryset = Service.objects.filter(active=True)
     serializer_class = ServiceSerializer
     filter_backends = [filters.OrderingFilter,
                        filters.SearchFilter, field_filters.DjangoFilterBackend]
-    ordering_fields = "_all_"
+    ordering_fields = "__all__"
     ordering = ["id"]
     search_fields = ["id", "name"]
     filterset_class = BaseFilter(BaseServiceListFilter, ServiceListFilter).to_class()
