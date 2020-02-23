@@ -3,15 +3,16 @@ import React from "react";
 import AppBar from "@components/AppBar";
 
 import {
-  Container,
+  Container, PageContainer,
 } from "./styles";
 
 
 const Template: React.FC = ({ children }) => (
   <Container>
     <AppBar />
-    {children}
-
+    <PageContainer>
+      {children}
+    </PageContainer>
   </Container>
 );
 
