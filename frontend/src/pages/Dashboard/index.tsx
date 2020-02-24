@@ -7,6 +7,7 @@ import { SessionState } from "@ducks/session/types";
 import Loading from "@components/Loading";
 
 import Card from "@components/Card";
+import Header from "@components/Header";
 
 interface StateProps extends SessionState {}
 
@@ -20,26 +21,15 @@ const Dashboard: React.FC<Props> = ({ profile }) => {
   }, 4000);
 
   return (
-    <div className="row col-md-12">
-      {loading && <Loading />}
-      {!loading && (
-        <Card className="col-md-3">
-          Loaded
-          <br />
-          Loaded
-          <br />
-          Loaded
-          <br />
-          Loaded
-          <br />
-          Loaded
-          <br />
-        </Card>
-      )}
+    <div>
+      {/* {loading && <Loading />} */}
+      {!loading
+        && <Header />
+      }
     </div>
   );
 };
 const mapStateToProps = ({ session: { profile } }: ApplicationState) => ({
-  profile
+  profile,
 });
 export default connect(mapStateToProps)(Dashboard);
