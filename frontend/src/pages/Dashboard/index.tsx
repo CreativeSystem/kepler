@@ -22,24 +22,10 @@ const Dashboard: React.FC<Props> = ({ profile }) => {
   return (
     <div className="row col-md-12">
       {loading && <Loading />}
-      {!loading && (
-        <Card className="col-md-3">
-          Loaded
-          <br />
-          Loaded
-          <br />
-          Loaded
-          <br />
-          Loaded
-          <br />
-          Loaded
-          <br />
-        </Card>
-      )}
     </div>
   );
 };
 const mapStateToProps = ({ session: { profile } }: ApplicationState) => ({
-  profile
+  profile,
 });
 export default connect(mapStateToProps)(Dashboard);
