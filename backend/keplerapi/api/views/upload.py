@@ -18,6 +18,7 @@ class UploadView(APIView):
 
     uploader.upload()
 
-    serializer.create()
-    return Response(serializer.data,status=201)
+    serializer.create(serializer.data)
+    
+    return Response(FileSerializer(instance=serializer.create(serializer.data)).data,status=201)
     

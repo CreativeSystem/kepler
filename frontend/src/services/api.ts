@@ -1,23 +1,22 @@
-import axios, { AxiosRequestConfig } from "axios";
 import { store } from "@store/index";
 import env from "~/util/env";
+import axios, { AxiosRequestConfig } from "axios";
 
 const api = axios.create({
   baseURL: env("BACKEND_HOST"),
-  withCredentials: true
+  withCredentials: true,
 });
 
 api.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const token = store.getState().session.token;
+    const { token } = store.getState().session;
     if (token) {
+      // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  err => {
-    return Promise.reject(err);
-  }
+  err => Promise.reject(err),
 );
 
 export default api;
