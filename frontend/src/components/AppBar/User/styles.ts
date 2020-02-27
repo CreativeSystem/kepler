@@ -6,7 +6,9 @@ interface Props {
   theme: ITheme;
 }
 
-export const Container = styled.header``;
+export const Container = styled.header`
+  padding-right: 5px;
+`;
 
 export const Dropdown = styled.div.attrs({
   className: "dropdown-menu",

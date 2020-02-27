@@ -6,10 +6,12 @@ export const Container = styled.div`
   width: 100vw;
   box-sizing: border-box;
   border: 0;
+  overflow: hidden;
 `;
 
 export const PageContainer = styled.div`
   width: 100vw;
   padding: 10px 0px;
   display: flex;
+  overflow:hidden;
 `;

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Col from "react-bootstrap/Col";
 
@@ -15,43 +15,39 @@ export interface CardData{
   price: string
 }
 
-interface Props{
+export interface Props{
   data: CardData
 }
 
-const ServiceCard : React.FC<Props> = ({ data }) => {
-  const t = 0;
-  const MemoCard = useMemo(() => (
-    <Col xl="3" lg="4" md="4" sm="6" xs="12" className="mb-3 d-flex justify-content-center">
-      <Container>
-        <Carousel interval={null}>
-          {data.service_image.map((image : any) => (
-            <Carousel.Item key={image}>
-              <img
-                className="d-block w-100"
-                src={image}
-                alt=""
-              />
-            </Carousel.Item>
-          )) }
-        </Carousel>
-        <Card.Content>
-          <Card.Header>{data.title}</Card.Header>
-          <Card.Meta>Joined in 2016</Card.Meta>
-          <Card.Description>
-            {data.description}
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          Valor :
+const ServiceCard : React.FC<Props> = ({ data }) => (
+  <Col xl="3" lg="4" md="4" sm="6" xs="12" className="mb-3 d-flex justify-content-center">
+    <Container>
+      <Carousel interval={null}>
+        {data.service_image.map((image : any) => (
+          <Carousel.Item key={image}>
+            <img
+              className="d-block w-100"
+              src={image}
+              alt=""
+            />
+          </Carousel.Item>
+        )) }
+      </Carousel>
+      <Card.Content>
+        <Card.Header>{data.title}</Card.Header>
+        <Card.Description>
+          {data.description}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content>
+        <Card.Description>
+          Valor:
           {" "}
           {data.price}
-        </Card.Content>
-      </Container>
-    </Col>
-  ), [data]);
-
-  return MemoCard;
-};
+        </Card.Description>
+      </Card.Content>
+    </Container>
+  </Col>
+);
 
 export default ServiceCard;

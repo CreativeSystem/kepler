@@ -1,5 +1,14 @@
 import React from "react";
-import { FaUserEdit, FaDoorOpen } from "react-icons/fa";
+import {
+  FaUserEdit,
+  FaCrown,
+  FaCog,
+  FaHistory,
+  FaEdit,
+  FaFingerprint,
+  FaQuestionCircle,
+  FaDoorOpen,
+} from "react-icons/fa";
 import { connect } from "react-redux";
 
 import * as SessionActions from "@ducks/session/actions";
@@ -36,10 +45,54 @@ const User: React.FC<Props> = ({ profile, logoutRequest }) => (
       <DropdownItem
         className="dropdown-item"
         type="button"
+      >
+        <FaCog />
+        Serviços
+      </DropdownItem>
+      <DropdownItem
+        className="dropdown-item"
+        type="button"
+      >
+        <FaCrown />
+        Meus Serviços
+      </DropdownItem>
+      <DropdownItem
+        className="dropdown-item"
+        type="button"
+      >
+        <FaHistory />
+        Histórico de Serviços
+      </DropdownItem>
+      <DropdownItem
+        className="dropdown-item"
+        type="button"
+      >
+        <FaEdit />
+        Editar Perfil
+      </DropdownItem>
+      <DropdownItem
+        className="dropdown-item"
+        type="button"
+        onClick={logoutRequest}
+      >
+        <FaFingerprint />
+        Protecao
+      </DropdownItem>
+      <DropdownItem
+        className="dropdown-item"
+        type="button"
+        onClick={logoutRequest}
+      >
+        <FaQuestionCircle />
+        Ajuda
+      </DropdownItem>
+      <DropdownItem
+        className="dropdown-item"
+        type="button"
         onClick={logoutRequest}
       >
         <FaDoorOpen />
-        Logout
+        Sair
       </DropdownItem>
     </Dropdown>
   </Container>

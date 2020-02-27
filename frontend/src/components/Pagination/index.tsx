@@ -6,18 +6,20 @@ interface OwnProps{
   threshold?:number
   hasMore?: boolean
   onScrollEnd?():void
+  onRenderFinish?():void
 }
 
 type Props = JSX.IntrinsicElements["div"] & OwnProps;
 
 const Pagination : React.FC<Props> = ({
-  children, threshold = 0, hasMore = true, loader, loading = false, onScrollEnd, ...rest
+  children, threshold = 0, hasMore = true, loader, loading = false, onScrollEnd, onRenderFinish, ...rest
 }) => {
   const paginationRef = useRef<HTMLDivElement>(null);
   const isBottom = useCallback(() => {
-    const bottom = paginationRef.current?.getBoundingClientRect().bottom;
-
-    return bottom && bottom <= ((1 + threshold) * window.innerHeight);
+    const domRect = paginationRef.current?.getBoundingClientRect();
+    const bottom = domRect?.bottom || 0;
+    const height = domRect?.height || 0;
+    return bottom <= threshold * height + window.innerHeight;
   }, [threshold]);
 
   const onScroll = useCallback(() => {
@@ -30,12 +32,18 @@ const Pagination : React.FC<Props> = ({
   }, [isBottom, onScrollEnd]);
 
   useEffect(() => {
-    if (hasMore) {
+    if (onRenderFinish) {
+      onRenderFinish();
+    }
+  }, [onRenderFinish]);
+
+  useEffect(() => {
+    if (hasMore && !loading) {
       document.addEventListener("scroll", onScroll);
     } else {
       document.removeEventListener("scroll", onScroll);
     }
-  }, [onScroll, hasMore]);
+  }, [onScroll, hasMore, loading]);
 
   return (
     <>

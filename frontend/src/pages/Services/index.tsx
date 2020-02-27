@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { useEffect, useState } from "react";
-import AutoSizer from "react-virtualized/dist/es/AutoSizer";
-import Grid from "react-virtualized/dist/es/Grid";
-import InfiniteLoader from "react-virtualized/dist/es/InfiniteLoader";
 
 import Pagination from "@components/Pagination";
 import api, { PaginationResponse } from "@services/api";
