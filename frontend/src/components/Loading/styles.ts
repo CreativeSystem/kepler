@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { ITheme } from "~/styles/theme";
+
+import styled from "styled-components";
 
 interface Props {
   theme: ITheme;

@@ -4,6 +4,11 @@
   "private": true,
   "dependencies": {
     "@rocketseat/unform": "^1.6.1",
+    "@types/react-datepicker": "^2.11.0",
+    "@types/react-input-mask": "^2.0.5",
+    "@types/react-select": "^3.0.10",
+    "@unform/core": "^2.0.0",
+    "@unform/web": "^2.0.0",
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.8.1",
@@ -11,14 +16,23 @@
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-data-table-component": "^6.1.2",
+    "react-datepicker": "^2.12.1",
     "react-dom": "^16.12.0",
     "react-icons": "^3.8.0",
+<<<<<<< HEAD
+=======
     "react-infinite-scroll-component": "^5.0.4",
+>>>>>>> 6c1a3947a53a85892dfdfe7b22b60dd6720d825b
     "react-input-mask": "^2.0.4",
     "react-lottie": "^1.2.3",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
+<<<<<<< HEAD
+    "react-scripts": "3.3.0",
+    "react-select": "^3.0.8",
+=======
     "react-scripts": "^3.4.0",
+>>>>>>> 6c1a3947a53a85892dfdfe7b22b60dd6720d825b
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
@@ -34,7 +48,11 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
+<<<<<<< HEAD
+    "mock": "json-server mock/api.json --port 8000 --static mock/static"
+=======
     "mock": "json-server mock/index.json --port 8000 --static mock/static --routes=mock/routes.json"
+>>>>>>> 6c1a3947a53a85892dfdfe7b22b60dd6720d825b
   },
   "eslintConfig": {
     "extends": "react-app"
