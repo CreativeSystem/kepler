@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-
 import { connect } from "react-redux";
 
-import { ApplicationState } from "@store/index";
-import { SessionState } from "@ducks/session/types";
-import Loading from "@components/Loading";
-
 import Card from "@components/Card";
+import Loading from "@components/Loading";
+import { SessionState } from "@ducks/session/types";
+import { ApplicationState } from "@store/index";
 
-interface StateProps extends SessionState {}
+type StateProps = SessionState;
 
 type Props = StateProps;
 
