@@ -12,7 +12,7 @@ const Footer: React.FC = () => (
       <div className="copyright-container">
         <p>
           @Copyright 2020 - Todos os direitos resevados CNPJ 66.666.666/6666-66
-          / Times Squarte, nº 1000 New York - USA - CEP 66.666-666
+          / Times Squarte, nº 1000 New York NY - USA - CEP 66.666-666
         </p>
       </div>
       <br />
