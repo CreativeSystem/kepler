@@ -7,7 +7,17 @@ import {
   FormControl,
   InputGroup,
 } from "react-bootstrap";
-import { FaUser, FaSearch } from "react-icons/fa";
+import {
+  FaUser,
+  FaSearch,
+  FaConciergeBell,
+  FaServicestack,
+  FaHistory,
+  FaEdit,
+  FaQuestionCircle,
+  FaShieldAlt,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 import Logo from "@assets/img/logo.png";
 
@@ -48,13 +58,34 @@ const Header: React.FC = () => (
             <FaUser className="d-none d-sm-block" />
           </Nav.Link>
           <NavDropdown className="mr-5" title="Perfil" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">Serviços</NavDropdown.Item>
-            <NavDropdown.Item href="/">Meus Serviços</NavDropdown.Item>
-            <NavDropdown.Item href="/">Histórico de Serviços</NavDropdown.Item>
-            <NavDropdown.Item href="/">Editar Perfil</NavDropdown.Item>
-            <NavDropdown.Item href="/">Ajuda</NavDropdown.Item>
-            <NavDropdown.Item href="/">Proteção</NavDropdown.Item>
-            <NavDropdown.Item href="/">Sair</NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaConciergeBell className="mr-2" />
+              Serviços
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaServicestack className="mr-2" />
+              Meus Serviços
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaHistory className="mr-2" />
+              Histórico de Serviços
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaEdit className="mr-2" />
+              Editar Perfil
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaQuestionCircle className="mr-2" />
+              Ajuda
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaShieldAlt className="mr-2" />
+              Proteção
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/">
+              <FaSignOutAlt className="mr-2" />
+              Sair
+            </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link className="mr-5" href="/" style={{ color: "inherits" }}>Serviços</Nav.Link>
           <Nav.Link className="mr-5" href="/">Categorias</Nav.Link>
