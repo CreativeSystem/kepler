@@ -1,11 +1,11 @@
 import React from "react";
-
-import Logo from "@assets/img/logo.png";
 import {
   FaFacebookF,
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa";
+
+import Logo from "@assets/img/logo.png";
 
 import { FooterKP } from "./styles";
 
