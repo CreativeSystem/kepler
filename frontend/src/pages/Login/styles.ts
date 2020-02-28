@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import Background from "@assets/img/background.png";
+
+import styled from "styled-components";
 
 export const Container = styled.div`
   background-image: url('${Background}');
@@ -22,6 +23,7 @@ export const Box = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 
  /*Container do título e cabeçalho*/
   div.title-container {
@@ -74,8 +76,15 @@ export const Box = styled.div`
     }
   }
 
-  div.arrow-left {
-    margin-top: -50px;
+  div.arrow-container {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+  }
+
+  button.arrow-left {
+    background-color: transparent;
+    border: none;
   }
 
   /*Estilos para quando a tela tive no máximo 640px de largura*/

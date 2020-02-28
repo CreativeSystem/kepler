@@ -1,5 +1,4 @@
 import React from "react";
-import { Form, Select } from "@rocketseat/unform";
 import { IFilter } from "..";
 
 export interface IFilterType {
@@ -61,17 +60,7 @@ const FilterValue: React.FC<Props> = ({ filter }) => {
   function handleSubmit() {}
   function handleFilterChange() {}
   return (
-    <Form onSubmit={handleSubmit}>
-      <Select
-        name="Tipo de Filtro"
-        defaultValue={""}
-        options={selectOptions[
-          filter.type
-        ].map(({ label: title, prefix: id }) => ({ id, title }))}
-        onChange={handleFilterChange}
-      ></Select>
-      {filter.name}
-    </Form>
+    <i>CARAIO</i>
   );
 };
 
