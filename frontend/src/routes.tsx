@@ -1,26 +1,27 @@
 import React from "react";
-import { FaHome, FaUtensils } from "react-icons/fa";
-import { IconType } from "react-icons/lib/cjs";
-import { connect } from "react-redux";
 import {
-  BrowserRouter, Switch, Route, Redirect,
+  BrowserRouter, Switch, Route,
 } from "react-router-dom";
 
-import PrivateRoute from "@components/PrivateRoute";
 import Template from "@components/Template";
-import * as SessionActions from "@ducks/session/actions";
-import Dashboard from "@pages/Dashboard";
 import Login from "@pages/Login";
-import ProductItem from "@pages/ProductItem";
-import { ApplicationState } from "@store/index";
-import { Dispatch, bindActionCreators } from "redux";
+import Services from "@pages/Services";
 
-interface StateProps {
-  isAuthenticated: boolean;
-}
+const Routes: React.FC = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <Template>
+        <Route exact path="/" component={Services} />
+      </Template>
+    </Switch>
+  </BrowserRouter>
+);
 
-type Props = StateProps;
 
+<<<<<<< HEAD
+export default Routes;
+=======
 export interface IRoute {
   path: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,3 +75,4 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);
+>>>>>>> c2abd39cd5b6d2819598f33b2f1c0d9b147864ed

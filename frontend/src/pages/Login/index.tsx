@@ -12,8 +12,13 @@ import { Form } from "@unform/web";
 import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
 
-import STEPS from "../../enums/steps";
 import { Container, Box } from "./styles";
+
+enum STEPS {
+  EMAIL = "email",
+  CPF = "cpf",
+  PASSWORD = "password"
+}
 
 type StateProps = SessionState;
 

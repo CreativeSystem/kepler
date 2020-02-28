@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import { InputGroup as BInputGroup, FormControl } from "react-bootstrap";
 
 import { ITheme } from "~/styles/theme";
+
+import styled from "styled-components";
 
 interface Props {
   theme: ITheme;
@@ -8,14 +10,21 @@ interface Props {
 
 export const Container = styled.header`
   height: 8vh;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items:center;
   background-color: ${({
     theme: {
-      default: { bg }
-    }
+      primary: { bg },
+    },
   }: Props) => bg};
-  box-shadow: 1px 1px 3px #22222270;
   max-width: 100%;
   position: sticky;
   z-index: 500;
   padding: 3px;
+`;
+
+export const InputGroupPrepend = styled(BInputGroup.Prepend)`
+  background-color:none;
 `;

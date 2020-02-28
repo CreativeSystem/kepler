@@ -19,4 +19,11 @@ api.interceptors.request.use(
   err => Promise.reject(err),
 );
 
+export interface PaginationResponse<T>{
+  total: number,
+  page: number,
+  page_size: number,
+  data: [T]
+}
+
 export default api;
