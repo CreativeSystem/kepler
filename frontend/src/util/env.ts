@@ -1,5 +1,5 @@
 export default function env(variable: string): string {
-  let envVar = process.env[`REACT_APP_${variable.toUpperCase()}`];
+  const envVar = process.env[`REACT_APP_${variable.toUpperCase()}`];
   if (envVar !== undefined) {
     return envVar;
   }

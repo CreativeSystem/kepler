@@ -1,9 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+
 import { ITheme } from "./theme";
 
 interface Props {
   theme: ITheme;
 }
+
 export default createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -13,7 +15,6 @@ export default createGlobalStyle`
   html,body,#root{
     padding: 0;
     margin: 0;
-    height: 100vh;
     width: 100vw;
     box-sizing: border-box;
     border: 0;
@@ -37,7 +38,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }: Props) => theme.info.bg};
     color:${({ theme }: Props) => theme.info.fg};
     border-color:${({ theme }: Props) => theme.info.bg};
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.info.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.info.bg}77`};
   }
 
   #root .btn-info:not(:disabled):not(.disabled):active,#root .btn-info:not(:disabled):not(.disabled).active,
@@ -49,7 +50,7 @@ export default createGlobalStyle`
 
   #root .btn-info:not(:disabled):not(.disabled):active:focus,#root .btn-info:not(:disabled):not(.disabled).active:focus,
   .show > .btn-info.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.info.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.info.bg}77`};
   }
 
   #root .text-info{
@@ -72,7 +73,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }: Props) => theme.primary.bg};
     color:${({ theme }: Props) => theme.primary.fg};
     border-color:${({ theme }: Props) => theme.primary.bg};
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.primary.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.primary.bg}77`};
   }
 
   #root .btn-primary:not(:disabled):not(.disabled):active,#root .btn-primary:not(:disabled):not(.disabled).active,
@@ -84,7 +85,7 @@ export default createGlobalStyle`
 
   #root .btn-primary:not(:disabled):not(.disabled):active:focus,#root .btn-primary:not(:disabled):not(.disabled).active:focus,
   .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.primary.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.primary.bg}77`};
   }
 
   #root .text-primary{
@@ -107,7 +108,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }: Props) => theme.success.bg};
     color:${({ theme }: Props) => theme.success.fg};
     border-color:${({ theme }: Props) => theme.success.bg};
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.success.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.success.bg}77`};
   }
 
   #root .btn-success:not(:disabled):not(.disabled):active,#root .btn-success:not(:disabled):not(.disabled).active,
@@ -119,7 +120,7 @@ export default createGlobalStyle`
 
   #root .btn-success:not(:disabled):not(.disabled):active:focus,#root .btn-success:not(:disabled):not(.disabled).active:focus,
   .show > .btn-success.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.success.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.success.bg}77`};
   }
 
   #root .text-success{
@@ -142,7 +143,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }: Props) => theme.danger.bg};
     color:${({ theme }: Props) => theme.danger.fg};
     border-color:${({ theme }: Props) => theme.danger.bg};
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.danger.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.danger.bg}77`};
   }
 
   #root .btn-danger:not(:disabled):not(.disabled):active,#root .btn-danger:not(:disabled):not(.disabled).active,
@@ -154,7 +155,7 @@ export default createGlobalStyle`
 
   #root .btn-danger:not(:disabled):not(.disabled):active:focus,#root .btn-danger:not(:disabled):not(.disabled).active:focus,
   .show > .btn-danger.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.danger.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.danger.bg}77`};
   }
 
   #root .text-danger{
@@ -177,7 +178,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }: Props) => theme.warning.bg};
     color:${({ theme }: Props) => theme.warning.fg};
     border-color:${({ theme }: Props) => theme.warning.bg};
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.warning.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.warning.bg}77`};
   }
 
   #root .btn-warning:not(:disabled):not(.disabled):active,#root .btn-warning:not(:disabled):not(.disabled).active,
@@ -189,7 +190,7 @@ export default createGlobalStyle`
 
   #root .btn-warning:not(:disabled):not(.disabled):active:focus,#root .btn-warning:not(:disabled):not(.disabled).active:focus,
   .show > .btn-warning.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.warning.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.warning.bg}77`};
   }
 
   #root .text-warning{
@@ -212,7 +213,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }: Props) => theme.default.bg};
     color:${({ theme }: Props) => theme.default.fg};
     border-color:${({ theme }: Props) => theme.default.bg};
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.default.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.default.bg}77`};
   }
 
   #root .btn-default:not(:disabled):not(.disabled):active,#root .btn-default:not(:disabled):not(.disabled).active,
@@ -224,7 +225,7 @@ export default createGlobalStyle`
 
   #root .btn-default:not(:disabled):not(.disabled):active:focus,#root .btn-default:not(:disabled):not(.disabled).active:focus,
   .show > .btn-default.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => theme.default.bg + "77"};
+    box-shadow: 0 0 0 0.2rem ${({ theme }: Props) => `${theme.default.bg}77`};
   }
 
   #root .text-default{
@@ -249,11 +250,11 @@ export default createGlobalStyle`
     background-color: #00000000;
   }
   body #root ::-webkit-scrollbar-thumb {
-    background: ${({ theme }: Props) => theme.primary.bg + "99"};
+    background: ${({ theme }: Props) => `${theme.primary.bg}99`};
     border-radius: 5px;
   }
   body #root ::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }: Props) => theme.primary.bg + "cc"};
+    background: ${({ theme }: Props) => `${theme.primary.bg}cc`};
   }
 
   @keyframes wiggle {
