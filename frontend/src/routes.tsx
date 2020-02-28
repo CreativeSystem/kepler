@@ -49,6 +49,7 @@ const Routes: React.FC<Props> = ({ isAuthenticated }) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/login" component={Login} />
+
         {isAuthenticated && (
           <Template routes={privateRoutes}>
             {privateRoutes.map(({ path, container: component }) => (
