@@ -29,12 +29,15 @@ const DatePicker: React.FC<Props> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <ReactDatePicker
-      ref={datepickerRef}
-      selected={date}
-      onChange={setDate}
-      {...rest}
-    />
+    <>
+      <ReactDatePicker
+        ref={datepickerRef}
+        selected={date}
+        onChange={setDate}
+        {...rest}
+      />
+      {error && <span className="error">{error}</span>}
+    </>
   );
 };
 

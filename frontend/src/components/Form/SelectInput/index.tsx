@@ -39,12 +39,15 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
   }, [fieldName, registerField, rest.isMulti]);
 
   return (
-    <ReactSelect
-      defaultValue={defaultValue}
-      ref={selectRef}
-      classNamePrefix="react-select"
-      {...rest}
-    />
+    <>
+      <ReactSelect
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
+        {...rest}
+      />
+      {error && <span className="error">{error}</span>}
+    </>
   );
 };
 
