@@ -5,6 +5,8 @@ import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
 
 import { useField } from "@unform/core";
 
+import { InputError } from "../styles";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 interface Props extends Omit<ReactDatePickerProps, "onChange"> {
@@ -36,7 +38,7 @@ const DatePicker: React.FC<Props> = ({ name, ...rest }) => {
         onChange={setDate}
         {...rest}
       />
-      {error && <span className="error">{error}</span>}
+      {error && <InputError className="error">{error}</InputError>}
     </>
   );
 };
