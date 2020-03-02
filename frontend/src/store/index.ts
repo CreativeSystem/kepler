@@ -1,20 +1,18 @@
+import Encryptor from "@services/encryptor";
+import env from "~/utils/env";
 import { createStore, Store, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
 import {
   persistReducer,
   persistStore,
   PersistConfig,
   createTransform
 } from "redux-persist";
-
-import { SessionState } from "./ducks/session/types";
+import localStorage from "redux-persist/es/storage";
+import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./ducks/rootReducer";
 import rootSaga from "./ducks/rootSaga";
-import localStorage from "redux-persist/es/storage";
-
-import Encryptor from "@services/encryptor";
-import env from "~/util/env";
+import { SessionState } from "./ducks/session/types";
 
 export interface ApplicationState {
   session: SessionState;
@@ -28,11 +26,11 @@ interface encryptState {
 }
 const encryptTransform = createTransform(
   (state: encryptState) => {
-    let encrypt = encryptor.encrypt(state);
+    const encrypt = encryptor.encrypt(state);
     return { encrypt };
   },
   ({ encrypt }: encryptState) => {
-    let decrypt = encryptor.decrypt(encrypt);
+    const decrypt = encryptor.decrypt(encrypt);
     return decrypt;
   }
 );

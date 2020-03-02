@@ -24,7 +24,6 @@ const RaterInput: React.FC<Props> = ({ name, ...rest }) => {
       ref: ratingRef.current,
       path: "value"
     });
-    console.log(stars);
   }, [fieldName, registerField, stars]);
 
   return (

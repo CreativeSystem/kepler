@@ -1,10 +1,10 @@
 import { store } from "@store/index";
-import env from "~/util/env";
+import env from "~/utils/env";
 import axios, { AxiosRequestConfig } from "axios";
 
 const api = axios.create({
   baseURL: env("BACKEND_HOST"),
-  withCredentials: true,
+  withCredentials: true
 });
 
 api.interceptors.request.use(
@@ -16,14 +16,14 @@ api.interceptors.request.use(
     }
     return config;
   },
-  err => Promise.reject(err),
+  err => Promise.reject(err)
 );
 
-export interface PaginationResponse<T>{
-  total: number,
-  page: number,
-  page_size: number,
-  data: [T]
+export interface PaginationResponse<T> {
+  total: number;
+  page: number;
+  page_size: number;
+  data: [T];
 }
 
 export default api;
