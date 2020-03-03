@@ -15,16 +15,21 @@ interface Props extends RatingProps {
 const RaterInput: React.FC<Props> = ({ name, ...rest }) => {
   const ratingRef = useRef(null);
   // eslint-disable-next-line
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [stars, setStars] = useState();
+  const {
+    fieldName,
+    registerField,
+    defaultValue = { ...rest }.defaultRating,
+    error
+  } = useField(name);
+  const [stars, setStars] = useState(defaultValue);
 
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: ratingRef.current,
-      path: "value"
+      path: "props.rating"
     });
-  }, [fieldName, registerField, stars]);
+  }, [fieldName, registerField]);
 
   return (
     <Rating
@@ -34,6 +39,7 @@ const RaterInput: React.FC<Props> = ({ name, ...rest }) => {
       }}
       rating={stars}
       {...rest}
+      defaultRating={defaultValue}
     />
   );
 };

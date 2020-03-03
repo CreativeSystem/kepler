@@ -19,6 +19,7 @@
 .env.production.local
 .yarn.lock
 frontend/yarn.lock
+**/componentsTest
 
 npm-debug.log*
 yarn-debug.log*

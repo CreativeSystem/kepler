@@ -1,6 +1,6 @@
 import { InputGroup as BInputGroup, FormControl } from "react-bootstrap";
 
-import { ITheme } from "~/styles/theme";
+import { ITheme } from "~/styles/themes";
 
 import styled from "styled-components";
 
@@ -10,14 +10,14 @@ interface Props {
 
 export const Container = styled.header`
   height: 8vh;
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   background-color: ${({
     theme: {
-      primary: { bg },
-    },
+      primary: { bg }
+    }
   }: Props) => bg};
   max-width: 100%;
   position: sticky;
@@ -26,5 +26,5 @@ export const Container = styled.header`
 `;
 
 export const InputGroupPrepend = styled(BInputGroup.Prepend)`
-  background-color:none;
+  background-color: none;
 `;

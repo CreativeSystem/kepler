@@ -5,28 +5,34 @@ import Switch, { ReactSwitchProps } from "react-switch";
 
 import { useField } from "@unform/core";
 
-interface Props extends ReactSwitchProps {
+// interface Props extends ReactSwitchProps {
+//   name: string;
+// }
+
+type Props = Omit<ReactSwitchProps, "checked" | "onChange"> & {
   name: string;
-}
+  checked?: boolean;
+};
 
 const SwitchInput: React.FC<Props> = ({ name, ...rest }) => {
   const switchRef = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(defaultValue);
 
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: switchRef.current,
-      path: "value"
+      path: "props.checked"
     });
   }, [fieldName, registerField, checked]);
 
   return (
     <Switch
       ref={switchRef}
+      defaultValue={defaultValue}
       onChange={(checked, event, id) => {
-        setChecked(checked.valueOf);
+        setChecked(checked);
       }}
       checked={checked}
       {...rest}

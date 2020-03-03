@@ -3,7 +3,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
-import Input from "@components/Input";
+import Input from "@components/Form/Input";
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
 import { ApplicationState } from "@store/index";
@@ -46,7 +46,7 @@ const Login: React.FC<Props> = ({
   loading,
   error,
   isAuthenticated,
-  loginRequest,
+  loginRequest
 }) => {
   const handleSubmit = ({ username, password }: any) => {
     loginRequest({ username, password });
@@ -68,14 +68,19 @@ const Login: React.FC<Props> = ({
       if (await cpfValidation.isValid(cpfInput.value)) setStep(STEPS.PASSWORD);
     } else {
       const passwordInput = formRef.current?.getFieldRef("password");
-      if (await passwordValidation.isValid(passwordInput.value)) setPassword(passwordInput.value);
+      if (await passwordValidation.isValid(passwordInput.value)) {
+        setPassword(passwordInput.value);
+      }
     }
   };
 
   return (
     <Container>
       <Box>
-        <Form onSubmit={() => handleSubmit({ username: email, password })} ref={formRef}>
+        <Form
+          onSubmit={() => handleSubmit({ username: email, password })}
+          ref={formRef}
+        >
           {step === STEPS.EMAIL && (
             <div>
               <div className="title-container">
@@ -175,13 +180,14 @@ const Login: React.FC<Props> = ({
 };
 
 const mapStateToProps = ({
-  session: { loading, error, isAuthenticated },
+  session: { loading, error, isAuthenticated }
 }: ApplicationState) => ({
   loading,
   error,
-  isAuthenticated,
+  isAuthenticated
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(SessionActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

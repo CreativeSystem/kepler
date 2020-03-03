@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { ITheme } from "~/styles/theme";
+import { ITheme } from "~/styles/themes";
 import { Dropdown } from "semantic-ui-react";
+
+import styled from "styled-components";
+
 interface Props {
   theme: ITheme;
 }

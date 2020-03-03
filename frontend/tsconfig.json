@@ -88,5 +88,8 @@
     "*/.git/objects/*": true,
     "*/.git/subtree-cache/*": true,
     "*/node_modules//**": true
-  }
+  },
+  "files": [
+    "src/styles/styled.d.ts"
+  ]
 }

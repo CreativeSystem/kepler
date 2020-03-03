@@ -1,38 +1,48 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable comma-dangle */
 import React, { useRef, useEffect } from "react";
 
 import { useField } from "@unform/core";
 
-import InputMask from "./InputMask";
+import InputMask, { Props as IMaskProps } from "./InputMask";
 
-type Props = JSX.IntrinsicElements["input"] & {
+interface OwnProps<T = "input" | "mask"> {
+  set?: T;
   name: string;
-  placeholder: string;
-};
+}
 
-const Input: React.FC<Props> = ({ name, mask, placeholder, ...rest }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+type InputProps = JSX.IntrinsicElements["input"] & OwnProps<"input">;
+type MaskProps = IMaskProps & OwnProps<"mask">;
+
+const Input: React.FC<InputProps | MaskProps> = ({ name, set, ...rest }) => {
+  const inputRef = useRef(null);
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
   useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: inputRef.current,
-      path: "value"
-    });
+    if (inputRef.current) {
+      registerField({
+        name: fieldName,
+        ref: inputRef.current,
+        path: "value"
+      });
+    }
   }, [fieldName, registerField]);
 
   return (
     <>
-      {mask ? (
-        <InputMask />
+      {set === "mask" ? (
+        <InputMask
+          name={fieldName}
+          defaultValue={defaultValue}
+          {...(rest as MaskProps)}
+        />
       ) : (
         <input
           name={fieldName}
           ref={inputRef}
           defaultValue={defaultValue}
-          placeholder={placeholder}
-          {...rest}
+          {...(rest as InputProps)}
         />
       )}
 

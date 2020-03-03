@@ -5,13 +5,11 @@ import ReactInputMask, { Props as InputProps } from "react-input-mask";
 
 import { useField } from "@unform/core";
 
-interface Props extends InputProps {
-  name: string;
-}
+export type Props = InputProps & { name: string };
 
 const InputMask: React.FC<Props> = ({ name, ...rest }) => {
   const inputRef = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue } = useField(name);
 
   useEffect(() => {
     registerField({
