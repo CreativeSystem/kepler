@@ -8,18 +8,20 @@ import React, { useRef, useEffect, useState } from "react";
 import { useField } from "@unform/core";
 import { Rating, RatingProps } from "semantic-ui-react";
 
+import { Label, Container } from "../styles";
+
 interface Props extends RatingProps {
   name: string;
+  label: string;
 }
 
-const RaterInput: React.FC<Props> = ({ name, ...rest }) => {
+const RaterInput: React.FC<Props> = ({ name, label, ...rest }) => {
   const ratingRef = useRef(null);
   // eslint-disable-next-line
   const {
     fieldName,
     registerField,
-    defaultValue = { ...rest }.defaultRating,
-    error
+    defaultValue = { ...rest }.defaultRating
   } = useField(name);
   const [stars, setStars] = useState(defaultValue);
 
@@ -32,15 +34,18 @@ const RaterInput: React.FC<Props> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Rating
-      ref={ratingRef}
-      onRate={(event, data) => {
-        setStars(data.rating);
-      }}
-      rating={stars}
-      {...rest}
-      defaultRating={defaultValue}
-    />
+    <Container>
+      <Label>{label}</Label>
+      <Rating
+        ref={ratingRef}
+        onRate={(event, data) => {
+          setStars(data.rating);
+        }}
+        rating={stars}
+        {...rest}
+        defaultRating={defaultValue}
+      />
+    </Container>
   );
 };
 

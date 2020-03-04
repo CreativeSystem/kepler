@@ -1,4 +1,4 @@
-import { InputGroup as BInputGroup, FormControl } from "react-bootstrap";
+import { InputGroup as BInputGroup } from "react-bootstrap";
 
 import { ITheme } from "~/styles/themes";
 

@@ -8,11 +8,14 @@ import ReactSelect, {
 
 import { useField } from "@unform/core";
 
+import { Container, Error, Label } from "../styles";
+
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
+  label?: string;
 }
 
-const Select: React.FC<Props> = ({ name, ...rest }) => {
+const Select: React.FC<Props> = ({ name, label, ...rest }) => {
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -39,15 +42,16 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
   }, [fieldName, registerField, rest.isMulti]);
 
   return (
-    <>
+    <Container>
+      <Label>{label}</Label>
       <ReactSelect
         defaultValue={defaultValue}
         ref={selectRef}
         classNamePrefix="react-select"
         {...rest}
       />
-      {error && <span className="error">{error}</span>}
-    </>
+      {error && <Error className="error">{error}</Error>}
+    </Container>
   );
 };
 

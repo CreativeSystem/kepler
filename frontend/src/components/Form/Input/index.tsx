@@ -4,17 +4,24 @@ import React, { useRef, useEffect } from "react";
 
 import { useField } from "@unform/core";
 
+import { Container, Error, Label } from "../styles";
 import InputMask, { Props as IMaskProps } from "./InputMask";
 
 interface OwnProps<T = "input" | "mask"> {
   set?: T;
   name: string;
+  label?: string;
 }
 
 type InputProps = JSX.IntrinsicElements["input"] & OwnProps<"input">;
 type MaskProps = IMaskProps & OwnProps<"mask">;
 
-const Input: React.FC<InputProps | MaskProps> = ({ name, set, ...rest }) => {
+const Input: React.FC<InputProps | MaskProps> = ({
+  name,
+  set,
+  label,
+  ...rest
+}) => {
   const inputRef = useRef(null);
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
@@ -30,7 +37,8 @@ const Input: React.FC<InputProps | MaskProps> = ({ name, set, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <>
+    <Container>
+      <Label>{label}</Label>
       {set === "mask" ? (
         <InputMask
           name={fieldName}
@@ -46,8 +54,8 @@ const Input: React.FC<InputProps | MaskProps> = ({ name, set, ...rest }) => {
         />
       )}
 
-      {error && <span className="error">{error}</span>}
-    </>
+      {error && <Error className="error">{error}</Error>}
+    </Container>
   );
 };
 
