@@ -14,7 +14,7 @@ import { Container, Error, Label } from "../styles";
 
 interface Props {
   name: string;
-  label: string;
+  label?: string;
 }
 
 type InputProps = JSX.IntrinsicElements["input"] & Props;

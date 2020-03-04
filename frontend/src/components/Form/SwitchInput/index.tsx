@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Switch, { ReactSwitchProps } from "react-switch";
 
 import { useField } from "@unform/core";
+import { shade } from "polished";
 
 import { Container } from "../styles";
 import { SwitchLabel } from "./styles";
@@ -43,6 +44,13 @@ const SwitchInput: React.FC<Props> = ({
           setChecked(checked);
         }}
         checked={checked}
+        checkedIcon={false}
+        uncheckedIcon={false}
+        height={20}
+        width={40}
+        handleDiameter={14}
+        offColor={shade(0.3, "#6CA0B7")}
+        onColor="#073345"
         {...rest}
       />
     </Container>

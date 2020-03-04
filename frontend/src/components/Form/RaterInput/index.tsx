@@ -12,7 +12,7 @@ import { Label, Container } from "../styles";
 
 interface Props extends RatingProps {
   name: string;
-  label: string;
+  label?: string;
 }
 
 const RaterInput: React.FC<Props> = ({ name, label, ...rest }) => {

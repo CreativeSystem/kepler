@@ -17,7 +17,7 @@ registerLocale("ptBR", ptBR);
 
 interface Props extends Omit<ReactDatePickerProps, "onChange"> {
   name: string;
-  label: string;
+  label?: string;
 }
 
 const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
