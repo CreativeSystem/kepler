@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
+import Button from "@components/Button";
 import Input from "@components/Input";
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
@@ -17,6 +18,7 @@ import { Container, Box } from "./styles";
 enum STEPS {
   EMAIL = "email",
   CPF = "cpf",
+  NOME = "nome",
   PASSWORD = "password"
 }
 
@@ -55,17 +57,32 @@ const Login: React.FC<Props> = ({
   const [step, setStep] = useState(STEPS.EMAIL);
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
+  const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
 
   const formRef = useRef<FormHandles>(null);
 
+  async function validateStep(fieldName: string, validation: Yup.StringSchema<string>, step: STEPS): Promise<string|undefined> {
+    try {
+      const fieldInput = formRef.current?.getFieldRef(fieldName);
+      const validate = await validation.validate(fieldInput.value);
+      if (validate) {
+        setStep(step);
+      }
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        // eslint-disable-next-line no-unused-expressions
+        formRef.current?.setErrors({ error: err.message });
+      }
+    }
+    return undefined;
+  }
+
   const handleOnStep = async () => {
     if (step === STEPS.EMAIL) {
-      const emailInput = formRef.current?.getFieldRef("email");
-      if (await emailValidation.isValid(emailInput.value)) setStep(STEPS.CPF);
+      validateStep("email", emailValidation, STEPS.CPF);
     } else if (step === STEPS.CPF) {
-      const cpfInput = formRef.current?.getFieldRef("cpf");
-      if (await cpfValidation.isValid(cpfInput.value)) setStep(STEPS.PASSWORD);
+      validateStep("cpf", cpfValidation, STEPS.PASSWORD);
     } else {
       const passwordInput = formRef.current?.getFieldRef("password");
       if (await passwordValidation.isValid(passwordInput.value)) setPassword(passwordInput.value);
@@ -92,9 +109,9 @@ const Login: React.FC<Props> = ({
                 />
               </div>
               <div className="btn-container">
-                <button type="button" onClick={() => handleOnStep()}>
+                <Button type="button" onClick={() => handleOnStep()}>
                   Continuar
-                </button>
+                </Button>
               </div>
             </div>
           )}
@@ -126,9 +143,44 @@ const Login: React.FC<Props> = ({
                   />
                 </div>
                 <div className="btn-container">
-                  <button type="button" onClick={() => handleOnStep()}>
+                  <Button type="button" onClick={() => handleOnStep()}>
                     Continuar
-                  </button>
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+
+          {step === STEPS.NOME && (
+            <>
+              <div className="arrow-container">
+                <button
+                  onClick={() => setStep(STEPS.CPF)}
+                  className="arrow-left"
+                  type="button"
+                >
+                  <FaArrowLeft />
+                </button>
+              </div>
+              <div>
+                <div className="title-container">
+                  <h1>Faça Login</h1>
+
+                  <h2>Como podemos chama-lo?</h2>
+                </div>
+                <div className="input-container">
+                  <Input
+                    name="nome"
+                    placeholder="Digite seu nome"
+                    maxLength={50}
+                    value={nome}
+                    onChange={e => setNome(e.target.value)}
+                  />
+                </div>
+                <div className="btn-container">
+                  <Button type="button" onClick={() => handleOnStep()}>
+                    Continuar
+                  </Button>
                 </div>
               </div>
             </>
@@ -160,9 +212,9 @@ const Login: React.FC<Props> = ({
                   />
                 </div>
                 <div className="btn-container">
-                  <button type="submit" onClick={() => handleOnStep()}>
+                  <Button type="submit" onClick={() => handleOnStep()}>
                     Continuar
-                  </button>
+                  </Button>
                 </div>
               </div>
             </>
