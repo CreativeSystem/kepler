@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
 import Button from "@components/Button";
@@ -36,12 +36,12 @@ const emailValidation = Yup.string()
   .required("Informe o email");
 
 const cpfValidation = Yup.string()
-  .length(11)
+  .length(11, "O cpf deve ter 11 caracteres")
   .required("Informe o cpf");
 
 const passwordValidation = Yup.string()
-  .max(20)
-  .min(8)
+  .max(20, "A senha deve conter no máximo 20 caracteres")
+  .min(8, "A senha deve conter no mínimo 8 caracteres")
   .required("Informe uma senha");
 
 const Login: React.FC<Props> = ({
@@ -71,7 +71,6 @@ const Login: React.FC<Props> = ({
       }
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
-        // eslint-disable-next-line no-unused-expressions
         formRef.current?.setErrors({ error: err.message });
       }
     }
@@ -234,6 +233,6 @@ const mapStateToProps = ({
   isAuthenticated,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default useSelector(Login);
+// const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
+// connect(mapStateToProps, mapDispatchToProps)(Login);
