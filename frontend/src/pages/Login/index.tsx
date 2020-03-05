@@ -71,7 +71,9 @@ const Login: React.FC<Props> = ({
       }
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
-        formRef.current?.setErrors({ error: err.message });
+        const error: any = {};
+        error[fieldName] = err.message;
+        formRef.current?.setErrors(error);
       }
     }
     return undefined;
@@ -211,7 +213,7 @@ const Login: React.FC<Props> = ({
                   />
                 </div>
                 <div className="btn-container">
-                  <Button type="submit" onClick={() => handleOnStep()}>
+                  <Button type="submit" onClick={() => handleOnStep()} loading={loading}>
                     Continuar
                   </Button>
                 </div>
@@ -233,6 +235,5 @@ const mapStateToProps = ({
   isAuthenticated,
 });
 
-export default useSelector(Login);
-// const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
-// connect(mapStateToProps, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
