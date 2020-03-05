@@ -47,6 +47,7 @@ const Input: React.FC<InputProps | MaskProps> = ({
         />
       ) : (
         <input
+          className="form-control"
           name={fieldName}
           ref={inputRef}
           defaultValue={defaultValue}
@@ -54,7 +55,7 @@ const Input: React.FC<InputProps | MaskProps> = ({
         />
       )}
 
-      {error && <Error className="error">{error}</Error>}
+      {error && <Error>{error}</Error>}
     </Container>
   );
 };

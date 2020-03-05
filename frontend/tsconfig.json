@@ -89,7 +89,7 @@
     "*/.git/subtree-cache/*": true,
     "*/node_modules//**": true
   },
-  "files": [
+  "includes": [
     "src/styles/styled.d.ts"
   ]
 }

@@ -50,7 +50,13 @@ const FileInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
     <Container>
       <Label>{label}</Label>
       {preview && <img src={preview} alt="Preview" width="100" />}
-      <input type="file" ref={inputRef} onChange={handlePreview} {...rest} />
+      <input
+        type="file"
+        className="form-control-file"
+        ref={inputRef}
+        onChange={handlePreview}
+        {...rest}
+      />
       {error && <Error className="error">{error}</Error>}
     </Container>
   );

@@ -13,7 +13,7 @@ import { Error, Label, Container } from "../styles";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-registerLocale("ptBR", ptBR);
+registerLocale("pt-BR", ptBR);
 
 interface Props extends Omit<ReactDatePickerProps, "onChange"> {
   name: string;
@@ -41,10 +41,11 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
     <Container>
       <Label>{label}</Label>
       <ReactDatePicker
+        className="form-control"
         ref={datepickerRef}
         selected={date}
         onChange={setDate}
-        locale="ptBR"
+        locale="pt-BR"
         dateFormat="dd/MM/yyyy"
         {...rest}
       />

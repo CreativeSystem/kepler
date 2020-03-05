@@ -26,7 +26,12 @@ const InputMask: React.FC<Props> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <ReactInputMask ref={inputRef} defaultValue={defaultValue} {...rest} />
+    <ReactInputMask
+      className="form-control"
+      ref={inputRef}
+      defaultValue={defaultValue}
+      {...rest}
+    />
   );
 };
 

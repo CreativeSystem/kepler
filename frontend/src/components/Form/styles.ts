@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Error = styled.span`
   display: block;
-  color: ${props => props.theme.danger};
+  color: ${props => props.theme.danger.bg};
 `;
 
 export const Label = styled(FormLabel)`

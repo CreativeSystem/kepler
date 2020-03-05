@@ -13,7 +13,6 @@ export interface ITheme {
   primary: IColor;
   default: IColor;
   info: IColor;
-  teste: IColor;
 }
 
 export const light: ITheme = {
@@ -35,14 +34,10 @@ export const light: ITheme = {
   },
   default: {
     bg: "#F5F5F5",
-    fg: "#6CA0B7"
+    fg: "#333"
   },
   info: {
     bg: "#17a2b8",
     fg: "#F5F5F5"
-  },
-  teste: {
-    bg: "#fff",
-    fg: "#333"
   }
 };
