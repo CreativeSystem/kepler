@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import React, {
+  useRef, useEffect, useState, useContext,
+} from "react";
 import Switch, { ReactSwitchProps } from "react-switch";
 
 import { Container } from "@components/Form/styles";
@@ -26,7 +28,7 @@ const SwitchInput: React.FC<Props> = ({
 }) => {
   const switchRef = useRef(null);
   const { fieldName, registerField, defaultValue = defaultChecked } = useField(
-    name
+    name,
   );
   const [checked, setChecked] = useState(defaultValue);
   const theme = useContext<ITheme>(ThemeContext);
@@ -35,7 +37,7 @@ const SwitchInput: React.FC<Props> = ({
     registerField({
       name: fieldName,
       ref: switchRef.current,
-      path: "props.checked"
+      path: "props.checked",
     });
   }, [fieldName, registerField, checked, theme]);
 

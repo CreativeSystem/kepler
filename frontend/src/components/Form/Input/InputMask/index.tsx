@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
 import React, { useRef, useEffect } from "react";
 import ReactInputMask, { Props as InputProps } from "react-input-mask";
 
@@ -21,7 +19,7 @@ const InputMask: React.FC<Props> = ({ name, ...rest }) => {
       },
       clearValue(ref: any) {
         ref.setInputValue("");
-      }
+      },
     });
   }, [fieldName, registerField]);
 

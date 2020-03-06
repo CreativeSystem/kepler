@@ -1,9 +1,7 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
 import React, { useRef, useState, useEffect } from "react";
 import ReactDatePicker, {
   ReactDatePickerProps,
-  registerLocale
+  registerLocale,
 } from "react-datepicker";
 
 import { useField } from "@unform/core";
@@ -22,7 +20,9 @@ interface Props extends Omit<ReactDatePickerProps, "onChange"> {
 
 const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
   const datepickerRef = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const {
+    fieldName, registerField, defaultValue, error,
+  } = useField(name);
 
   const [date, setDate] = useState(defaultValue || null);
 
@@ -33,7 +33,7 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
       path: "props.selected",
       clearValue: (ref: any) => {
         ref.clear();
-      }
+      },
     });
   }, [fieldName, registerField]);
 
@@ -49,7 +49,7 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
         dateFormat="dd/MM/yyyy"
         {...rest}
       />
-      {error && <Error className="error">{error}</Error>}
+      {error && <Error>{error}</Error>}
     </Container>
   );
 };

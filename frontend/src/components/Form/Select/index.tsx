@@ -1,9 +1,7 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
 import React, { useRef, useEffect } from "react";
 import ReactSelect, {
   OptionTypeBase,
-  Props as SelectProps
+  Props as SelectProps,
 } from "react-select";
 
 import { useField } from "@unform/core";
@@ -17,7 +15,9 @@ interface Props extends SelectProps<OptionTypeBase> {
 
 const Select: React.FC<Props> = ({ name, label, ...rest }) => {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const {
+    fieldName, defaultValue, registerField, error,
+  } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -37,7 +37,7 @@ const Select: React.FC<Props> = ({ name, label, ...rest }) => {
         }
 
         return ref.state.value.value;
-      }
+      },
     });
   }, [fieldName, registerField, rest.isMulti]);
 
@@ -48,9 +48,10 @@ const Select: React.FC<Props> = ({ name, label, ...rest }) => {
         defaultValue={defaultValue}
         ref={selectRef}
         classNamePrefix="react-select"
+        onKeyDown={e => e.key === "Enter" && e.preventDefault()}
         {...rest}
       />
-      {error && <Error className="error">{error}</Error>}
+      {error && <Error>{error}</Error>}
     </Container>
   );
 };

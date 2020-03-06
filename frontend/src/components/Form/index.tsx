@@ -1,10 +1,6 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-import DatePicker from "./DatePicker";
-import FileInput from "./FileInput";
-import Input from "./Input";
-import RaterInput from "./RaterInput";
-import SelectInput from "./SelectInput";
-import SwitchInput from "./SwitchInput";
-
-export { DatePicker, FileInput, Input, RaterInput, SelectInput, SwitchInput };
+export { default as DatePicker } from "./DatePicker";
+export { default as FileInput } from "./FileInput";
+export { default as Input } from "./Input";
+export { default as Rater } from "./Rater";
+export { default as Select } from "./Select";
+export { default as Switch } from "./Switch";

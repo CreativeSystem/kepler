@@ -17,7 +17,7 @@ interface Props extends RatingProps {
 
 const RaterInput: React.FC<Props> = ({ name, label, ...rest }) => {
   const ratingRef = useRef(null);
-  // eslint-disable-next-line
+
   const {
     fieldName,
     registerField,
@@ -42,8 +42,8 @@ const RaterInput: React.FC<Props> = ({ name, label, ...rest }) => {
           setStars(data.rating);
         }}
         rating={stars}
-        {...rest}
         defaultRating={defaultValue}
+        {...rest}
       />
     </Container>
   );

@@ -43,6 +43,7 @@ const Input: React.FC<InputProps | MaskProps> = ({
         <InputMask
           name={fieldName}
           defaultValue={defaultValue}
+          onKeyPress={e => e.key === "Enter" && e.preventDefault()}
           {...(rest as MaskProps)}
         />
       ) : (
@@ -51,6 +52,7 @@ const Input: React.FC<InputProps | MaskProps> = ({
           name={fieldName}
           ref={inputRef}
           defaultValue={defaultValue}
+          onKeyPress={e => e.key === "Enter" && e.preventDefault()}
           {...(rest as InputProps)}
         />
       )}

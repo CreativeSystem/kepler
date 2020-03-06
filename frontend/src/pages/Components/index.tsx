@@ -6,9 +6,9 @@ import {
   DatePicker,
   FileInput,
   Input,
-  RaterInput,
-  SelectInput,
-  SwitchInput
+  Rater,
+  Select,
+  Switch,
 } from "../../components/Form";
 import { Container, LogContainer, Code } from "./styles";
 
@@ -37,11 +37,10 @@ const Components: React.FC = () => {
             label="Bota o telefone"
             set="mask"
             mask="(99) 9-9999-9999"
-            alwaysShowMask
           />
         </div>
         <div className="form-group">
-          <RaterInput
+          <Rater
             name="rater"
             label="Estrelas"
             icon="star"
@@ -50,10 +49,10 @@ const Components: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <SelectInput name="select" />
+          <Select name="select" />
         </div>
         <div className="form-group">
-          <SwitchInput name="switch" defaultChecked={false} label="Serviço" />
+          <Switch name="switch" defaultChecked={false} label="Serviço" />
         </div>
 
         <button type="submit" className="btn btn-primary">
