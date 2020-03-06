@@ -14,6 +14,7 @@ import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
 
 import { Container, Box } from "./styles";
+import { Message } from "semantic-ui-react";
 
 enum STEPS {
   EMAIL = "email",
@@ -38,6 +39,11 @@ const emailValidation = Yup.string()
 const cpfValidation = Yup.string()
   .length(11, "O cpf deve ter 11 caracteres")
   .required("Informe o cpf");
+
+const nomeValidation = Yup.string()
+  .min(3, "O nome deve ter no mínimo 3 caracteres")
+  .max(40, "O nome deve ter no máximo 40 caracteres")
+  .required("Informe o nome");
 
 const passwordValidation = Yup.string()
   .max(20, "A senha deve conter no máximo 20 caracteres")
@@ -83,7 +89,9 @@ const Login: React.FC<Props> = ({
     if (step === STEPS.EMAIL) {
       validateStep("email", emailValidation, STEPS.CPF);
     } else if (step === STEPS.CPF) {
-      validateStep("cpf", cpfValidation, STEPS.PASSWORD);
+      validateStep("cpf", cpfValidation, STEPS.NOME);
+    } else if (step === STEPS.NOME) {
+      validateStep("nome", nomeValidation, STEPS.PASSWORD);
     } else {
       const passwordInput = formRef.current?.getFieldRef("password");
       if (await passwordValidation.isValid(passwordInput.value)) setPassword(passwordInput.value);
