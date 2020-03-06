@@ -1,20 +1,23 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
 import React, { useRef, useEffect } from "react";
 import ReactSelect, {
   OptionTypeBase,
-  Props as SelectProps
+  Props as SelectProps,
 } from "react-select";
 
 import { useField } from "@unform/core";
 
+import { Container, Error, Label } from "../styles";
+
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
+  label?: string;
 }
 
-const Select: React.FC<Props> = ({ name, ...rest }) => {
+const Select: React.FC<Props> = ({ name, label, ...rest }) => {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const {
+    fieldName, defaultValue, registerField, error,
+  } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -34,17 +37,22 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
         }
 
         return ref.state.value.value;
-      }
+      },
     });
   }, [fieldName, registerField, rest.isMulti]);
 
   return (
-    <ReactSelect
-      defaultValue={defaultValue}
-      ref={selectRef}
-      classNamePrefix="react-select"
-      {...rest}
-    />
+    <Container>
+      <Label>{label}</Label>
+      <ReactSelect
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
+        onKeyDown={e => e.key === "Enter" && e.preventDefault()}
+        {...rest}
+      />
+      {error && <Error>{error}</Error>}
+    </Container>
   );
 };
 

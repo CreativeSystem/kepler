@@ -8,7 +8,7 @@ import { ThemeProvider } from "styled-components";
 import Routes from "./routes";
 import { store, persistor } from "./store";
 import GlobalStyle from "./styles";
-import { light } from "./styles/theme";
+import { light } from "./styles/themes";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
