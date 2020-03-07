@@ -15,7 +15,7 @@
 - [ ] Definir ferramenta de organização a equipe
 
 ## Pré-Desenvolvimento
-- [  ] Desenhar modelo de entidade relacionamento
+- [ ] Desenhar modelo de entidade relacionamento
 - [ ] Desenhar fluxo e casos de uso da aplicação
 - [ ] Preparar ambiente de desenvolvimento
 - [ ] Configurar o cd e ci da aplicação dentro github
@@ -25,7 +25,7 @@
 ## Desenvolvimento
 
 Integracões
-=======
+-----
 - [ ] Integrar com S3
 - [ ] Integrar com serviço de envio de Email
 - [ ] Integrar com serviço de Geolocalização do Navegador
@@ -34,7 +34,7 @@ Integracões
 - [ ] Criar Testes
 
 Registro Usuario
-=======
+-----
 - [ ] Coletar as informações de email e senha 
 - [ ] Enviar e-mail de confirmação
 - [ ] Após confirmação,coletar dados :
@@ -47,19 +47,19 @@ Registro Usuario
 - [ ] Criar Testes
 
 Autenticação do Usuario
-======
+-------
 - [ ] Logar usuario com e-mail e senha
 - [ ] Esqueci minha senha ,enviar email com a token para recuperação
 
 Listagem de Serviços
-=======
+-------
 - [ ] Listar serviços cadastrados conforme a localização e interesses do usuario
 - [ ] Permitir fazer buscas na lista por preço tipo de serviço,disponibilidade
 - [ ] Ver classificação do Serviço
 - [ ] Criar Testes
 
 Cadastro de Serviços
-======
+-------
 - [ ] Coletar informações:
     1. Imagens do serviço(Portifólio)
     2. Tipo
@@ -72,7 +72,7 @@ Cadastro de Serviços
 - [ ] Criar Testes
 
 Contratação de Serviços
-======
+-------
 - [ ] Visualizar informações detalhadas do serviço na listagem
 - [ ] Informar data desejada para a execução
 - [ ] Enviar proposta ao Prestador
