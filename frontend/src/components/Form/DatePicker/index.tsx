@@ -7,7 +7,8 @@ import ReactDatePicker, {
 import { useField } from "@unform/core";
 import { ptBR } from "date-fns/locale";
 
-import { Error, Label, Container } from "../styles";
+import { Error, Label } from "../styles";
+import { Container } from "./styles";
 
 import "react-datepicker/dist/react-datepicker.css";
 

@@ -9,7 +9,8 @@ import {
   Rater,
   Select,
   Switch,
-} from "../../components/Form";
+} from "@components/Form";
+
 import { Container, LogContainer, Code } from "./styles";
 
 const Components: React.FC = () => {

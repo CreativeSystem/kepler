@@ -34,7 +34,7 @@ export const light: ITheme = {
   },
   default: {
     bg: "#F5F5F5",
-    fg: "#333"
+    fg: "#333333"
   },
   info: {
     bg: "#17a2b8",

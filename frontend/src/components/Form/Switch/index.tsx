@@ -3,24 +3,22 @@ import React, {
 } from "react";
 import Switch, { ReactSwitchProps } from "react-switch";
 
-import { Container } from "@components/Form/styles";
 import { useField } from "@unform/core";
 import { ITheme } from "~/styles/themes";
 import { shade } from "polished";
-
 import { ThemeContext } from "styled-components";
 
-import { SwitchLabel } from "./styles";
+import { SwitchLabel, Container } from "./styles";
 
 type Props = Omit<ReactSwitchProps, "checked" | "onChange"> & {
   name: string;
-  defaultChecked: boolean;
+  defaultChecked?: boolean;
   label?: string;
 };
 
 const SwitchInput: React.FC<Props> = ({
   name,
-  defaultChecked,
+  defaultChecked = false,
   label,
   onColor,
   offColor,
