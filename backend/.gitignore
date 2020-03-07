@@ -2,6 +2,7 @@
 __pycache__/
 /*/.env
 /env
-/*/temp/*.jpeg
-/*/temp/*.png
+/*/temp/
+!/*/temp/upload.md
 .vscode/settings.json
+/*/coverage
