@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
 import Button from "@components/Button";
-import Input from "@components/Input";
+import Input from "@components/Form/Input";
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
 import { ApplicationState } from "@store/index";
@@ -14,7 +14,6 @@ import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
 
 import { Container, Box } from "./styles";
-import { Message } from "semantic-ui-react";
 
 enum STEPS {
   EMAIL = "email",
@@ -94,14 +93,19 @@ const Login: React.FC<Props> = ({
       validateStep("nome", nomeValidation, STEPS.PASSWORD);
     } else {
       const passwordInput = formRef.current?.getFieldRef("password");
-      if (await passwordValidation.isValid(passwordInput.value)) setPassword(passwordInput.value);
+      if (await passwordValidation.isValid(passwordInput.value)) {
+        setPassword(passwordInput.value);
+      }
     }
   };
 
   return (
     <Container>
       <Box>
-        <Form onSubmit={() => handleSubmit({ username: email, password })} ref={formRef}>
+        <Form
+          onSubmit={() => handleSubmit({ username: email, password })}
+          ref={formRef}
+        >
           {step === STEPS.EMAIL && (
             <div>
               <div className="title-container">
@@ -114,7 +118,7 @@ const Login: React.FC<Props> = ({
                   name="email"
                   placeholder="email"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e: any) => setEmail(e.target.value)}
                 />
               </div>
               <div className="btn-container">
@@ -148,7 +152,7 @@ const Login: React.FC<Props> = ({
                     placeholder="000.000.000-00"
                     maxLength={11}
                     value={cpf}
-                    onChange={e => setCpf(e.target.value)}
+                    onChange={(e: any) => setCpf(e.target.value)}
                   />
                 </div>
                 <div className="btn-container">
@@ -183,7 +187,7 @@ const Login: React.FC<Props> = ({
                     placeholder="Digite seu nome"
                     maxLength={50}
                     value={nome}
-                    onChange={e => setNome(e.target.value)}
+                    onChange={(e: any) => setNome(e.target.value)}
                   />
                 </div>
                 <div className="btn-container">
@@ -217,7 +221,7 @@ const Login: React.FC<Props> = ({
                     name="password"
                     placeholder="Senha"
                     type="password"
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e: any) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="btn-container">
