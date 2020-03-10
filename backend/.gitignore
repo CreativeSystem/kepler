@@ -5,4 +5,5 @@ __pycache__/
 /*/temp/
 !/*/temp/upload.md
 .vscode/settings.json
-/*/coverage
+/**/coverage/*.*
+.coverage

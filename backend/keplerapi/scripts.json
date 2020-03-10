@@ -1,0 +1,7 @@
+{
+  "dev":"python3 manage.py runserver",
+  "db:migrate": "python3 manage.py migrate",
+  "db:makemigrations": "python3 manage.py migrate",
+  "test": "coverage run manage.py test",
+  "coverage": "coverage html"
+}
