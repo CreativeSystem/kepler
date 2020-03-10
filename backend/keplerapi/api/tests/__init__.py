@@ -1,0 +1,1 @@
+from api.tests.test_uploader import *
