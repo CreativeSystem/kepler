@@ -6,7 +6,7 @@ export enum SessionType {
 }
 
 export interface ILogin {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -17,7 +17,7 @@ export interface ILoginSuccess {
 
 export interface IProfile {
   id: number;
-  username: string;
+  email: string;
   superUser: boolean;
   firstName: string;
 }

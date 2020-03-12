@@ -9,7 +9,7 @@ export const SwitchLabel = styled(Label)`
 `;
 
 export const Container = styled(BContainer)`
-  display: flex;
+  display: inline;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

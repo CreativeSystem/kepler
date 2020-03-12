@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 import { Form } from "@unform/core";
 
@@ -9,10 +10,11 @@ import { Container, Card, InterestsContainer } from "./styles";
 const UserInfo: React.FC = () => (
   <Container>
     <Card>
-      <Card.Body>
-        <Card.Title>Cadastrar Dados</Card.Title>
-        <Card.Subtitle>Dados Pessoais</Card.Subtitle>
-        <Form className="card" onSubmit={() => {}}>
+      <Form className="card" onSubmit={() => {}}>
+        <Card.Body>
+          <Card.Title>Cadastrar Dados</Card.Title>
+          <Card.Subtitle>Dados Pessoais</Card.Subtitle>
+
           <Input name="email" value="teste@teste.com" disabled />
           <Input
             name="cpf"
@@ -40,13 +42,28 @@ const UserInfo: React.FC = () => (
           />
           <Card.Subtitle>Interesses:</Card.Subtitle>
           <InterestsContainer>
-            <Switch name="001" label="psicologia" />
-            <Switch name="002" label="psicologia" />
-            <Switch name="003" label="psicologia" />
-            <Switch name="004" label="psicologia" />
+            <Switch name="001" label="Psicologia" />
+            <Switch name="002" label="Psicologia" />
+            <Switch name="003" label="Psicologia" />
+            <Switch name="004" label="Psicologia" />
+            <Switch name="001" label="Psicologia" />
+            <Switch name="002" label="Psicologia" />
+            <Switch name="003" label="Psicologia" />
+            <Switch name="004" label="Psicologia" />
+            <Switch name="001" label="Psicologia" />
+            <Switch name="002" label="Psicologia" />
+            <Switch name="003" label="Psicologia" />
+            <Switch name="004" label="Psicologia" />
+            <Switch name="001" label="Psicologia" />
+            <Switch name="002" label="Psicologia" />
+            <Switch name="003" label="Psicologia" />
           </InterestsContainer>
-        </Form>
-      </Card.Body>
+          <div className="d-flex justify-content-end">
+            <Button variant="danger" className="mr-2">Cancelar</Button>
+            <Button variant="success">Enviar</Button>
+          </div>
+        </Card.Body>
+      </Form>
     </Card>
   </Container>
 );

@@ -41,7 +41,6 @@ const SwitchInput: React.FC<Props> = ({
 
   return (
     <Container>
-      <SwitchLabel>{label}</SwitchLabel>
       <Switch
         ref={switchRef}
         onChange={(checked, event, id) => {
@@ -57,6 +56,7 @@ const SwitchInput: React.FC<Props> = ({
         onColor={onColor || shade(0.1, theme.primary.bg)}
         {...rest}
       />
+      <SwitchLabel>{label}</SwitchLabel>
     </Container>
   );
 };

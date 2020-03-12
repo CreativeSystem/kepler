@@ -3,14 +3,17 @@ import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
-import Input from "@components/Form/Input";
+
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
-import { ApplicationState } from "@store/index";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import { Dispatch, bindActionCreators } from "redux";
 import * as Yup from "yup";
+
+import { ApplicationState } from "@store/index";
+
+import Input from "@components/Form/Input";
 
 import { Container, Box } from "./styles";
 
@@ -46,10 +49,10 @@ const Login: React.FC<Props> = ({
   loading,
   error,
   isAuthenticated,
-  loginRequest
+  loginRequest,
 }) => {
   const handleSubmit = ({ username, password }: any) => {
-    loginRequest({ username, password });
+    loginRequest({ email, password });
   };
 
   const [step, setStep] = useState(STEPS.EMAIL);
@@ -180,14 +183,13 @@ const Login: React.FC<Props> = ({
 };
 
 const mapStateToProps = ({
-  session: { loading, error, isAuthenticated }
+  session: { loading, error, isAuthenticated },
 }: ApplicationState) => ({
   loading,
   error,
-  isAuthenticated
+  isAuthenticated,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(SessionActions, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

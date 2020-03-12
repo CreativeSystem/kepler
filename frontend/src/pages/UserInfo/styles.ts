@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-content: center;
   justify-content: center;
   width: 100%;
+  margin-bottom:50px;
 `;
 
 export const Card = styled(BCard)`

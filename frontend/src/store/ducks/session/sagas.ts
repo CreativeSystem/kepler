@@ -1,5 +1,8 @@
-import api from "@services/api";
 import { call, put } from "redux-saga/effects";
+
+import api from "@services/api";
+
+
 import { loginSuccess, loginFailure } from "./actions";
 
 export function* login(action: any) {
@@ -9,18 +12,18 @@ export function* login(action: any) {
       token,
       user: {
         id,
-        username,
+        email,
         is_superuser: superUser,
         first_name: firstName,
-        last_name: lastName
-      }
+        last_name: lastName,
+      },
     } = response.data;
     const profile = {
       id,
-      username,
+      email,
       superUser,
       firstName,
-      lastName
+      lastName,
     };
     yield put(loginSuccess({ token, profile }));
   } catch (err) {
