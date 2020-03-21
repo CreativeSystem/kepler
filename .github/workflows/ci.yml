@@ -1,5 +1,4 @@
-name: CONTINUOS INTEGRATION
-
+name: CI
 on:
   pull_request:
  
