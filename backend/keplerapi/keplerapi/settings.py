@@ -73,6 +73,11 @@ DATABASES = {
     'default': dj_database_url.config(engine="django.db.backends.postgresql"),
 }
 
+DATABASES['default']['TEST'] = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': ':memory:'
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
