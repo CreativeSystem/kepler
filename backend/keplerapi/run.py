@@ -2,6 +2,11 @@ import subprocess
 import json
 import sys
 
+def subprocess_cmd(command):
+  process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
+  process.communicate()[0].strip()
+
+
 def main(argv):
   command = ''
   scripts = {}
@@ -20,8 +25,9 @@ def main(argv):
     assert "Command not found"
   if(len(argv)> 1):
     composed_command+= argv[1:]
+  print (composed_command)
   print("running %s ...\n" % " ".join(composed_command))
-  subprocess.run(composed_command)
+  subprocess_cmd(" ".join(composed_command))
 
 if __name__ == "__main__":
   main(sys.argv[1:])

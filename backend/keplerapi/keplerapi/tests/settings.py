@@ -1,3 +1,4 @@
+from keplerapi.settings import LocalUploader
 from keplerapi.settings import *
 
 SECRET_KEY = 'fakesecretkey'
