@@ -21,6 +21,12 @@ jobs:
           python -m pip install --upgrade pip
           cd backend
           pip install -r requirements.txt
+          
+        env: |
+          SECRET_KEY:sdfksjgjdslkgjl
+          DEBUG:True
+          DATABASE_URL:postgres://postgres:root@localhost:5432/kepler
+        
       - name: Test with coverage.py
         run: |
           cd backend
