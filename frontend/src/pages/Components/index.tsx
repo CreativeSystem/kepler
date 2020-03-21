@@ -4,7 +4,7 @@ import { Form } from "@unform/web";
 
 import {
   DatePicker,
-  FileInput,
+  Uploader,
   Input,
   Rater,
   Select,
@@ -26,7 +26,7 @@ const Components: React.FC = () => {
           <DatePicker name="datePicker" label="Escolha uma data" />
         </div>
         <div className="form-group">
-          <FileInput name="fileInput" label="Selecione uma imagem" multiple />
+          <Uploader />
         </div>
         <div className="form-group">
           <Input name="input" placeholder="teste" />
