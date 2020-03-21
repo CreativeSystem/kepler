@@ -21,9 +21,12 @@ jobs:
           python -m pip install --upgrade pip
           cd backend
           pip install -r requirements.txt
+        
+      - name: Setup env variables
+        run : echo "${SECRET_KEY}"
         env:
           SECRET_KEY: secretkeytest
-        
+          
       - name: Test with coverage.py
         run: |
           cd backend
