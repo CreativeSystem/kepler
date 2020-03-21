@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 try:
     load_dotenv(dotenv_path=".env")
 except:
-    print("")
+    pass
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -71,6 +71,11 @@ WSGI_APPLICATION = 'keplerapi.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
     'default': dj_database_url.config(engine="django.db.backends.postgresql"),
+}
+
+DATABASES['default']['TEST'] = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': ':memory:'
 }
 
 AUTH_PASSWORD_VALIDATORS = [
