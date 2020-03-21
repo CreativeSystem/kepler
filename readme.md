@@ -1,12 +1,54 @@
 # Checklist
+O que temos que ter : 
+1	Iniciação
+2	Planejamento
+3	Execução
+4	Monitoramento e Controle
+5	Fechamento
 
-## Planejamento
-- [ ] Defininir do publico alvo
-- [ ] Defininir escopo do projeto
-- [ ] Desenhar Protótipo da Tela
-- [ ] Validar telas com possiveis usuarios
+## Iniciação
 
-## Infraestrutura
+### Problema
+    Nos dias de hoje com a grande carga de trabalho, 
+    as pessoas não tem mais tempo para executar tarefas routineiras,
+    como fazer faxina e cortar a grama, ou pessoas com maior poder 
+    aquisitivo preferem pagar uma alguém para executar o trabalho, o que muitas 
+    vezes é um dificil processo de seleção,sendo necessário buscar recomendações 
+    com conhecidos.
+
+### Solução
+    Visando solucionar o problema da seleção de um fornecedor,a aplicação 
+    disponibilizará um lista de serviços cadastrados com avaliações dos últimos
+    contratantes, o que agilizará o processo de pesquisa por recomendações e 
+    conectara um unico meio os contratantes e forncedores.
+
+### Público Alvo
+    Fornecedor - pessoas 18 - 40, com routina maleável,e quem tem um ganho
+    abaixo de 1500/mês.
+
+    Contratante - pessoas de 22 - 40 anos,com uma routina pouco maleável 
+    e que ganham de 2500 a 6000 mês.
+
+### Quem é o meu cliente?
+    São os usuarios do sistema,fornecedore e contratantes.
+
+### Objetivo
+    O objetivo do sistema é criar uma ponte entre forncedores e contratantes,
+    de forma a agilizar o processo de procura e contração.
+
+### Planejamento
+- [ ] Pesquisa para validação da idéia
+- [ ] Protatipação das telas
+- [ ] Validação com possíveis usuários
+- [ ] Desenhar estrutura
+- [ ] Desenvolvimento
+- [ ] Homologação(interna e externa)
+- [ ] Deploy
+- [ ] Melhoria Continua
+
+### Execucao
+
+#### Infraestrutura
 - [ ] Desenhar a arquitetura do sistema
 - [ ] Definir banco de dados
 - [ ] Definir tecnologias a serem utilizadas
@@ -14,7 +56,7 @@
 - [ ] Definir ferrramnentas de desenvolvimento
 - [ ] Definir ferramenta de organização a equipe
 
-## Pré-Desenvolvimento
+#### Pré-Desenvolvimento
 - [ ] Desenhar modelo de entidade relacionamento
 - [ ] Desenhar fluxo e casos de uso da aplicação
 - [ ] Preparar ambiente de desenvolvimento
@@ -22,7 +64,7 @@
 - [ ] Estabelecer fluxo de desenvolvimento
 - [ ] Estabelecer divisão das responsabilidades de cada membro
 
-## Desenvolvimento
+#### Desenvolvimento
 
 Integracões
 -----
@@ -82,7 +124,9 @@ Contratação de Serviços
 - [ ] Após a execução o consumidor podera avaliar o serviço
 - [ ] Histórico de Contratação
 - [ ] Criar Testes
-
-## Deploy
+#### Homologação
+- [ ] Validações de regras e funcionamento
+- [ ] Validações de utilização com os usuarios final
+#### Deploy
 - [ ] Fazer deploy do backend dentro do heroku
 - [ ] Fazer deploy do frontend dentro do netlify
