@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SECRET_KEY: continuosintegration
+      DJANGO_SETTINGS_MODULE: keplerapi.tests.settings
+      
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
