@@ -25,7 +25,6 @@ def main(argv):
     assert "Command not found"
   if(len(argv)> 1):
     composed_command+= argv[1:]
-  print (composed_command)
   print("running %s ...\n" % " ".join(composed_command))
   subprocess_cmd(" ".join(composed_command))
 
