@@ -4,4 +4,5 @@
   "db:makemigrations": "python3 manage.py migrate",
   "test": "coverage run manage.py test -v 2",
   "coverage": "coverage html"
+  
 }
