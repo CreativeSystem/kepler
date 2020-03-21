@@ -23,9 +23,7 @@ jobs:
           pip install -r requirements.txt
         
       - name: Setup env variables
-        run : echo "${SECRET_KEY}"
-        env:
-          SECRET_KEY: secretkeytest
+        run: echo ::set-env name=SECRET_KEY::continuosintegration
           
       - name: Test with coverage.py
         run: |
