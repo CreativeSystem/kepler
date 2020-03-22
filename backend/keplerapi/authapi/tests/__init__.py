@@ -1,1 +1,1 @@
-from authapi.tests.test_auth import *
+from authapi.tests.test_user import *

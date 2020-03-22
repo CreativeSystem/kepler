@@ -33,13 +33,27 @@
       "name": "Python: Django",
       "type": "python",
       "request": "launch",
+      "cwd": "${workspaceFolder}/backend/keplerapi",
       "envFile": "${workspaceFolder}/backend/keplerapi/.env",
       "program": "${workspaceFolder}/backend/keplerapi/manage.py",
       "console": "integratedTerminal",
       "args": [
-          "runserver"
+          "runserver",
+          "--noreload"
       ],
       "django": true
   },
+  {
+    "name": "Python: Django Test",
+    "type": "python",
+    "request": "launch",
+    "envFile": "${workspaceFolder}/backend/keplerapi/.env",
+    "cwd": "${workspaceFolder}/backend/keplerapi",
+    "program": "${workspaceFolder}/backend/keplerapi/manage.py",
+    "args": [
+        "test"
+    ],
+    "django": true
+  }
   ]
 }
