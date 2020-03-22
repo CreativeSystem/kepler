@@ -156,3 +156,5 @@ TEMP_DIR = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'temp
 STATICFILES_DIRS = [
   TEMP_DIR
 ]
+
+AUTH_USER_MODEL = 'authapi.User'

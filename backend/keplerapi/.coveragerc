@@ -25,6 +25,8 @@ exclude_lines =
     if 0:
     if __name__ == .__main__.:
 
+    def __str__
+
 ignore_errors = True
 
 [html]
