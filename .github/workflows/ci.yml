@@ -8,7 +8,7 @@ jobs:
     env:
       SECRET_KEY: continuosintegration
       DJANGO_SETTINGS_MODULE: keplerapi.tests.settings
-      COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      COVERALLS_REPO_TOKEN: rzHvLuTJnQZLxqpg3Mv4lZIN5BD1WWbSh
       
     steps:
       - name: Checkout Repository
