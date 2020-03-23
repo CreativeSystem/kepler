@@ -8,6 +8,7 @@ jobs:
     env:
       SECRET_KEY: continuosintegration
       DJANGO_SETTINGS_MODULE: keplerapi.tests.settings
+      COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     steps:
       - name: Checkout Repository
@@ -41,12 +42,7 @@ jobs:
           cd backend/keplerapi
           coverage run manage.py test -v 2
         
-      - name: Generate Coveralls report 
+      - name: Upload report coverage to Coveralls
         run: |
-          coveralls --output=report.json
-
-      - name: Send report to Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./report.json
+          cd backend/keplerapi
+          coveralls
