@@ -4,13 +4,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import permissions,status
 
-
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
 def get_current_user(request):
     serializer = ProfileSerializer(request.user)
     return Response(serializer.data)
-
 
 class CreateUserView(APIView):
 
