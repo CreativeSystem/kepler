@@ -41,10 +41,9 @@ jobs:
           cd backend/keplerapi
           coverage run manage.py test -v 2
         
-      - name: Generate Lcov report 
+      - name: Generate Coveralls report 
         run: |
           coveralls --output=report.json
-          coveralls-lcov -v -n report.info > report.json
 
       - name: Send report to Coveralls
         uses: coverallsapp/github-action@master
