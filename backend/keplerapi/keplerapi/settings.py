@@ -119,7 +119,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'keplerapi.pagination.Pagination',
-    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
+    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES    
 }
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
