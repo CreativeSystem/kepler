@@ -1,1 +1,1 @@
-[![Coverage Status](https://coveralls.io/repos/github/CreativeSystem/kepler/badge.svg?branch=stage)](https://coveralls.io/github/CreativeSystem/kepler?branch=stage) ![CI](https://github.com/CreativeSystem/kepler/workflows/CI/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/CreativeSystem/kepler/badge.svg?branch=stage&service=github)](https://coveralls.io/github/CreativeSystem/kepler?branch=stage&service=github) ![CI](https://github.com/CreativeSystem/kepler/workflows/CI/badge.svg)
