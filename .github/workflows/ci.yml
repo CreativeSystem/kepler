@@ -1,0 +1,39 @@
+name: CI
+on:
+  pull_request:
+ 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: continuosintegration
+      DJANGO_SETTINGS_MODULE: keplerapi.tests.settings
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Python 3.6
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+            
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+      
+      - name: Install Coveralls
+        run: |
+          pip install coveralls
+          
+      - name: Test with coverage.py
+        run: |
+          cd backend/keplerapi
+          coverage run manage.py test -v 2
+        
+      - name: Upload report coverage to Coveralls
+        run: |
+          cd backend/keplerapi
+          coveralls

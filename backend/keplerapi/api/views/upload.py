@@ -10,11 +10,13 @@ class UploadView(APIView):
   def post(self,request):
     file = request.FILES.get('file')
 
+    if not file:
+      return Response({"message": "File not found"},status=417)
+
     uploader = Uploader(file)
     serializer = FileSerializer(data=uploader.get_data())
-    
-    if not serializer.is_valid():
-      return Response(serializer.errors,status=417)
+   
+    serializer.is_valid(raise_exception=True)
 
     uploader.upload()
 
