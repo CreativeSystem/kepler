@@ -10,6 +10,7 @@ class CurrentUserDefault:
     requires_context = True
 
     def __call__(self, serializer_field):
+        print(serializer_field.context['request'].user)
         return serializer_field.context['request'].user.id
 
     def __repr__(self):
