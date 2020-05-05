@@ -32,8 +32,11 @@ def forgot_password(request):
     if not serializer.is_valid():
         return Response(data={"type": "error", "content": serializer.errors},status= status.HTTP_417_EXPECTATION_FAILED)
     
-    user = User.objects.get(email= serializer.data["email"])
-
+    user = None
+    try:
+        user = User.objects.get(email= serializer.data["email"])
+    except Exception:
+        user = None
     if not user:
         return Response(data={"type": "error", "content": "User don't exists"},status= status.HTTP_417_EXPECTATION_FAILED)
     
@@ -52,9 +55,13 @@ def reset_password(request):
     
     if not serializer.data['password'] == serializer.data['password_confirmed']:
         return Response(data={"type": "error", "content": "Password must be equal"},status= status.HTTP_417_EXPECTATION_FAILED)
-    
-    user = User.objects.get(forgot_password_token= serializer.data["token"])
 
+    user = None 
+    try :
+        user = User.objects.get(forgot_password_token= serializer.data["token"])
+    except :
+        user = None
+        
     if not user:
         return Response(data={"type": "error", "content": "User don't exists"},status= status.HTTP_417_EXPECTATION_FAILED)
     
@@ -62,4 +69,4 @@ def reset_password(request):
     user.forgot_password_token = None
     user.save()
 
-    return Response("Password was reset successfully")
+    return Response("Password was reset successfully")  
