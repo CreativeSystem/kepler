@@ -1,9 +1,8 @@
 {
   "dev":"python3 manage.py runserver",
   "db:migrate": "python3 manage.py migrate",
-  "db:makemigrations": "python3 manage.py migrate",
+  "db:makemigrations": "python3 manage.py makemigrations",
   "test": "DJANGO_SETTINGS_MODULE=keplerapi.tests.settings coverage run manage.py test -v 3 --failfast",
   "coverage": "coverage html",
   "coverage:server": "cd coverage && python3 -m http.server 5000"
-
 }
