@@ -38,13 +38,13 @@ def forgot_password(request):
     except Exception:
         user = None
     if not user:
-        return Response(data={"type": "error", "content": "User don't exists"},status= status.HTTP_417_EXPECTATION_FAILED)
+        return Response(data={"type": "error", "content": "Não foi possivel encontrar usuário"},status= status.HTTP_417_EXPECTATION_FAILED)
     
     user.forgot_password_token = user.generate_forgot_password_token()
 
     user.save()
 
-    return Response("Check your e-mail to reset password")
+    return Response("Verifique seu email para resetar a senha")
 
 @api_view(['POST'])
 def reset_password(request):
@@ -54,16 +54,16 @@ def reset_password(request):
         return Response(data={"type": "error", "content": serializer.errors},status= status.HTTP_417_EXPECTATION_FAILED)
     
     if not serializer.data['password'] == serializer.data['password_confirmed']:
-        return Response(data={"type": "error", "content": "Password must be equal"},status= status.HTTP_417_EXPECTATION_FAILED)
+        return Response(data={"type": "error", "content": "As senhas precisam ser iguais!"},status= status.HTTP_417_EXPECTATION_FAILED)
 
     user = None 
     try :
         user = User.objects.get(forgot_password_token= serializer.data["token"])
     except :
         user = None
-        
+
     if not user:
-        return Response(data={"type": "error", "content": "User don't exists"},status= status.HTTP_417_EXPECTATION_FAILED)
+        return Response(data={"type": "error", "content": "Token ínvalido"},status= status.HTTP_417_EXPECTATION_FAILED)
     
     user.set_password(serializer.data['password'])
     user.forgot_password_token = None
