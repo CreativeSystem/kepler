@@ -42,10 +42,10 @@ class HiredService(AuditedEntity):
 
 
 class Interests(models.Model):
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    interests = models.CharField(
+    person = models.ForeignKey(Person,related_name="interests", on_delete=models.CASCADE)
+    interest = models.CharField(
         max_length=2, choices=InterestsChoices.choices)
-    other = models.CharField(max_length=50)
+    other = models.CharField(max_length=50,null=True)
 
 
 class Region(models.Model):

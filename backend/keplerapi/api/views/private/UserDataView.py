@@ -10,4 +10,4 @@ class UserDataCreateRetrieveView(generics.CreateAPIView,generics.RetrieveAPIView
     permission_classes = [IsAuthenticated]
     def filter_queryset(self, queryset):
         return Person.objects.filter(active=True, created_by=self.request.user.id)
-    
+

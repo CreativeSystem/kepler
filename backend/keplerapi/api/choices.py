@@ -6,6 +6,7 @@ class InterestsChoices(models.TextChoices):
     EXEMPLO1 = 1, _("EXEMPLO1")
     EXEMPLO2 = 2, _("EXEMPLO2")
     EXEMPLO3 = 3, _("EXEMPLO3")
+    OTHER = 4, _("OTHER")
 
 
 class RegionChoices(models.TextChoices):

@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
             name='Interests',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('interests', models.CharField(choices=[('1', 'EXEMPLO1'), ('2', 'EXEMPLO2'), ('3', 'EXEMPLO3')], max_length=2)),
+                ('interest', models.CharField(choices=[('1', 'EXEMPLO1'), ('2', 'EXEMPLO2'), ('3', 'EXEMPLO3')], max_length=2)),
                 ('other', models.CharField(max_length=50)),
                 ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Person')),
             ],
