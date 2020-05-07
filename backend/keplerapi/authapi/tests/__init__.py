@@ -1,0 +1,1 @@
+from authapi.tests.test_user import *

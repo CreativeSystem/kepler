@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from api.base import AuditedEntity
-from django.contrib.auth.models import User
+from authapi.models import User
 from api.choices import InterestsChoices, RegionChoices, RatingChoices
 
 

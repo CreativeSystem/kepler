@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 try:
     load_dotenv(dotenv_path=".env")
 except:
-    print("")
+    pass
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -73,6 +73,11 @@ DATABASES = {
     'default': dj_database_url.config(engine="django.db.backends.postgresql"),
 }
 
+DATABASES['default']['TEST'] = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': ':memory:'
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -114,7 +119,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'keplerapi.pagination.Pagination',
-    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
+    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES    
 }
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
@@ -151,3 +156,12 @@ TEMP_DIR = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'temp
 STATICFILES_DIRS = [
   TEMP_DIR
 ]
+
+AUTH_USER_MODEL = 'authapi.User'
+
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+
+EMAIL_DEFAULT = "naoresponda@creative.com.br"
