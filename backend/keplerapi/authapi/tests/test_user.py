@@ -1,6 +1,8 @@
 from rest_framework.test import APITestCase,APIClient
 from django.urls import reverse
 from django.test import tag
+from django.core import mail
+
 from authapi.tests.utils import create_user,fake_user,get_token,get_reset_data
 from rest_framework import status
 from authapi.models import User
@@ -93,6 +95,14 @@ class ForgotPasswordTest(APITestCase):
     db_user = User.objects.get(email=user["email"])
 
     self.assertIsNotNone(db_user.forgot_password_token)
+
+  def test_it_should_send_email_forgot_password(self):
+    user = create_user()
+
+    response = self.client.post(FORGOT_PASSWORD_URL,{'email': user["email"]},format='json')
+    self.assertEqual(response.status_code,status.HTTP_200_OK)
+
+    self.assertEqual(mail.outbox[0].to, [user["email"]])
 
   def test_it_should_not_create_forgot_password_token_for_invalid_email(self):
     user = create_user()
