@@ -1,5 +1,6 @@
 from rest_framework.test import APITestCase,APIClient
 from django.urls import reverse
+from django.test import tag
 from authapi.tests.utils import create_user,fake_user,get_token,get_reset_data
 from rest_framework import status
 from authapi.models import User
@@ -10,6 +11,7 @@ INFO_URL = reverse('info-user')
 FORGOT_PASSWORD_URL = reverse('forgot-password')
 RESET_PASSWORD_URL = reverse('reset-password')
 
+@tag('auth','core')
 class AuthTest(APITestCase):
   def setUp(self):
     pass
@@ -48,6 +50,7 @@ class AuthTest(APITestCase):
     
     self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
 
+@tag('user','core')
 class UserTest(APITestCase):
   def setUp(self):
     pass
@@ -76,6 +79,7 @@ class UserTest(APITestCase):
     self.assertEqual(response.status_code,status.HTTP_417_EXPECTATION_FAILED)
     self.assertEqual(response.data['type'],'error')
 
+@tag('user','core')
 class ForgotPasswordTest(APITestCase):
   def setUp(self):
     pass
@@ -104,6 +108,7 @@ class ForgotPasswordTest(APITestCase):
     response = self.client.post(FORGOT_PASSWORD_URL,{'email': "invalid@user.com"},format='json')
     self.assertEqual(response.status_code,status.HTTP_417_EXPECTATION_FAILED)
 
+@tag('user','core')
 class ResetPasswordTest(APITestCase):
   def setUp(self):
     pass
