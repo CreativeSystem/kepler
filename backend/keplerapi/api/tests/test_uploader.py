@@ -1,8 +1,10 @@
 import os 
 
 from rest_framework.test import APITestCase
+from django.test import tag
 from django.urls import reverse
 
+@tag('uploader','slow')
 class UploaderTest(APITestCase):
   def setUp(self):
     self.dir = os.path.dirname(os.path.abspath(__file__))
