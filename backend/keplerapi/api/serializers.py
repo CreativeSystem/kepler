@@ -1,9 +1,11 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 from django.db.transaction import atomic
 
 from api.base import AuditedEntitySerializer
 from api.models import Person, Service, HiredService, Interests, Region, File,ServiceImage
+from api.validators import cpf_validator,future_date_validator
 from api.base import CurrentUserDefault
 
 class PersonSerializer(AuditedEntitySerializer):
@@ -18,6 +20,10 @@ class UserInterestsSerializer(serializers.ModelSerializer):
 
 class UserDataSerializer(AuditedEntitySerializer):
     interests = UserInterestsSerializer(many=True)
+    cpf = serializers.CharField(validators=[cpf_validator,UniqueValidator(queryset=Person.objects.all())])
+    whatsapp = serializers.CharField(min_length=11,max_length=11)
+    telephone = serializers.CharField(min_length=10,max_length=10)
+    birth_date = serializers.DateField(validators=[future_date_validator])
     class Meta:
         model = Person
         fields="__all__"

@@ -17,7 +17,7 @@ class Person(AuditedEntity):
     whatsapp = models.CharField(max_length=11)
     telephone = models.CharField(max_length=10)
     birth_date = models.DateField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class Service(AuditedEntity):

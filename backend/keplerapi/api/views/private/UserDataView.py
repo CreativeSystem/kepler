@@ -1,13 +1,19 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
 
 from api.serializers import UserDataSerializer
-from api.models import Person
+from api.models import Person,Interests
 from api.base import CurrentUserDefault
 
-class UserDataCreateRetrieveView(generics.CreateAPIView,generics.RetrieveAPIView):
+class UserDataCreateView(generics.CreateAPIView):
     serializer_class = UserDataSerializer
     permission_classes = [IsAuthenticated]
-    def filter_queryset(self, queryset):
-        return Person.objects.filter(active=True, created_by=self.request.user.id)
 
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+def get_current_user_data(request):
+    person = Person.objects.get(user=request.user)
+    serializer = UserDataSerializer(person)
+    return Response(serializer.data)
