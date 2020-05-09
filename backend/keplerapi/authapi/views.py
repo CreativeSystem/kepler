@@ -4,6 +4,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import permissions,status
 from .models import User
+from api.email import EmailSender
+
+import os
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
@@ -43,6 +46,17 @@ def forgot_password(request):
     user.forgot_password_token = user.generate_forgot_password_token()
 
     user.save()
+
+    data_email = {
+        "name": user.first_name,
+        "forgotPasswordUrl": "%s/forgot?token=%s" %(os.getenv("FRONTEND_URL"),user.forgot_password_token)
+    }
+
+    EmailSender.send(
+        tos=[user.email],
+        template_path="email/forgot-password.html",
+        data=data_email,
+        subject="Esqueci Minha Senha")
 
     return Response("Verifique seu email para resetar a senha")
 
