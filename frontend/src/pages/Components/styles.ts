@@ -10,7 +10,9 @@ export const LogContainer = styled.div`
   background-color: #29292e;
   color: #eff0f9;
   margin-left: 100px;
-  width: 400px;
+  width: 100%;
+  min-width: 500px;
+  max-width: 500px;
   padding: 20px;
 `;
 
