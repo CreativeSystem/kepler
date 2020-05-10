@@ -22,7 +22,7 @@ class PersonFilter(field_filters.FilterSet):
 
 
 class PersonListCreate(generics.ListCreateAPIView):
-    queryset = Person.objects.filter(active=true)
+    queryset = Person.objects.filter(active=True)
     serializer_class = PersonSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [filters.OrderingFilter,

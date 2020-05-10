@@ -33,13 +33,13 @@
       "name": "Python: Django",
       "type": "python",
       "request": "launch",
+      "justMyCode": false,
       "cwd": "${workspaceFolder}/backend/keplerapi",
       "envFile": "${workspaceFolder}/backend/keplerapi/.env",
       "program": "${workspaceFolder}/backend/keplerapi/manage.py",
       "console": "integratedTerminal",
       "args": [
-          "runserver",
-          "--noreload"
+          "runserver"
       ],
       "django": true
   },

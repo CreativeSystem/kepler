@@ -22,7 +22,7 @@ class HiredServiceFilter(field_filters.FilterSet):
 
 
 class HiredServiceListCreate(generics.ListCreateAPIView):
-    queryset = HiredService.objects.filter(active=true)
+    queryset = HiredService.objects.filter(active=True)
     serializer_class = HiredServiceSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [filters.OrderingFilter,
