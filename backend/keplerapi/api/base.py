@@ -5,7 +5,6 @@ from rest_framework import serializers, mixins, generics, pagination
 from django_filters import BaseInFilter, NumberFilter, CharFilter, BaseRangeFilter, DateFilter
 from django_filters import rest_framework as field_filters
 
-
 class CurrentUserDefault:
     requires_context = True
 
@@ -14,7 +13,6 @@ class CurrentUserDefault:
 
     def __repr__(self):
         return '%s()' % self.__class__.__name__
-
 
 class AuditedEntitySerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(

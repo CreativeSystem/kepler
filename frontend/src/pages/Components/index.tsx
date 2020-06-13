@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 
-import { Form } from "@unform/web";
-
 import {
   DatePicker,
-  FileInput,
+  Uploader,
   Input,
   Rater,
   Select,
   Switch,
-} from "../../components/Form";
+  Image,
+} from "@components/Form";
+import { Form } from "@unform/web";
+
 import { Container, LogContainer, Code } from "./styles";
 
 const Components: React.FC = () => {
@@ -26,7 +27,10 @@ const Components: React.FC = () => {
           <DatePicker name="datePicker" label="Escolha uma data" />
         </div>
         <div className="form-group">
-          <FileInput name="fileInput" label="Selecione uma imagem" multiple />
+          <Uploader
+            accept="image/*"
+            renderFile={(file, index) => <Image file={file} name={`files[${index}]`} />}
+          />
         </div>
         <div className="form-group">
           <Input name="input" placeholder="teste" />
