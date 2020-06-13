@@ -113,6 +113,7 @@ const Login: React.FC = () => {
       description: "Diz ai! Qual o seu CPF?",
       renderInput: () => (
         <Input
+          mask="999.999.999-00"
           name="cpf"
           placeholder="000.000.000-00"
           maxLength={11}
