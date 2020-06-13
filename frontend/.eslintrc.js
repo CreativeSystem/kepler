@@ -42,6 +42,7 @@ module.exports = {
     "import/no-cycle":"off",
     "no-shadow": "off",
     "max-len": "off",
+    "no-unused-expressions":"off",
     "react/jsx-filename-extension": [
       "error",
       {

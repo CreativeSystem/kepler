@@ -24,7 +24,6 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
     "react-select": "^3.0.8",
-    "react-switch": "^5.0.1",
     "react-virtualized": "^9.21.2",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
@@ -95,6 +94,7 @@
     "eslint-plugin-react-hooks": "1.x",
     "json-server": "^0.16.0",
     "prettier": "^1.16.4",
-    "react-app-rewired": "^2.1.5"
+    "react-app-rewired": "^2.1.5",
+    "types": "^0.1.1"
   }
 }

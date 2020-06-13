@@ -2906,11 +2906,6 @@ camelcase@5.3.1, camelcase@^5.0.0, camelcase@^5.3.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
-camelize@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/camelize/-/camelize-1.0.0.tgz#164a5483e630fa4321e5af07020e531831b2609b"
-  integrity sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs=
-
 caniuse-api@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/caniuse-api/-/caniuse-api-3.0.0.tgz#5e4d90e2274961d46291997df599e3ed008ee4c0"
@@ -3512,11 +3507,6 @@ css-blank-pseudo@^0.1.4:
   dependencies:
     postcss "^7.0.5"
 
-css-color-keywords@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/css-color-keywords/-/css-color-keywords-1.0.0.tgz#fea2616dc676b2962686b3af8dbdbe180b244e05"
-  integrity sha1-/qJhbcZ2spYmhrOvjb2+GAskTgU=
-
 css-color-names@0.0.4, css-color-names@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
@@ -3592,10 +3582,6 @@ css-to-react-native@^2.2.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/css-to-react-native/-/css-to-react-native-2.3.2.tgz#e75e2f8f7aa385b4c3611c52b074b70a002f2e7d"
   integrity sha512-VOFaeZA053BqvvvqIA8c9n0+9vFppVBAHCp6JgFTtTMU3Mzi+XnelJ9XC9ul3BqFzZyQ5N+H0SnwsWT2Ebchxw==
-  dependencies:
-    camelize "^1.0.0"
-    css-color-keywords "^1.0.0"
-    postcss-value-parser "^3.3.0"
 
 css-tree@1.0.0-alpha.37:
   version "1.0.0-alpha.37"
@@ -8365,13 +8351,6 @@ pnp-webpack-plugin@1.6.0:
   dependencies:
     ts-pnp "^1.1.2"
 
-polished@^3.4.4:
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.4.tgz#ac8cd6e704887398f3b802718f9d389b9ea4307b"
-  integrity sha512-x9PKeExyI9AhWrJP3Q57I1k7GInujjiVBJMPFmycj9hX1yCOo/X9eu9eZwxgOziiXge3WbFQ5XOmkzunOntBSA==
-  dependencies:
-    "@babel/runtime" "^7.6.3"
-
 popper.js@^1.14.1, popper.js@^1.14.4, popper.js@^1.15.0, popper.js@^1.16.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
@@ -9015,7 +8994,7 @@ postcss-unique-selectors@^4.0.1:
     postcss "^7.0.0"
     uniqs "^2.0.0"
 
-postcss-value-parser@^3.0.0, postcss-value-parser@^3.3.0:
+postcss-value-parser@^3.0.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.1.tgz#9ff822547e2893213cf1c30efa51ac5fd1ba8281"
   integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
@@ -9624,13 +9603,6 @@ react-select@^3.0.8:
     prop-types "^15.6.0"
     react-input-autosize "^2.2.2"
     react-transition-group "^2.2.1"
-
-react-switch@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-5.0.1.tgz#449277f4c3aed5286fffd0f50d5cbc2a23330406"
-  integrity sha512-Pa5kvqRfX85QUCK1Jv0rxyeElbC3aNpCP5hV0LoJpU/Y6kydf0t4kRriQ6ZYA4kxWwAYk/cH51T4/sPzV9mCgQ==
-  dependencies:
-    prop-types "^15.6.2"
 
 react-transition-group@^2.2.1:
   version "2.9.0"
@@ -11314,6 +11286,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+types@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/types/-/types-0.1.1.tgz#860c6859d11366293f835d8c95aebcf95029838e"
+  integrity sha1-hgxoWdETZik/g12Mla68+VApg44=
 
 typesafe-actions@^5.1.0:
   version "5.1.0"
