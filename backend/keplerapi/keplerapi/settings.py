@@ -13,6 +13,8 @@ except:
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+ATOMIC_REQUESTS=True
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'True'
 

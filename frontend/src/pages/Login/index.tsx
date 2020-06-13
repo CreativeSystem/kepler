@@ -3,7 +3,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
-
 import * as SessionActions from "@ducks/session/actions";
 import { SessionState, ILogin } from "@ducks/session/types";
 import { FormHandles } from "@unform/core";
@@ -13,6 +12,8 @@ import * as Yup from "yup";
 
 import { ApplicationState } from "@store/index";
 
+import Button from "@components/Button";
+import Input from "@components/Form/Input";
 import Input from "@components/Form/Input";
 
 import { Container, Box } from "./styles";
@@ -20,6 +21,7 @@ import { Container, Box } from "./styles";
 enum STEPS {
   EMAIL = "email",
   CPF = "cpf",
+  NOME = "nome",
   PASSWORD = "password"
 }
 
@@ -37,12 +39,17 @@ const emailValidation = Yup.string()
   .required("Informe o email");
 
 const cpfValidation = Yup.string()
-  .length(11)
+  .length(11, "O cpf deve ter 11 caracteres")
   .required("Informe o cpf");
 
+const nomeValidation = Yup.string()
+  .min(3, "O nome deve ter no mínimo 3 caracteres")
+  .max(40, "O nome deve ter no máximo 40 caracteres")
+  .required("Informe o nome");
+
 const passwordValidation = Yup.string()
-  .max(20)
-  .min(8)
+  .max(20, "A senha deve conter no máximo 20 caracteres")
+  .min(8, "A senha deve conter no mínimo 8 caracteres")
   .required("Informe uma senha");
 
 const Login: React.FC<Props> = ({
@@ -58,17 +65,35 @@ const Login: React.FC<Props> = ({
   const [step, setStep] = useState(STEPS.EMAIL);
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
+  const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
 
   const formRef = useRef<FormHandles>(null);
 
+  async function validateStep(fieldName: string, validation: Yup.StringSchema<string>, step: STEPS): Promise<string|undefined> {
+    try {
+      const fieldInput = formRef.current?.getFieldRef(fieldName);
+      const validate = await validation.validate(fieldInput.value);
+      if (validate) {
+        setStep(step);
+      }
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const error: any = {};
+        error[fieldName] = err.message;
+        formRef.current?.setErrors(error);
+      }
+    }
+    return undefined;
+  }
+
   const handleOnStep = async () => {
     if (step === STEPS.EMAIL) {
-      const emailInput = formRef.current?.getFieldRef("email");
-      if (await emailValidation.isValid(emailInput.value)) setStep(STEPS.CPF);
+      validateStep("email", emailValidation, STEPS.CPF);
     } else if (step === STEPS.CPF) {
-      const cpfInput = formRef.current?.getFieldRef("cpf");
-      if (await cpfValidation.isValid(cpfInput.value)) setStep(STEPS.PASSWORD);
+      validateStep("cpf", cpfValidation, STEPS.NOME);
+    } else if (step === STEPS.NOME) {
+      validateStep("nome", nomeValidation, STEPS.PASSWORD);
     } else {
       const passwordInput = formRef.current?.getFieldRef("password");
       if (await passwordValidation.isValid(passwordInput.value)) {
@@ -96,13 +121,13 @@ const Login: React.FC<Props> = ({
                   name="email"
                   placeholder="email"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e: any) => setEmail(e.target.value)}
                 />
               </div>
               <div className="btn-container">
-                <button type="button" onClick={() => handleOnStep()}>
+                <Button type="button" onClick={() => handleOnStep()}>
                   Continuar
-                </button>
+                </Button>
               </div>
             </div>
           )}
@@ -130,13 +155,48 @@ const Login: React.FC<Props> = ({
                     placeholder="000.000.000-00"
                     maxLength={11}
                     value={cpf}
-                    onChange={e => setCpf(e.target.value)}
+                    onChange={(e: any) => setCpf(e.target.value)}
                   />
                 </div>
                 <div className="btn-container">
-                  <button type="button" onClick={() => handleOnStep()}>
+                  <Button type="button" onClick={() => handleOnStep()}>
                     Continuar
-                  </button>
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+
+          {step === STEPS.NOME && (
+            <>
+              <div className="arrow-container">
+                <button
+                  onClick={() => setStep(STEPS.CPF)}
+                  className="arrow-left"
+                  type="button"
+                >
+                  <FaArrowLeft />
+                </button>
+              </div>
+              <div>
+                <div className="title-container">
+                  <h1>Faça Login</h1>
+
+                  <h2>Como podemos chama-lo?</h2>
+                </div>
+                <div className="input-container">
+                  <Input
+                    name="nome"
+                    placeholder="Digite seu nome"
+                    maxLength={50}
+                    value={nome}
+                    onChange={(e: any) => setNome(e.target.value)}
+                  />
+                </div>
+                <div className="btn-container">
+                  <Button type="button" onClick={() => handleOnStep()}>
+                    Continuar
+                  </Button>
                 </div>
               </div>
             </>
@@ -164,13 +224,13 @@ const Login: React.FC<Props> = ({
                     name="password"
                     placeholder="Senha"
                     type="password"
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e: any) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="btn-container">
-                  <button type="submit" onClick={() => handleOnStep()}>
+                  <Button type="submit" onClick={() => handleOnStep()} loading={loading}>
                     Continuar
-                  </button>
+                  </Button>
                 </div>
               </div>
             </>
@@ -191,5 +251,4 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(SessionActions, dispatch);
-
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
