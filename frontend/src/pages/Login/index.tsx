@@ -14,7 +14,6 @@ import { ApplicationState } from "@store/index";
 
 import Button from "@components/Button";
 import Input from "@components/Form/Input";
-import Input from "@components/Form/Input";
 
 import { Container, Box } from "./styles";
 
