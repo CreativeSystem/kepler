@@ -1,14 +1,16 @@
-import Encryptor from "@services/encryptor";
+
 import env from "~/utils/env";
 import { createStore, Store, applyMiddleware } from "redux";
 import {
   persistReducer,
   persistStore,
   PersistConfig,
-  createTransform
+  createTransform,
 } from "redux-persist";
 import localStorage from "redux-persist/es/storage";
 import createSagaMiddleware from "redux-saga";
+
+import Encryptor from "@services/encryptor";
 
 import rootReducer from "./ducks/rootReducer";
 import rootSaga from "./ducks/rootSaga";
@@ -21,31 +23,31 @@ export interface ApplicationState {
 const sagaMiddleware = createSagaMiddleware();
 const encryptor = new Encryptor(env("PERSIST_KEY"));
 
-interface encryptState {
+interface EncryptState {
   encrypt: string;
 }
 const encryptTransform = createTransform(
-  (state: encryptState) => {
+  (state: EncryptState) => {
     const encrypt = encryptor.encrypt(state);
     return { encrypt };
   },
-  ({ encrypt }: encryptState) => {
+  ({ encrypt }: EncryptState) => {
     const decrypt = encryptor.decrypt(encrypt);
     return decrypt;
-  }
+  },
 );
 
 const persistConfig: PersistConfig<any> = {
   key: "cfood",
   storage: localStorage,
   whitelist: ["session"],
-  transforms: [encryptTransform]
+  transforms: [encryptTransform],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store: Store<ApplicationState> = createStore(
   persistedReducer,
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(sagaMiddleware),
 );
 
 sagaMiddleware.run(rootSaga);

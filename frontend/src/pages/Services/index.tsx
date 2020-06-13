@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { useEffect, useState } from "react";
 
-import Pagination from "@components/Pagination";
 import api, { PaginationResponse } from "@services/api";
+
+import Pagination from "@components/Pagination";
 
 
 import SeviceCard, { CardData } from "./Card";
