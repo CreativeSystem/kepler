@@ -4,8 +4,10 @@ import React, { useRef, useEffect } from "react";
 
 import { useField } from "@unform/core";
 
-import { Container, Error, Label } from "../styles";
+import { Error, Label } from "@components/Form/styles";
+
 import InputMask, { Props as IMaskProps } from "./InputMask";
+import { Container } from "./styles";
 
 interface OwnProps<T = "input" | "mask"> {
   set?: T;

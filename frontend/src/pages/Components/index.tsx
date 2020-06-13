@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Form } from "@unform/web";
+
 import {
   DatePicker,
   Uploader,
@@ -9,7 +11,6 @@ import {
   Switch,
   Image,
 } from "@components/Form";
-import { Form } from "@unform/web";
 
 import { Container, LogContainer, Code } from "./styles";
 

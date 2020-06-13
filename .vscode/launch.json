@@ -39,7 +39,7 @@
       "program": "${workspaceFolder}/backend/keplerapi/manage.py",
       "console": "integratedTerminal",
       "args": [
-          "runserver"
+        "runserver"
       ],
       "django": true
   },

@@ -42,6 +42,7 @@ module.exports = {
     "import/no-cycle":"off",
     "no-shadow": "off",
     "max-len": "off",
+    "prefer-template":"off",
     "no-unused-expressions":"off",
     "react/jsx-filename-extension": [
       "error",
@@ -59,12 +60,12 @@ module.exports = {
         groups: [
           "/^react/",
           "module",
-          "/^services/",
-          "/^store/",
-          "/^pages/",
-          "/^components/",
-          "/^assets/",
-          "/^styled/",
+          "/^@services/",
+          "/^@store/",
+          "/^@pages/",
+          "/^@components/",
+          "/^@assets/",
+          "/^styles/",
           ["parent", "sibling", "index"]
         ],
         alphabetize: { order: "asc", ignoreCase: true }
