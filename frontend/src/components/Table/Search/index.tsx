@@ -13,17 +13,11 @@ type Props = OwnProps;
 
 const Search: React.FC<Props> = ({ onSearch, search }) => {
   const initialData = {
-    search
+    search,
   };
 
   const handleSubmit = ({ search }: any) => {
     onSearch(search);
-  };
-
-  const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value === "") {
-      onSearch("");
-    }
   };
 
   return (

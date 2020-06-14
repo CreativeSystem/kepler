@@ -19,8 +19,7 @@ const reducer: Reducer<SessionState> = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         error: false,
-        token: action.payload.token,
-        profile: action.payload.profile,
+        token: action.payload,
         isAuthenticated: true,
       };
     case SessionType.LOGIN_FAILURE:

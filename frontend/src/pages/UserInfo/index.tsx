@@ -10,7 +10,7 @@ import { Container, Card, InterestsContainer } from "./styles";
 const UserInfo: React.FC = () => (
   <Container>
     <Card>
-      <Form className="card" onSubmit={() => {}}>
+      <Form className="card" onSubmit={() => { throw new Error("implementar"); }}>
         <Card.Body>
           <Card.Title>Cadastrar Dados</Card.Title>
           <Card.Subtitle>Dados Pessoais</Card.Subtitle>

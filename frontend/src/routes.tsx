@@ -1,7 +1,10 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Env from "~/utils/env";
+import { ConnectedRouter } from "connected-react-router";
+
+import { history } from "@store/index";
 
 import Components from "@pages/Components";
 import Login from "@pages/Login";
@@ -11,7 +14,7 @@ import UserInfo from "@pages/UserInfo";
 import Template from "@components/Template";
 
 const Routes: React.FC = () => (
-  <BrowserRouter>
+  <ConnectedRouter history={history}>
     <Switch>
       <Route exact path="/login" component={Login} />
 
@@ -31,7 +34,7 @@ const Routes: React.FC = () => (
         <Route exact path="/components" component={Components} />
       )}
     </Switch>
-  </BrowserRouter>
+  </ConnectedRouter>
 );
 
 export default Routes;
