@@ -1,6 +1,10 @@
 
 import env from "~/utils/env";
-import { createStore, Store, applyMiddleware } from "redux";
+import { routerMiddleware } from "connected-react-router";
+import { createBrowserHistory } from "history";
+import {
+  createStore, Store, applyMiddleware, compose,
+} from "redux";
 import {
   persistReducer,
   persistStore,
@@ -43,14 +47,21 @@ const persistConfig: PersistConfig<any> = {
   whitelist: ["session"],
   transforms: [encryptTransform],
 };
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const history = createBrowserHistory();
+
+const reducers = rootReducer(history);
+
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store: Store<ApplicationState> = createStore(
   persistedReducer,
-  applyMiddleware(sagaMiddleware),
+  compose(
+    applyMiddleware(routerMiddleware(history), sagaMiddleware),
+  ),
 );
 
 sagaMiddleware.run(rootSaga);
 const persistor = persistStore(store);
 
-export { store, persistor };
+export { store, persistor, history };

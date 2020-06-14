@@ -1,8 +1,6 @@
 import React, {
   useState, useRef, useCallback, useEffect,
 } from "react";
-import { useSelector, shallowEqual } from "react-redux";
-import { Redirect } from "react-router";
 
 import * as SessionActions from "@ducks/session/actions";
 import { ILogin } from "@ducks/session/types";
@@ -14,7 +12,6 @@ import * as Yup from "yup";
 import AuthService from "@services/AuthService";
 
 import { useAction } from "@store/hooks";
-import { ApplicationState } from "@store/index";
 
 import Step from "@pages/Login/Step";
 
@@ -46,7 +43,6 @@ const passwordValidation = Yup.string()
 
 const Login: React.FC = () => {
   const loginRequest = useAction(SessionActions.loginRequest);
-  const isAuthenticated = useSelector<ApplicationState>(state => state.session.isAuthenticated, shallowEqual);
   const formRef = useRef<FormHandles>(null);
 
   const [step, setStep] = useState(STEPS.EMAIL);
@@ -192,7 +188,6 @@ const Login: React.FC = () => {
           </Step>
         </Form>
       </Box>
-      {isAuthenticated && <Redirect to="/" />}
     </Container>
   );
 };
