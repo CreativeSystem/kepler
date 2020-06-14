@@ -11,7 +11,6 @@ export function* login(action: any) {
 
     yield put(loginSuccess(token));
   } catch (err) {
-    console.log(err);
     yield put(loginFailure());
   }
 }
