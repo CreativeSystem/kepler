@@ -3,14 +3,11 @@ import { AxiosError } from "axios";
 import { makeApi } from "@services/api";
 import ApiService from "@services/ApiService";
 
-export interface AuthService {
-  login(email:string, password:string):Promise<any>
-  verifyEmail(email:string) : Promise<boolean>
-}
+import { AuthService, LoginResponse } from "./types";
 
 class AuthServiceImpl extends ApiService implements AuthService {
-  async login(email: string, password: string): Promise<any> {
-    const response = await this.api.post("", { email, password });
+  async login(email: string, password: string): Promise<LoginResponse> {
+    const response = await this.api.post<LoginResponse>("", { email, password });
     return response.data;
   }
 
