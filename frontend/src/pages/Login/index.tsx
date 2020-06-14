@@ -1,5 +1,7 @@
-import React, { useState, useRef, useCallback } from "react";
-import { useSelector } from "react-redux";
+import React, {
+  useState, useRef, useCallback, useEffect,
+} from "react";
+import { useSelector, shallowEqual } from "react-redux";
 import { Redirect } from "react-router";
 
 import * as SessionActions from "@ducks/session/actions";
@@ -8,6 +10,8 @@ import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import { useValidationState } from "~/hooks";
 import * as Yup from "yup";
+
+import AuthService from "@services/AuthService";
 
 import { useAction } from "@store/hooks";
 import { ApplicationState } from "@store/index";
@@ -27,39 +31,53 @@ enum STEPS {
 }
 
 const emailValidation = Yup.string()
-  .max(90)
-  .email("Email inválido")
-  .required("Informe o email");
+  .max(90).email("Email inválido").required("Informe o email");
 
 const cpfValidation = Yup.string()
-  .length(11, "O cpf deve ter 11 caracteres")
-  .required("Informe o cpf");
+  .length(11, "O cpf deve ter 11 caracteres").required("Informe o cpf");
 
 const nomeValidation = Yup.string()
-  .min(3, "O nome deve ter no mínimo 3 caracteres")
-  .max(40, "O nome deve ter no máximo 40 caracteres")
+  .min(3, "O nome deve ter no mínimo 3 caracteres").max(40, "O nome deve ter no máximo 40 caracteres")
   .required("Informe o nome");
 
 const passwordValidation = Yup.string()
-  .max(20, "A senha deve conter no máximo 20 caracteres")
-  .min(8, "A senha deve conter no mínimo 8 caracteres")
+  .max(20, "A senha deve conter no máximo 20 caracteres").min(8, "A senha deve conter no mínimo 8 caracteres")
   .required("Informe uma senha");
 
 const Login: React.FC = () => {
   const loginRequest = useAction(SessionActions.loginRequest);
-  const isAuthenticated = useSelector<ApplicationState>(state => state.session.isAuthenticated);
+  const isAuthenticated = useSelector<ApplicationState>(state => state.session.isAuthenticated, shallowEqual);
   const formRef = useRef<FormHandles>(null);
 
   const [step, setStep] = useState(STEPS.EMAIL);
+  const [emailVerified, setEmailVerified] = useState(false);
   const [email, setEmail, validateEmail] = useValidationState("", STEPS.EMAIL, formRef, emailValidation);
   const [cpf, setCpf, validateCpf] = useValidationState("", STEPS.CPF, formRef, cpfValidation);
   const [nome, setNome, validateNome] = useValidationState("", STEPS.NOME, formRef, nomeValidation);
   const [password, setPassword, validatePassword] = useValidationState("", STEPS.PASSWORD, formRef, passwordValidation);
 
+  useEffect(() => {
+    setEmailVerified(false);
+  }, [email]);
 
   const handleSubmit = useCallback(({ email, password }: ILogin) => {
     loginRequest({ email, password });
   }, [loginRequest]);
+
+  const handleBackPressed = () => {
+    let previousStep:STEPS | undefined;
+
+    if (step === STEPS.PASSWORD) {
+      previousStep = emailVerified ? STEPS.EMAIL : STEPS.PASSWORD;
+    } else if (step === STEPS.NOME) {
+      previousStep = STEPS.CPF;
+    } else if (step === STEPS.CPF) {
+      previousStep = STEPS.EMAIL;
+    }
+    if (previousStep) {
+      setStep(previousStep);
+    }
+  };
 
   const handleNextPressed = useCallback(
     () => {
@@ -68,7 +86,13 @@ const Login: React.FC = () => {
         if (step === STEPS.EMAIL) {
           const validated = await validateEmail();
           if (validated) {
-            nextStep = STEPS.CPF;
+            const verifiedEmail = await AuthService.verifyEmail(email);
+            setEmailVerified(verifiedEmail);
+            if (verifiedEmail) {
+              nextStep = STEPS.PASSWORD;
+            } else {
+              nextStep = STEPS.CPF;
+            }
           }
         } else if (step === STEPS.CPF) {
           const validated = await validateCpf();
@@ -137,7 +161,7 @@ const Login: React.FC = () => {
     },
     [STEPS.PASSWORD]: {
       title: "Faça Login",
-      description: "Escolha uma senha",
+      description: emailVerified ? "Digite sua Senha para efetuar o login" : "Escolha uma senha",
       renderInput: () => (
         <Input
           name="password"
@@ -157,12 +181,18 @@ const Login: React.FC = () => {
           onSubmit={() => handleSubmit({ email, password })}
           ref={formRef}
         >
-          <Step title={steps[step].title} description={steps[step].description} onNextPressed={() => handleNextPressed()}>
+          <Step
+            backActive={step !== STEPS.EMAIL}
+            title={steps[step].title}
+            description={steps[step].description}
+            onNextPressed={() => handleNextPressed()}
+            onBackPressed={() => handleBackPressed()}
+          >
             {steps[step].renderInput()}
           </Step>
         </Form>
       </Box>
-      {isAuthenticated && <Redirect to="/dashboard" />}
+      {isAuthenticated && <Redirect to="/" />}
     </Container>
   );
 };

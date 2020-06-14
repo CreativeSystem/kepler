@@ -1,29 +1,36 @@
-import { store } from "@store/index";
+
 import env from "~/utils/env";
 import axios, { AxiosRequestConfig } from "axios";
 
-const api = axios.create({
-  baseURL: env("BACKEND_HOST"),
-  withCredentials: true
-});
+import { store } from "@store/index";
 
-api.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
-    const { token } = store.getState().session;
-    if (token) {
-      // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  err => Promise.reject(err)
-);
+export function makeApi(basePath?:string) {
+  const backendHost = env("BACKEND_HOST");
 
-export interface PaginationResponse<T> {
-  total: number;
-  page: number;
-  page_size: number;
-  data: [T];
+  const api = axios.create({
+    baseURL: basePath ? `${backendHost}/${basePath}` : backendHost,
+    withCredentials: true,
+  });
+
+  api.interceptors.request.use(
+    (config: AxiosRequestConfig) => {
+      const { token } = store.getState().session;
+      if (token) {
+        // eslint-disable-next-line no-param-reassign
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    err => Promise.reject(err),
+  );
+  return api;
 }
 
-export default api;
+export interface PaginationResponse<T> {
+    total: number;
+    page: number;
+    page_size: number;
+    data: [T];
+}
+
+export default makeApi();

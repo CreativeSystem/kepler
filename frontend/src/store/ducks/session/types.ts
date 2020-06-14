@@ -10,11 +10,6 @@ export interface ILogin {
   password: string;
 }
 
-export interface ILoginSuccess {
-  token: string;
-  profile: IProfile;
-}
-
 export interface IProfile {
   id: number;
   email: string;
