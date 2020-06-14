@@ -20,12 +20,6 @@ const Search: React.FC<Props> = ({ onSearch, search }) => {
     onSearch(search);
   };
 
-  const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value === "") {
-      onSearch("");
-    }
-  };
-
   return (
     <Form onSubmit={handleSubmit} initialData={initialData}>
       <InputGroup className="text-primary font-weight-bold">

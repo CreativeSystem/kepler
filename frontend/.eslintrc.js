@@ -44,6 +44,7 @@ module.exports = {
     "max-len": "off",
     "prefer-template":"off",
     "no-unused-expressions":"off",
+    "no-nested-ternary":"off",
     "react/jsx-filename-extension": [
       "error",
       {
