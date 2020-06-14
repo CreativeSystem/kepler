@@ -84,3 +84,20 @@ def reset_password(request):
     user.save()
 
     return Response("Password was reset successfully")  
+
+@api_view(['GET'])
+def verify_email_alredy_exists(request):
+    query_params = request.query_params
+
+    if 'email' not in query_params.keys():
+        return Response(data={"type": "error", "content": "Email é obrigatório"},status=status.HTTP_400_BAD_REQUEST)
+
+    email = query_params['email']
+
+    try:
+        User.objects.get(email = email)
+    except:
+        return Response(status=status.HTTP_417_EXPECTATION_FAILED)
+
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
