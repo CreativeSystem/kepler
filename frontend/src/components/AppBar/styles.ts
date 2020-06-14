@@ -1,7 +1,6 @@
 import { InputGroup as BInputGroup } from "react-bootstrap";
 
 import { ITheme } from "~/styles/themes";
-
 import styled from "styled-components";
 
 interface Props {
@@ -16,8 +15,8 @@ export const Container = styled.header`
   align-items: center;
   background-color: ${({
     theme: {
-      primary: { bg }
-    }
+      primary: { bg },
+    },
   }: Props) => bg};
   max-width: 100%;
   position: sticky;

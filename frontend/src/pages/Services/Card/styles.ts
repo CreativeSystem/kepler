@@ -1,5 +1,4 @@
 import { Card } from "semantic-ui-react";
-
 import styled from "styled-components";
 
 export const Container = styled(Card)`

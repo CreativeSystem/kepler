@@ -13,7 +13,7 @@ type Props = OwnProps;
 
 const Search: React.FC<Props> = ({ onSearch, search }) => {
   const initialData = {
-    search
+    search,
   };
 
   const handleSubmit = ({ search }: any) => {

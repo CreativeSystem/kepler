@@ -1,5 +1,4 @@
 import { ITheme } from "~/styles/themes";
-
 import styled from "styled-components";
 
 interface Props {

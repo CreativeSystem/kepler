@@ -1,5 +1,7 @@
 import React from "react";
-import { RouteProps, Route, RouteComponentProps, Redirect } from "react-router";
+import {
+  RouteProps, Route, RouteComponentProps, Redirect,
+} from "react-router";
 
 interface PrivateRouteProps extends RouteProps {
   hasAuthorization: boolean;
@@ -15,25 +17,24 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
 }) => (
   <Route
     {...rest}
-    render={(props: RouteComponentProps<any>) =>
-      hasAuthorization ? (
-        Container ? (
-          Component && (
-            <Container {...props}>
-              <Component {...props} />
-            </Container>
-          )
-        ) : (
-          Component && <Component {...props} />
+    render={(props: RouteComponentProps<any>) => (hasAuthorization ? (
+      Container ? (
+        Component && (
+        <Container {...props}>
+          <Component {...props} />
+        </Container>
         )
       ) : (
-        <Redirect
-          to={{
-            pathname: redirect || "/login",
-            state: { from: props.location }
-          }}
-        ></Redirect>
+        Component && <Component {...props} />
       )
+    ) : (
+      <Redirect
+        to={{
+          pathname: redirect || "/login",
+          state: { from: props.location },
+        }}
+      />
+    ))
     }
   />
 );

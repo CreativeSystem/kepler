@@ -13,8 +13,9 @@ import { connect } from "react-redux";
 
 import * as SessionActions from "@ducks/session/actions";
 import { IProfile } from "@ducks/session/types";
-import { ApplicationState } from "@store/index";
 import { Dispatch, bindActionCreators } from "redux";
+
+import { ApplicationState } from "@store/index";
 
 import {
   Container, Dropdown, DropdownItem, IconContainer,
