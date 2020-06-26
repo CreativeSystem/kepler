@@ -1,6 +1,9 @@
-from rest_framework import serializers
+from rest_framework import serializers,validators
+from rest_framework.validators import UniqueTogetherValidator
 from api.base import AuditedEntitySerializer
 from api.models import Person, Service, HiredService, Interests, Region, File,ServiceImage
+from api.validators import cpf_validator
+from authapi.models import User
 
 class CurrentPersonDefault:
     requires_context = True
@@ -19,6 +22,7 @@ class CurrentPersonSerializer(serializers.ModelSerializer):
     person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
 
 class PersonSerializer(AuditedEntitySerializer):
+    user = serializers.PrimaryKeyRelatedField(default=serializers.CurrentUserDefault(),queryset=User.objects.all())
     class Meta:
         model = Person
         fields = "__all__"
@@ -43,10 +47,19 @@ class HiredServiceSerializer(AuditedEntitySerializer):
         fields = "__all__"
 
 
-class InterestsSerializer(AuditedEntitySerializer):
+class InterestsSerializer(serializers.ModelSerializer):
+    person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
+    
     class Meta:
         model = Interests
         fields = "__all__"
+        validators=[
+            UniqueTogetherValidator(
+                queryset=Interests.objects.all(),
+                fields=['person', 'interest']
+            )
+        ]
+        
 
 
 class RegionSerializer(AuditedEntitySerializer):

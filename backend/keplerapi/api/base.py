@@ -1,9 +1,29 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
-from rest_framework import serializers, mixins, generics, pagination
+from rest_framework import serializers, mixins, generics, pagination,status
 from django_filters import BaseInFilter, NumberFilter, CharFilter, BaseRangeFilter, DateFilter
 from django_filters import rest_framework as field_filters
+
+from rest_framework.response import Response
+
+from api.models import Person
+
+class CurrentPersonDefault:
+    requires_context = True
+
+    def __call__(self, serializer_field):
+        try:
+            person = Person.objects.get(user = serializer_field.context['request'].user)
+            return person
+        except:
+            raise serializers.ValidationError("A pessoa não pode ser nula")
+        
+    def __repr__(self):
+        return '%s()' % self.__class__.__name__
+
+class CurrentPersonSerializer(serializers.ModelSerializer):
+    person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
 
 class CurrentUserDefault:
     requires_context = True
@@ -16,31 +36,37 @@ class CurrentUserDefault:
 
 class AuditedEntitySerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(
-        default=serializers.CreateOnlyDefault(timezone.now))
-    updated_at = serializers.DateTimeField(default=timezone.now)
+        default=serializers.CreateOnlyDefault(timezone.now),write_only=True)
+    updated_at = serializers.DateTimeField(default=timezone.now,write_only=True)
     created_by = serializers.IntegerField(
-        default=serializers.CreateOnlyDefault(CurrentUserDefault()))
-    updated_by = serializers.IntegerField(default=CurrentUserDefault())
+        default=serializers.CreateOnlyDefault(CurrentUserDefault()),write_only=True)
+    updated_by = serializers.IntegerField(default=CurrentUserDefault(),write_only=True)
 
 
-class AuditedEntity(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, editable=False)
-    updated_at = models.DateTimeField(default=timezone.now)
-    created_by = models.IntegerField(editable=False)
-    updated_by = models.IntegerField()
-    active = models.BooleanField(default=True)
+class PersonGenericApiView(generics.GenericAPIView):
 
-    class Meta:
-        abstract = True
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(person = Person.objects.get(user = self.request.user))
 
 
 class RetrieveUpdateDestroyAPIView(mixins.RetrieveModelMixin,
                                    mixins.UpdateModelMixin,
                                    mixins.DestroyModelMixin,
                                    generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
     def delete(self, request, *args, **kwargs):
         request.data["active"] = False
-        return self.partial_update(request, *args, **kwargs)
+        self.partial_update(request, *args, **kwargs)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class NumberInFilter(BaseInFilter, NumberFilter):
