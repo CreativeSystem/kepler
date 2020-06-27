@@ -1,46 +1,118 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
-from rest_framework import serializers, mixins, generics, pagination
+from rest_framework import serializers, mixins, generics, pagination,status
 from django_filters import BaseInFilter, NumberFilter, CharFilter, BaseRangeFilter, DateFilter
 from django_filters import rest_framework as field_filters
 
-class CurrentUserDefault:
-    requires_context = True
+from rest_framework.response import Response
 
+from api.models import Person
+
+class BaseDefaultSerializer:
+    requires_context = True
     def __call__(self, serializer_field):
-        return serializer_field.context['request'].user.id
+       raise NotImplementedError('`__call__()` must be implemented.')
+
+    def get_current_user(self,request):
+        return request.user
+
+    def get_request(self,serializer_field):
+        return serializer_field.context['request']
 
     def __repr__(self):
         return '%s()' % self.__class__.__name__
 
+class PathVariableDefault(BaseDefaultSerializer):
+    
+    def __call__(self, serializer_field):
+        request = self.get_request(serializer_field)
+
+
+class CurrentPersonDefault(BaseDefaultSerializer):
+
+    def __call__(self, serializer_field):
+        request = self.get_request(serializer_field)
+        try:
+            person = Person.objects.get(user = self.get_current_user(request))
+            return person
+        except:
+            raise serializers.ValidationError("A pessoa não pode ser nula")
+
+
+class CurrentPersonSerializer(serializers.ModelSerializer):
+    person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
+
+class CurrentUserDefault(BaseDefaultSerializer):
+    def __call__(self, serializer_field):
+        request = self.get_request(serializer_field)
+
+        return self.get_current_user(request).id
+
 class AuditedEntitySerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(
-        default=serializers.CreateOnlyDefault(timezone.now))
-    updated_at = serializers.DateTimeField(default=timezone.now)
+        default=serializers.CreateOnlyDefault(timezone.now),write_only=True)
+    updated_at = serializers.DateTimeField(default=timezone.now,write_only=True)
     created_by = serializers.IntegerField(
-        default=serializers.CreateOnlyDefault(CurrentUserDefault()))
-    updated_by = serializers.IntegerField(default=CurrentUserDefault())
+        default=serializers.CreateOnlyDefault(CurrentUserDefault()),write_only=True)
+    updated_by = serializers.IntegerField(default=CurrentUserDefault(),write_only=True)
 
+class PathVariableMixin:
+    path_vars = None
 
-class AuditedEntity(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, editable=False)
-    updated_at = models.DateTimeField(default=timezone.now)
-    created_by = models.IntegerField(editable=False)
-    updated_by = models.IntegerField()
-    active = models.BooleanField(default=True)
+    def get_data(self,request_data, **kwargs):
+        data = self.get_kwargs_data(kwargs)
 
-    class Meta:
-        abstract = True
+        if request_data:
+            return {**request_data, **data}
+
+    def get_kwargs_data(self,kwargs):
+        if self.path_vars and kwargs:
+            kwargs_data ={}
+            for path_var in self.path_vars:
+                kwargs_data[path_var] = kwargs.get(path_var,None)
+            return kwargs_data
+        return kwargs
+
+class PathCreateApiView(generics.CreateAPIView,PathVariableMixin):
+    def create(self, request, *args, **kwargs):
+
+        serializer = self.get_serializer(data=self.get_data(request_data=request.data,**kwargs))
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+class PersonGenericApiView(generics.GenericAPIView):
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(person = Person.objects.get(user = self.request.user))
+
+class DeactivateApiView(mixins.UpdateModelMixin,mixins.DestroyModelMixin,generics.GenericAPIView):
+    def delete(self, request, *args, **kwargs):
+        request.data["active"] = False
+        self.partial_update(request, *args, **kwargs)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class RetrieveUpdateDestroyAPIView(mixins.RetrieveModelMixin,
                                    mixins.UpdateModelMixin,
                                    mixins.DestroyModelMixin,
                                    generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
     def delete(self, request, *args, **kwargs):
         request.data["active"] = False
-        return self.partial_update(request, *args, **kwargs)
+        self.partial_update(request, *args, **kwargs)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class NumberInFilter(BaseInFilter, NumberFilter):

@@ -1,10 +1,22 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
-from api.base import AuditedEntity
+from django.utils import timezone
 from authapi.models import User
 from api.choices import InterestsChoices, RegionChoices, RatingChoices
+from api.validators import cpf_validator
 
+
+class AuditedEntity(models.Model):
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    updated_at = models.DateTimeField(default=timezone.now)
+    created_by = models.IntegerField(editable=False)
+    updated_by = models.IntegerField()
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        abstract = True
+        ordering = ['-created_at']
 
 class File(models.Model):
     name = models.CharField(max_length=50, null=False)
@@ -13,11 +25,11 @@ class File(models.Model):
 
 class Person(AuditedEntity):
     name = models.CharField(max_length=75)
-    cpf = models.CharField(max_length=11, unique=True)
-    whatsapp = models.CharField(max_length=11)
-    telephone = models.CharField(max_length=10)
+    cpf = models.CharField(max_length=11, unique=True,validators=[cpf_validator])
+    whatsapp = models.CharField(max_length=11,null=True)
+    telephone = models.CharField(max_length=11)
     birth_date = models.DateField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,editable=False)
 
 
 class Service(AuditedEntity):
@@ -37,6 +49,8 @@ class ServiceImage(models.Model):
 class HiredService(AuditedEntity):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    finished_at = models.DateTimeField(null=True)
+    accepted_at = models.DateTimeField(null=True)
     rating = models.IntegerField(
         choices=RatingChoices.choices, blank=True, null=True,)
 

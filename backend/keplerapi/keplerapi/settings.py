@@ -120,7 +120,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'keplerapi.pagination.Pagination',
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata',
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES    
 }
 CORS_ORIGIN_WHITELIST = (
