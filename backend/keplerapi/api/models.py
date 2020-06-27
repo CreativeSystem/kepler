@@ -16,6 +16,7 @@ class AuditedEntity(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ['-created_at']
 
 class File(models.Model):
     name = models.CharField(max_length=50, null=False)
@@ -48,6 +49,8 @@ class ServiceImage(models.Model):
 class HiredService(AuditedEntity):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    finished_at = models.DateTimeField(null=True)
+    accepted_at = models.DateTimeField(null=True)
     rating = models.IntegerField(
         choices=RatingChoices.choices, blank=True, null=True,)
 

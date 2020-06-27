@@ -1,22 +1,10 @@
 from rest_framework import serializers,validators
-from rest_framework.validators import UniqueTogetherValidator
-from api.base import AuditedEntitySerializer
+from rest_framework.validators import UniqueTogetherValidator,UniqueValidator
+from api.base import AuditedEntitySerializer,CurrentPersonDefault,PathVariableDefault
 from api.models import Person, Service, HiredService, Interests, Region, File,ServiceImage
 from api.validators import cpf_validator
 from authapi.models import User
 
-class CurrentPersonDefault:
-    requires_context = True
-
-    def __call__(self, serializer_field):
-        try:
-            person = Person.objects.get(user = serializer_field.context['request'].user)
-            return person
-        except:
-            raise serializers.ValidationError("A pessoa não pode ser nula")
-        
-    def __repr__(self):
-        return '%s()' % self.__class__.__name__
 
 class CurrentPersonSerializer(serializers.ModelSerializer):
     person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
@@ -41,10 +29,12 @@ class ServiceSerializer(AuditedEntitySerializer):
         fields = ["id","title","description","to_match","price","service_image"]
 
 
-class HiredServiceSerializer(AuditedEntitySerializer):
+class HireServiceSerializer(AuditedEntitySerializer):
+    person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
+    service = serializers.PrimaryKeyRelatedField(queryset=Service.objects.all())
     class Meta:
         model = HiredService
-        fields = "__all__"
+        exclude = ('finished_at','accepted_at','rating')
 
 
 class InterestsSerializer(serializers.ModelSerializer):
@@ -61,7 +51,6 @@ class InterestsSerializer(serializers.ModelSerializer):
         ]
         
 
-
 class RegionSerializer(AuditedEntitySerializer):
     class Meta:
         model = Region
@@ -73,37 +62,14 @@ class FileSerializer(serializers.ModelSerializer):
         model = File
         fields = "__all__"
 
-class ImageSerializer(serializers.ModelSerializer):
-    id = serializers.Field()
-    url = serializers.URLField(read_only=True)
-    
-    def to_internal_value(self,data):
-        return File.objects.get(id=data["id"])
-
-    def to_representation(self,value):
-        return {
-            "id": value.image.id,
-            "url":value.image.url,
-            "originalName": value.image.originalName
-        }
-
+class ServiceImageSerializer(serializers.ModelSerializer):
+    service = serializers.PrimaryKeyRelatedField(queryset=Service.objects.all())
+    image = serializers.PrimaryKeyRelatedField(queryset=File.objects.all(),validators=[UniqueValidator(queryset=ServiceImage.objects.all())])
     class Meta:
-        model = File
-        fields = ["id","url","originalName"]
+        model = ServiceImage
+        fields = "__all__"
 
-class RegisterServiceSerializer(AuditedEntitySerializer,CurrentPersonSerializer):
-    service_image = ImageSerializer(many=True)
+class PersonServiceSerializer(AuditedEntitySerializer,CurrentPersonSerializer):
     class Meta:
         model = Service
         fields = "__all__"
-
-    def create(self, validated_data):
-        images = validated_data.pop('service_image')
-        if ServiceImage.objects.filter(image__in=images):
-            raise serializers.ValidationError("As imagens já estão sendo utilizadas em outro serviço")
-      
-        service = Service.objects.create(**validated_data)
-
-        for image in images:
-            ServiceImage.objects.create(service=service,image=image)
-        return service
