@@ -4,7 +4,7 @@ interface IBaseTheme {
   fg: string;
 }
 
-type IColor = IBaseTheme;
+export type IColor = IBaseTheme;
 
 export interface ITheme {
   success: IColor;
@@ -25,7 +25,7 @@ export const light: ITheme = {
     fg: "#F5F5F5"
   },
   warning: {
-    bg: "#ffc107",
+    bg: "#DD774B",
     fg: "#F5F5F5"
   },
   primary: {

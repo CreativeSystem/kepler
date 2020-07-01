@@ -30,7 +30,7 @@ export interface PaginationResponse<T> {
     total: number;
     page: number;
     page_size: number;
-    data: [T];
+    data: T[];
 }
 
 export default makeApi();

@@ -30,7 +30,11 @@ class ServiceSerializer(AuditedEntitySerializer):
 
 
 class HireServiceSerializer(AuditedEntitySerializer):
-    person = serializers.RelatedField(default=CurrentPersonDefault(),write_only=True,queryset=Person.objects.all(), allow_null=False)
+    person = serializers.RelatedField(
+            default=CurrentPersonDefault(),
+            write_only=True,
+            queryset=Person.objects.all(), 
+            allow_null=False)
     service = serializers.PrimaryKeyRelatedField(queryset=Service.objects.all())
     class Meta:
         model = HiredService
@@ -73,3 +77,11 @@ class PersonServiceSerializer(AuditedEntitySerializer,CurrentPersonSerializer):
     class Meta:
         model = Service
         fields = "__all__"
+
+
+class HiredServiceSerilizer(AuditedEntitySerializer):
+
+    class Meta:
+        model = HiredService
+        depth = 2
+        exclude=['person']

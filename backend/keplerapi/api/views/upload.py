@@ -19,8 +19,6 @@ class UploadView(APIView):
     serializer.is_valid(raise_exception=True)
 
     uploader.upload()
-
-    serializer.create(serializer.data)
     
     return Response(FileSerializer(instance=serializer.create(serializer.data)).data,status=201)
     

@@ -14,7 +14,7 @@ urlpatterns = [
   
   path("person/interests/",person.PersonInterestsListCreateView.as_view(),name="person-interests"),
   path("person/interests/<int:pk>/",person.PersonInterestsDestroyView.as_view(),name="person-interests-detail"),
-  
+  path("person/hired-services/",person.PersonHiredServiceListView.as_view(),name="person-hired-service"),
   path("person/services/",person.PersonServiceListCreateView.as_view(),name="person-service"),
   path("person/services/<int:pk>/",person.PersonServiceRetrieveUpdateDestroyView.as_view(),name="person-service-detail"),
   

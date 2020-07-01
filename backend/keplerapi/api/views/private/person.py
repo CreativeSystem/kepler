@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django_filters import rest_framework as field_filters
 
-from api.serializers import PersonSerializer,InterestsSerializer,PersonServiceSerializer,ServiceImageSerializer
-from api.models import Person,Interests,Service,ServiceImage
+from api.serializers import PersonSerializer,InterestsSerializer,PersonServiceSerializer,ServiceImageSerializer,HiredServiceSerilizer
+from api.models import Person,Interests,Service,ServiceImage,HiredService
 from api.base import RetrieveUpdateDestroyAPIView,PersonGenericApiView,PathCreateApiView
 
 class PersonCreateView(generics.CreateAPIView):
@@ -61,4 +61,9 @@ class PersonServiceImageListCreateView(generics.ListAPIView,PathCreateApiView):
 class PersonServiceImageDestroyView(generics.DestroyAPIView):
     queryset = ServiceImage.objects.all()
     serializer_class = ServiceImageSerializer
+    permission_classes = [IsAuthenticated]
+
+class PersonHiredServiceListView(generics.ListAPIView,PersonGenericApiView):
+    queryset = HiredService.objects.all()
+    serializer_class = HiredServiceSerilizer
     permission_classes = [IsAuthenticated]

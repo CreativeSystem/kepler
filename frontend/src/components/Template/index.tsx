@@ -14,7 +14,7 @@ const Template: React.FC = ({ children }) => (
     <PageContainer>
       {children}
     </PageContainer>
-    <Footer />
+    {/* <Footer /> */}
   </Container>
 );
 

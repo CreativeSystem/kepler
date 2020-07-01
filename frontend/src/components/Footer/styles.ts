@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const FooterKP = styled.div`
+  grid-area: footer;
   width: 100%;
   background-color: #A9A9A9;
   display: grid;
