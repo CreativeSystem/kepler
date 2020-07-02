@@ -3,7 +3,11 @@ import { Card } from "react-bootstrap";
 import styled from "styled-components";
 
 export const Container = styled(Card)`
-  margin: 5px;
-  box-shadow: 0px 0.3px 5px #22222266;
-  border-radius: 0px !important;
+  min-height: 400px;
+  width: 100% !important;
+
+  transition: transform 0.2s;
+  :hover{
+    transform: scale(1.03);
+  }
 `;

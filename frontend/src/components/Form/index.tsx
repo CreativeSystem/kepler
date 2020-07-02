@@ -5,3 +5,4 @@ export { default as Rater } from "./Rater";
 export { default as Select } from "./Select";
 export { default as Switch } from "./Switch";
 export { default as Image } from "./Image";
+export { default as TextArea } from "./TextArea";

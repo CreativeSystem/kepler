@@ -1,17 +1,27 @@
+import { ITheme } from "~/styles/themes";
 import styled from "styled-components";
 
+interface Props {
+  theme: ITheme;
+}
+
 export const Container = styled.div`
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
   border: 0;
-  overflow: hidden;
+  display: grid;
+  grid-template-areas: 'header' 
+    'content'
+    'footer';
+  
+  grid-template-columns: auto;
+  grid-template-rows: 60px auto auto;
+    
 `;
 
 export const PageContainer = styled.div`
-  width: 100vw;
-  padding: 10px 0px;
-  display: flex;
-  overflow:hidden;
+  grid-area: content;
+  padding: 10px 20px;
+  height: 100%;
+  background-color: ${({ theme: { default: Default } }: Props) => Default.bg};
 `;

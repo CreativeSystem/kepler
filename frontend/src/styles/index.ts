@@ -9,19 +9,29 @@ interface Props {
 export default createGlobalStyle`
   * {
     box-sizing: border-box;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
   }
   html,body,#root{
     padding: 0;
     margin: 0;
     width: 100vw;
+    height: 100vh;
     box-sizing: border-box;
     border: 0;
   }
+
   #root{
     background-color: ${({ theme: { default: Default } }: Props) => Default.bg};
   }
+  .btn{
+    transition: all 0.3s;
+  }
+  .btn:hover{
+    transform: scale(1.03);
+  }
+
   #root .btn.btn-info{
     background-color: ${({ theme }: Props) => theme.info.bg};
     color:${({ theme }: Props) => theme.info.fg};
@@ -263,6 +273,10 @@ export default createGlobalStyle`
    85% { transform: rotate(5deg); }
    95% { transform: rotate(-5deg); }
    100% { transform: rotate(0deg); }
+  }
+
+  .cursor{
+    cursor: pointer !important;
   }
 
 `;

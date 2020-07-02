@@ -47,22 +47,28 @@ const User: React.FC<Props> = ({ profile, logoutRequest }) => (
         className="dropdown-item"
         type="button"
       >
-        <FaCog />
-        Serviços
+        <a href="/">
+          <FaCog />
+          Serviços
+        </a>
       </DropdownItem>
       <DropdownItem
         className="dropdown-item"
         type="button"
       >
-        <FaCrown />
-        Meus Serviços
+        <a href="/my-services">
+          <FaCrown />
+          Meus Serviços
+        </a>
       </DropdownItem>
       <DropdownItem
         className="dropdown-item"
         type="button"
       >
-        <FaHistory />
-        Histórico de Serviços
+        <a href="/hired-services">
+          <FaHistory />
+          Histórico de Serviços
+        </a>
       </DropdownItem>
       <DropdownItem
         className="dropdown-item"
@@ -82,7 +88,6 @@ const User: React.FC<Props> = ({ profile, logoutRequest }) => (
       <DropdownItem
         className="dropdown-item"
         type="button"
-        onClick={logoutRequest}
       >
         <FaQuestionCircle />
         Ajuda

@@ -45,6 +45,7 @@ module.exports = {
     "prefer-template":"off",
     "no-unused-expressions":"off",
     "no-nested-ternary":"off",
+    "no-plusplus":"off",
     "react/jsx-filename-extension": [
       "error",
       {

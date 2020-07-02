@@ -9,6 +9,7 @@ interface Props {
 
 export const Container = styled.header`
   height: 8vh;
+  grid-area: header;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -19,6 +20,7 @@ export const Container = styled.header`
     },
   }: Props) => bg};
   max-width: 100%;
+  width: 100%;
   position: sticky;
   z-index: 500;
   padding: 3px;
