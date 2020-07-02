@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
-import Col from "react-bootstrap/Col";
 import { useHistory } from "react-router-dom";
 
 import { Service } from "~/types";
@@ -39,7 +38,7 @@ const ServiceCard : React.FC<Props> = ({ data }) => {
         <Card.Text>
           Valor:
           {" "}
-          {data.price}
+          {data.to_match ? <span className="text-success">À Combinar</span> : data.price}
         </Card.Text>
       </Card.Footer>
     </Container>

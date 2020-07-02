@@ -3,23 +3,24 @@ import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
 import { usePaginatedQuery } from "react-query";
 
-import { range } from "lodash";
-
 import api, { PaginationResponse } from "@services/api";
 
 
 interface Props<T>{
   url: string,
   pageSize: number,
-  renderItem(item:T): React.ReactNode
+  renderItem(item:T): React.ReactNode,
+  active?:boolean
 }
 
-function Paginator<T>({ url, pageSize = 10, renderItem }:Props<T>) {
+function Paginator<T>({
+  url, pageSize = 10, renderItem, active = true,
+}:Props<T>) {
   const [page, setPage] = useState(1);
   const [maxPage, setMaxPage] = useState(1);
 
   async function loadPage(key:string, page = 1) {
-    const { data } = await api.get<PaginationResponse<T>>(`${url}?page=${page}&page_size=${pageSize}`);
+    const { data } = await api.get<PaginationResponse<T>>(`${url}?page=${page}&page_size=${pageSize}&active=${active}`);
 
     const { data: items, total } = data;
 

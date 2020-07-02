@@ -28,6 +28,11 @@ class ServiceSerializer(AuditedEntitySerializer):
         model = Service
         fields = ["id","title","description","to_match","price","service_image"]
 
+class ServiceInfoSerializer(ServiceSerializer):
+    class Meta:
+        model = Service
+        depth = 1
+        fields = '__all__'
 
 class HireServiceSerializer(AuditedEntitySerializer):
     person = serializers.RelatedField(
@@ -74,14 +79,14 @@ class ServiceImageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class PersonServiceSerializer(AuditedEntitySerializer,CurrentPersonSerializer):
+    service_image = ServiceImageField(many=True,read_only= True)
     class Meta:
         model = Service
         fields = "__all__"
 
 
 class HiredServiceSerilizer(AuditedEntitySerializer):
-
+    service = ServiceInfoSerializer(read_only=True)
     class Meta:
         model = HiredService
-        depth = 2
         exclude=['person']

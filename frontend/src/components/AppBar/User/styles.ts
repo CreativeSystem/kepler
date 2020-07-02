@@ -26,26 +26,19 @@ export const DropdownItem = styled.button.attrs({
   display: flex !important;
   align-content: center;
   justify-items: center;
-
-  color: ${({
-    theme: {
-      default: { fg },
-    },
-  }: Props) => fg} !important;
-  font-weight: 500;
-  font-size: 1em;
-  :hover {
-    color: ${({
-    theme: {
-      default: { bg },
-    },
-  }: Props) => bg} !important;
-    background-color: ${({
-    theme: {
-      default: { fg },
-    },
-  }: Props) => fg} !important;
+  :hover{
+    background-color: ${({ theme }: Props) => theme.primary.bg} !important;
     box-shadow: 1px 1px 8px #22222277 !important;
+    color: ${({ theme }: Props) => theme.default.bg} !important;
+    a {
+      color: ${({ theme }: Props) => theme.default.bg} !important;
+    }
+  }
+
+  a {
+    color: ${({ theme }: Props) => theme.default.fg} !important;
+    font-weight: 500;
+    font-size: 1em;
   }
   svg {
     align-self: center;
@@ -78,11 +71,7 @@ export const IconContainer = styled.a`
       default: { bg },
     },
   }: Props) => bg};
-    background-color: ${({
-    theme: {
-      default: { fg },
-    },
-  }: Props) => fg};
+    
     transition: all 0.2s ease-in-out;
     transform: scale(1.1);
   }

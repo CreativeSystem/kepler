@@ -16,10 +16,10 @@ const AppBar: React.FC = () => {
 
   return (
     <Container className="sticky-top d-flex">
-      <Col md={2}>
-        <img src={Logo} alt="Kepler" height="30px" />
+      <Col md={2} sm={2}>
+        <a href="/"><img src={Logo} alt="Kepler" height="30px" /></a>
       </Col>
-      {/* <Col md={3}>
+      <Col md={3} sm={2}>
         <InputGroup>
           <InputGroupPrepend>
             <InputGroup.Text id="basic-addon1"><FaSearch /></InputGroup.Text>
@@ -33,7 +33,7 @@ const AppBar: React.FC = () => {
       </Col>
       <div className="d-flex align-items-center mr-2 ml-auto">
         { isAuthenticated ? <User /> : <SignIn />}
-      </div> */}
+      </div>
     </Container>
   );
 };

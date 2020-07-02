@@ -11,7 +11,7 @@ class PersonCreateView(generics.CreateAPIView):
     serializer_class = PersonSerializer
     permission_classes = [IsAuthenticated]
 
-class PersonRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView,PersonGenericApiView):
+class PersonRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [IsAuthenticated]

@@ -22,6 +22,7 @@ const Input: React.FC<InputProps | MaskProps> = ({
   name,
   set,
   label,
+  type = "text",
   ...rest
 }) => {
   const inputRef = useRef(null);
@@ -40,7 +41,7 @@ const Input: React.FC<InputProps | MaskProps> = ({
 
   return (
     <Container>
-      <Label>{label}</Label>
+      {["checkbox", "radio"].indexOf(type) < 0 && <Label>{label}</Label> }
       {set === "mask" ? (
         <InputMask
           name={fieldName}
@@ -49,14 +50,18 @@ const Input: React.FC<InputProps | MaskProps> = ({
           {...(rest as Omit<MaskProps, "name">)}
         />
       ) : (
-        <input
-          className="form-control"
-          name={fieldName}
-          ref={inputRef}
-          defaultValue={defaultValue}
-          onKeyPress={e => e.key === "Enter" && e.preventDefault()}
-          {...(rest as Omit<InputProps, "name">)}
-        />
+        <>
+          <input
+            className={["checkbox", "radio"].indexOf(type) > -1 ? "form-check-input" : "form-control"}
+            name={fieldName}
+            ref={inputRef}
+            defaultValue={defaultValue}
+            onKeyPress={e => e.key === "Enter" && e.preventDefault()}
+            type={type}
+            {...(rest as Omit<InputProps, "name">)}
+          />
+          {["checkbox", "radio"].indexOf(type) > -1 && <Label className="form-check-label ml-1">{label}</Label>}
+        </>
       )}
 
       {error && <Error>{error}</Error>}
